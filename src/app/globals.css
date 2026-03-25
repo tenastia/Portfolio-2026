@@ -1,19 +1,42 @@
 @import "tailwindcss";
 
 @theme {
+  /* Colours */
   --color-black-800: #121212;
   --color-white-100: #f8f9fa;
-  --color-body-muted: #b3b4b4;
+  --color-white-300: #b3b4b4;
   --color-button-secondary-active: #575758;
   --color-glass: rgba(239, 239, 239, 0.15);
   --color-glass-strong: rgba(248, 249, 250, 0.15);
 
+  /* Typography */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+  /* Type scale — desktop (base 18px, ratio 1.2) */
+  --text-display: 54px;
+  --text-h1: 45px;
+  --text-h2: 37px;
+  --text-h3: 31px;
+  --text-h4: 26px;
+  --text-h5: 22px;
   --text-body-md: 18px;
   --text-body-sm: 15px;
+  --text-caption: 13px;
+
+  /* Type scale — mobile (base 14px, ratio 1.2) */
+  --text-mobile-display: 42px;
+  --text-mobile-h1: 35px;
+  --text-mobile-h2: 29px;
+  --text-mobile-h3: 24px;
+  --text-mobile-h4: 20px;
+  --text-mobile-h5: 17px;
+  --text-mobile-body-md: 14px;
+  --text-mobile-body-sm: 12px;
+  --text-mobile-caption: 10px;
+
   --text-button: 18px;
 
+  /* Spacing */
   --spacing-page: 24px;
   --spacing-page-mobile: 16px;
   --spacing-nav: 16px;

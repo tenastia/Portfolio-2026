@@ -41,7 +41,7 @@ export default function Home() {
       <section className="flex items-center justify-between px-page-mobile md:px-page">
         <div className="flex flex-col font-sans font-normal leading-[28.8px] text-sm md:text-body-md tracking-[0.18px]">
           <span className="text-white-100">Nastia Ten</span>
-          <span className="text-body-muted">UX/UI Designer</span>
+          <span className="text-white-300">UX/UI Designer</span>
         </div>
         <div className="flex flex-col items-end">
           <SchemeButton color="#121212" isActive />
