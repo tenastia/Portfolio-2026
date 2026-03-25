@@ -37,12 +37,6 @@
   font-display: swap;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   background-color: var(--color-black-800);
   color: var(--color-white-100);
