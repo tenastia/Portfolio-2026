@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-between min-h-dvh bg-black-800">
       {/* Header */}
-      <header className="p-page-mobile md:p-page">
+      <header className="px-page-mobile md:px-page">
         <div className="flex flex-wrap gap-y-6 md:gap-y-9 items-start justify-between">
           {/* Mobile: navbar first, then bio */}
           <div className="flex items-center justify-between w-full md:hidden">
@@ -50,7 +50,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="p-page-mobile md:p-page">
+      <footer className="px-page-mobile md:px-page">
         <div className="flex items-center justify-between">
           <div className="flex gap-1 items-center text-white-100 text-xs md:text-body-sm leading-6 tracking-[0.15px]">
             <span className="whitespace-nowrap">Status:</span>
