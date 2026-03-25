@@ -1,7 +1,7 @@
 export default function Eyes() {
   return (
     <button
-      className="backdrop-blur-[8px] bg-glass-strong flex items-center p-2.5 rounded-[6px] cursor-pointer border-none"
+      className="backdrop-blur-[8px] bg-surface-glass-strong flex items-center p-2.5 rounded-[6px] cursor-pointer border-none transition-colors duration-300"
       aria-label="Toggle eye tracking"
     >
       <div className="flex gap-[5px] items-center">

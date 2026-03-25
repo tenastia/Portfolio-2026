@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colours */
+  /* Base colour palette */
   --color-black-800: #121212;
   --color-white-100: #f8f9fa;
   --color-white-300: #b3b4b4;
+
+  /* Semantic colours (dark scheme defaults) */
+  --color-bg: #121212;
+  --color-text: #f8f9fa;
+  --color-text-muted: #b3b4b4;
+  --color-surface-glass: rgba(239, 239, 239, 0.15);
+  --color-surface-glass-active: rgba(239, 239, 239, 0.3);
+  --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
-  --color-glass: rgba(239, 239, 239, 0.15);
-  --color-glass-strong: rgba(248, 249, 250, 0.15);
 
   /* Typography */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -42,6 +48,16 @@
   --spacing-nav: 16px;
 }
 
+[data-scheme="light"] {
+  --color-bg: #f8f9fa;
+  --color-text: #121212;
+  --color-text-muted: #b3b4b4;
+  --color-surface-glass: rgba(18, 18, 18, 0.15);
+  --color-surface-glass-active: rgba(18, 18, 18, 0.3);
+  --color-surface-glass-strong: rgba(18, 18, 18, 0.15);
+  --color-button-secondary-active: #b3b4b4;
+}
+
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("/fonts/PPNeueMontreal-Book.woff2") format("woff2"),
@@ -61,8 +77,8 @@
 }
 
 body {
-  background-color: var(--color-black-800);
-  color: var(--color-white-100);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
