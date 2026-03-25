@@ -17,10 +17,10 @@ export default function NavButton({ label, href = "#" }: NavButtonProps) {
         e.preventDefault();
         setIsActive(!isActive);
       }}
-      className={`flex items-center justify-center gap-2 rounded-[6px] px-[16px] py-[8px] text-[14px] md:text-[18px] leading-[20.8px] text-white-100 whitespace-nowrap no-underline transition-colors cursor-pointer ${
+      className={`flex items-center justify-center gap-2 rounded-[6px] px-[16px] py-[8px] text-[14px] md:text-[18px] leading-[20.8px] text-text whitespace-nowrap no-underline transition-colors cursor-pointer ${
         isActive
-          ? "bg-[rgba(239,239,239,0.3)]"
-          : "bg-[rgba(239,239,239,0.15)] hover:bg-[rgba(239,239,239,0.3)]"
+          ? "bg-surface-glass-active"
+          : "bg-surface-glass hover:bg-surface-glass-active"
       }`}
     >
       {label}
@@ -34,7 +34,7 @@ export default function NavButton({ label, href = "#" }: NavButtonProps) {
         >
           <path
             d="M1 1L9 9M9 1L1 9"
-            stroke="#f8f9fa"
+            stroke="currentColor"
             strokeWidth="1.5"
             strokeLinecap="round"
           />
