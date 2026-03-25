@@ -4,7 +4,7 @@ import SchemeButton from "@/components/SchemeButton";
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-between min-h-dvh bg-black-800">
+    <main className="flex flex-col justify-between min-h-dvh bg-black-800 py-page-mobile md:py-page">
       {/* Header */}
       <header className="p-page-mobile md:p-page">
         <div className="flex flex-wrap gap-y-6 md:gap-y-9 items-start justify-between">
