@@ -1,21 +1,24 @@
 "use client";
 
-import { useState } from "react";
-
 interface NavButtonProps {
   label: string;
+  isActive?: boolean;
+  onClick?: () => void;
   href?: string;
 }
 
-export default function NavButton({ label, href = "#" }: NavButtonProps) {
-  const [isActive, setIsActive] = useState(false);
-
+export default function NavButton({
+  label,
+  isActive = false,
+  onClick,
+  href = "#",
+}: NavButtonProps) {
   return (
     <a
       href={href}
       onClick={(e) => {
         e.preventDefault();
-        setIsActive(!isActive);
+        onClick?.();
       }}
       className={`flex items-center justify-center gap-2 rounded-[6px] px-[16px] py-[8px] text-[14px] md:text-[18px] leading-[20.8px] text-text whitespace-nowrap no-underline transition-colors cursor-pointer ${
         isActive
