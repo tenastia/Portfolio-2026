@@ -10,8 +10,8 @@
   --color-bg: #121212;
   --color-text: #f8f9fa;
   --color-text-muted: #b3b4b4;
-  --color-surface-glass: rgba(239, 239, 239, 0.15);
-  --color-surface-glass-active: rgba(239, 239, 239, 0.3);
+  --color-surface-glass: rgba(248, 249, 250, 0.15);
+  --color-surface-glass-active: rgba(248, 249, 250, 0.3);
   --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
 
@@ -28,6 +28,8 @@
   --text-body-md: 18px;
   --text-body-sm: 15px;
   --text-caption: 13px;
+  --text-button: 18px;
+  --text-project-title: 13px;
 
   /* Type scale — mobile (base 14px, ratio 1.2) */
   --text-mobile-display: 42px;
@@ -39,13 +41,30 @@
   --text-mobile-body-md: 14px;
   --text-mobile-body-sm: 12px;
   --text-mobile-caption: 10px;
+  --text-mobile-button: 14px;
 
-  --text-button: 18px;
+  /* Line heights — desktop */
+  --leading-body-md: 28px;
+  --leading-body-sm: 24px;
+  --leading-button: 20px;
+
+  /* Line heights — mobile */
+  --leading-mobile-body-md: 22px;
+  --leading-mobile-body-sm: 19px;
+  --leading-mobile-button: 16px;
+
+  /* Letter spacing */
+  --tracking-h1: 0.3px;
 
   /* Spacing */
   --spacing-page: 24px;
   --spacing-page-mobile: 16px;
   --spacing-nav: 16px;
+  --spacing-paragraph: 16px;
+  --spacing-paragraph-mobile: 8px;
+  --spacing-project-card: 16px;
+  --spacing-button-x: 16px;
+  --spacing-button-y: 8px;
 }
 
 [data-scheme="light"] {
