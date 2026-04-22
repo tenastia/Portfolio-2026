@@ -1,12 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import NavButton from "@/components/NavButton";
 import Eyes from "@/components/Eyes";
 import SchemeButton from "@/components/SchemeButton";
+import WorkOverlay from "@/components/WorkOverlay";
 import { useScheme } from "@/components/SchemeProvider";
+
+type Overlay = "work" | "lab" | "connect" | null;
 
 export default function Home() {
   const { scheme } = useScheme();
+  const [overlay, setOverlay] = useState<Overlay>(null);
+
+  const toggle = (name: Exclude<Overlay, null>) => () =>
+    setOverlay((prev) => (prev === name ? null : name));
 
   return (
     <main
@@ -14,16 +22,30 @@ export default function Home() {
       className="flex flex-col justify-between min-h-dvh bg-bg transition-colors duration-300"
     >
       {/* Header */}
-      <header className="p-page-mobile md:p-page">
+      <header className="p-page-mobile md:p-page relative z-40 pointer-events-none">
         <div className="flex flex-wrap gap-y-6 md:gap-y-9 items-start justify-between">
           {/* Mobile: navbar first, then bio */}
           <div className="flex items-center justify-between w-full md:hidden">
-            <nav className="flex gap-nav items-center">
-              <NavButton label="work" />
-              <NavButton label="lab" />
-              <NavButton label="connect" />
+            <nav className="flex gap-nav items-center pointer-events-auto">
+              <NavButton
+                label="work"
+                isActive={overlay === "work"}
+                onClick={toggle("work")}
+              />
+              <NavButton
+                label="lab"
+                isActive={overlay === "lab"}
+                onClick={toggle("lab")}
+              />
+              <NavButton
+                label="connect"
+                isActive={overlay === "connect"}
+                onClick={toggle("connect")}
+              />
             </nav>
-            <Eyes />
+            <div className="pointer-events-auto">
+              <Eyes />
+            </div>
           </div>
 
           {/* Bio */}
@@ -38,38 +60,53 @@ export default function Home() {
           </div>
 
           {/* Desktop navbar */}
-          <nav className="hidden md:flex gap-nav items-center">
-            <NavButton label="work" />
-            <NavButton label="lab" />
-            <NavButton label="connect" />
+          <nav className="hidden md:flex gap-nav items-center pointer-events-auto">
+            <NavButton
+              label="work"
+              isActive={overlay === "work"}
+              onClick={toggle("work")}
+            />
+            <NavButton
+              label="lab"
+              isActive={overlay === "lab"}
+              onClick={toggle("lab")}
+            />
+            <NavButton
+              label="connect"
+              isActive={overlay === "connect"}
+              onClick={toggle("connect")}
+            />
           </nav>
         </div>
       </header>
 
       {/* Middle Section */}
-      <section className="flex items-center justify-between px-page-mobile md:px-page">
+      <section className="flex items-center justify-between px-page-mobile md:px-page relative z-40 pointer-events-none">
         <div className="flex flex-col font-sans font-normal leading-[28.8px] text-sm md:text-body-md tracking-[0.18px]">
           <span className="text-text">Nastia Ten</span>
           <span className="text-text-muted">UX/UI Designer</span>
         </div>
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end pointer-events-auto">
           <SchemeButton color="#121212" scheme="dark" />
           <SchemeButton color="#f8f9fA" scheme="light" />
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="p-page-mobile md:p-page">
+      <footer className="p-page-mobile md:p-page relative z-40 pointer-events-none">
         <div className="flex items-center justify-between">
           <div className="flex gap-1 items-center text-text text-xs md:text-body-sm leading-6 tracking-[0.15px]">
             <span className="whitespace-nowrap">Status:</span>
             <span>on a look for a watermelon sorbet &#x1F367; |</span>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:block pointer-events-auto">
             <Eyes />
           </div>
         </div>
       </footer>
+
+      {/* Overlays */}
+      <WorkOverlay isOpen={overlay === "work"} />
     </main>
   );
 }
