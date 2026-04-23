@@ -20,7 +20,7 @@ export default function NavButton({
         e.preventDefault();
         onClick?.();
       }}
-      className={`flex items-center justify-center gap-2 rounded-[6px] px-[16px] py-[8px] text-[14px] md:text-[18px] leading-[20.8px] text-text whitespace-nowrap no-underline transition-colors cursor-pointer ${
+      className={`flex items-center justify-center gap-2 rounded-[6px] px-button-x py-button-y text-button leading-button text-text whitespace-nowrap no-underline transition-colors cursor-pointer ${
         isActive
           ? "bg-surface-glass-active"
           : "bg-surface-glass hover:bg-surface-glass-active"

@@ -88,7 +88,7 @@ export default function WorkOverlay({ isOpen }: WorkOverlayProps) {
             projects.map((project) => (
               <div
                 key={`${copyIdx}-${project.slug}`}
-                className="snap-center flex justify-center w-full px-page-mobile md:px-page py-8"
+                className="snap-center flex justify-center w-full px-page py-8"
               >
                 <ProjectCard project={project} />
               </div>

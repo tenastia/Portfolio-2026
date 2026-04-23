@@ -18,7 +18,7 @@ export default function SchemeButton({ color, scheme }: SchemeButtonProps) {
       aria-label={`Switch to ${scheme} color scheme`}
     >
       <span
-        className={`font-sans font-normal leading-[28.8px] text-sm md:text-button text-right whitespace-nowrap transition-colors duration-300 ${
+        className={`font-sans font-normal leading-body-md text-button text-right whitespace-nowrap transition-colors duration-300 ${
           isActive ? "text-button-secondary-active" : "text-text"
         }`}
       >

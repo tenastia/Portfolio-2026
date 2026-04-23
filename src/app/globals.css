@@ -15,53 +15,33 @@
   --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
 
-  /* Typography */
+  /* Typography — fluid (390px → 1440px) */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Type scale — desktop (base 18px, ratio 1.2) */
-  --text-display: 54px;
-  --text-h1: 45px;
-  --text-h2: 37px;
-  --text-h3: 31px;
-  --text-h4: 26px;
-  --text-h5: 22px;
-  --text-body-md: 18px;
-  --text-body-sm: 15px;
-  --text-caption: 13px;
-  --text-button: 18px;
-  --text-project-title: 13px;
+  --text-display: clamp(42px, 37.543px + 1.143vw, 54px);
+  --text-h1: clamp(35px, 31.286px + 0.952vw, 45px);
+  --text-h2: clamp(29px, 26.029px + 0.762vw, 37px);
+  --text-h3: clamp(24px, 21.4px + 0.667vw, 31px);
+  --text-h4: clamp(20px, 17.771px + 0.571vw, 26px);
+  --text-h5: clamp(17px, 15.143px + 0.476vw, 22px);
+  --text-body-md: clamp(14px, 12.514px + 0.381vw, 18px);
+  --text-body-sm: clamp(12px, 10.886px + 0.286vw, 15px);
+  --text-caption: clamp(10px, 8.886px + 0.286vw, 13px);
+  --text-button: clamp(14px, 12.514px + 0.381vw, 18px);
+  --text-project-title: clamp(10px, 8.886px + 0.286vw, 13px);
 
-  /* Type scale — mobile (base 14px, ratio 1.2) */
-  --text-mobile-display: 42px;
-  --text-mobile-h1: 35px;
-  --text-mobile-h2: 29px;
-  --text-mobile-h3: 24px;
-  --text-mobile-h4: 20px;
-  --text-mobile-h5: 17px;
-  --text-mobile-body-md: 14px;
-  --text-mobile-body-sm: 12px;
-  --text-mobile-caption: 10px;
-  --text-mobile-button: 14px;
-
-  /* Line heights — desktop */
-  --leading-body-md: 28px;
-  --leading-body-sm: 24px;
-  --leading-button: 20px;
-
-  /* Line heights — mobile */
-  --leading-mobile-body-md: 22px;
-  --leading-mobile-body-sm: 19px;
-  --leading-mobile-button: 16px;
+  /* Line heights — fluid */
+  --leading-body-md: clamp(22px, 19.771px + 0.571vw, 28px);
+  --leading-body-sm: clamp(19px, 17.143px + 0.476vw, 24px);
+  --leading-button: clamp(16px, 14.514px + 0.381vw, 20px);
 
   /* Letter spacing */
   --tracking-h1: 0.3px;
 
-  /* Spacing */
-  --spacing-page: 24px;
-  --spacing-page-mobile: 16px;
+  /* Spacing — fluid */
+  --spacing-page: clamp(16px, 13.029px + 0.762vw, 24px);
   --spacing-nav: 16px;
-  --spacing-paragraph: 16px;
-  --spacing-paragraph-mobile: 8px;
+  --spacing-paragraph: clamp(8px, 5.029px + 0.762vw, 16px);
   --spacing-project-card: 16px;
   --spacing-button-x: 16px;
   --spacing-button-y: 8px;
