@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function CaseStudyNav() {
   return (
-    <div className="fixed bottom-[clamp(16px,13.029px+0.762vw,24px)] right-[clamp(16px,13.029px+0.762vw,24px)] z-50 flex gap-2">
+    <div className="fixed bottom-page right-page z-50 flex gap-2">
       <Link
         href="/"
-        className="flex items-center justify-center size-[42px] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active transition-colors text-text"
+        className="flex items-center justify-center size-[2.625rem] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active transition-colors text-text"
         aria-label="Back to home"
       >
         <svg

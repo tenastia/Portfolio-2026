@@ -81,7 +81,7 @@ export default function WorkOverlay({ isOpen }: WorkOverlayProps) {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide overscroll-contain scroll-pt-[200px] scroll-pb-[100px]"
+        className="h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide overscroll-contain scroll-pt-[12.5rem] scroll-pb-[6.25rem]"
       >
         <div ref={trackRef} className="flex flex-col items-center py-[50vh]">
           {Array.from({ length: COPIES }).flatMap((_, copyIdx) =>

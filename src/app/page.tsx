@@ -23,7 +23,7 @@ export default function Home() {
     >
       {/* Header */}
       <header className="p-page relative z-50 pointer-events-none">
-        <div className="flex flex-wrap gap-y-[clamp(24px,19.543px+1.143vw,36px)] items-start justify-between">
+        <div className="flex flex-wrap gap-y-[2.25rem] items-start justify-between">
           {/* Mobile: navbar first, then bio */}
           <div className="flex items-center justify-between w-full md:hidden">
             <nav className="flex gap-nav items-center pointer-events-auto">
@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           {/* Bio */}
-          <div className="w-full md:w-[470px]">
+          <div className="w-full md:w-[29.375rem]">
             <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
               I design digital products and interfaces that balance brand with
               system clarity. My work moves between design systems and

@@ -14,7 +14,7 @@ export default function SchemeButton({ color, scheme }: SchemeButtonProps) {
   return (
     <button
       onClick={() => setScheme(scheme)}
-      className="h-[29px] relative cursor-pointer border-none bg-transparent p-0"
+      className="h-[1.8125rem] relative cursor-pointer border-none bg-transparent p-0"
       aria-label={`Switch to ${scheme} color scheme`}
     >
       <span
