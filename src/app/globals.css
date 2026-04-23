@@ -15,45 +15,43 @@
   --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
 
-  /* Typography — fluid (390px → 1440px) */
+  /* Typography — rem (scales via root font-size) */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --text-display: clamp(42px, 37.543px + 1.143vw, 54px);
-  --text-h1: clamp(35px, 31.286px + 0.952vw, 45px);
-  --text-h2: clamp(29px, 26.029px + 0.762vw, 37px);
-  --text-h3: clamp(24px, 21.4px + 0.667vw, 31px);
-  --text-h4: clamp(20px, 17.771px + 0.571vw, 26px);
-  --text-h5: clamp(17px, 15.143px + 0.476vw, 22px);
-  --text-body-md: clamp(14px, 12.514px + 0.381vw, 18px);
-  --text-body-sm: clamp(12px, 10.886px + 0.286vw, 15px);
-  --text-caption: clamp(10px, 8.886px + 0.286vw, 13px);
-  --text-button: clamp(14px, 12.514px + 0.381vw, 18px);
-  --text-project-title: clamp(10px, 8.886px + 0.286vw, 13px);
+  --text-display: 3.375rem;
+  --text-h1: 2.8125rem;
+  --text-h2: 2.3125rem;
+  --text-h3: 1.9375rem;
+  --text-h4: 1.625rem;
+  --text-h5: 1.375rem;
+  --text-body-md: 1.125rem;
+  --text-body-sm: 0.9375rem;
+  --text-caption: 0.8125rem;
+  --text-button: 1.125rem;
+  --text-project-title: 0.8125rem;
+  --text-body-lg: 1.25rem;
+  --text-call-out: 1.625rem;
 
-  /* Additional typography — fluid */
-  --text-body-lg: clamp(17px, 15.886px + 0.286vw, 20px);
-  --text-call-out: clamp(18px, 15.029px + 0.762vw, 26px);
-
-  /* Line heights — fluid */
-  --leading-body-md: clamp(22px, 19.771px + 0.571vw, 28px);
-  --leading-body-sm: clamp(19px, 17.143px + 0.476vw, 24px);
-  --leading-body-lg: clamp(27px, 25.143px + 0.476vw, 32px);
-  --leading-h2: clamp(44px, 38.429px + 1.429vw, 59px);
-  --leading-call-out: clamp(28px, 24.286px + 0.952vw, 38px);
-  --leading-button: clamp(16px, 14.514px + 0.381vw, 20px);
+  /* Line heights — rem */
+  --leading-body-md: 1.75rem;
+  --leading-body-sm: 1.5rem;
+  --leading-body-lg: 2rem;
+  --leading-h2: 3.6875rem;
+  --leading-call-out: 2.375rem;
+  --leading-button: 1.25rem;
 
   /* Letter spacing */
   --tracking-h1: 0.3px;
 
-  /* Spacing — fluid */
-  --spacing-page: clamp(16px, 13.029px + 0.762vw, 24px);
-  --spacing-nav: 16px;
-  --spacing-paragraph: clamp(8px, 5.029px + 0.762vw, 16px);
-  --spacing-project-card: 16px;
-  --spacing-button-x: 16px;
-  --spacing-button-y: 8px;
-  --spacing-content-block-y: clamp(48px, 42.057px + 1.524vw, 64px);
-  --spacing-heading-body: 36px;
+  /* Spacing — rem */
+  --spacing-page: 1.5rem;
+  --spacing-nav: 1rem;
+  --spacing-paragraph: 1rem;
+  --spacing-project-card: 1rem;
+  --spacing-button-x: 1rem;
+  --spacing-button-y: 0.5rem;
+  --spacing-content-block-y: 4rem;
+  --spacing-heading-body: 2.25rem;
 }
 
 [data-scheme="light"] {
@@ -64,6 +62,10 @@
   --color-surface-glass-active: rgba(18, 18, 18, 0.3);
   --color-surface-glass-strong: rgba(18, 18, 18, 0.15);
   --color-button-secondary-active: #b3b4b4;
+}
+
+html {
+  font-size: clamp(12.5px, 11.2px + 0.333vw, 16px);
 }
 
 @font-face {

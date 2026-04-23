@@ -49,7 +49,7 @@ function PerformoryStudy() {
       </section>
 
       {/* Metadata */}
-      <section className="max-w-[860px] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
         <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
           <div className="flex gap-8">
             <div className="flex flex-col gap-0.5">
@@ -69,7 +69,7 @@ function PerformoryStudy() {
       </section>
 
       {/* Tagline */}
-      <section className="max-w-[860px] mx-auto w-full px-page pt-6">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
         <p className="font-sans font-medium text-body-lg leading-body-lg text-text opacity-30">
           A practice platform for musicians who struggle with memory lapses and
           confidence under pressure.
@@ -99,11 +99,11 @@ function PerformoryStudy() {
       <section className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-6 w-full">
         <ImagePlaceholder
           label="Phone mockup 1"
-          className="w-[300px] md:w-[280px] aspect-[9/19]"
+          className="w-[18.75rem] md:w-[17.5rem] aspect-[9/19]"
         />
         <ImagePlaceholder
           label="Phone mockup 2"
-          className="w-[300px] md:w-[280px] aspect-[9/19]"
+          className="w-[18.75rem] md:w-[17.5rem] aspect-[9/19]"
         />
       </section>
 
@@ -140,7 +140,7 @@ function PerformoryStudy() {
 
       {/* Full-bleed image grid */}
       <section className="bg-[#dbdddd] w-full px-page py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[1080px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[67.5rem] mx-auto">
           {Array.from({ length: 8 }).map((_, i) => (
             <ImagePlaceholder
               key={i}
@@ -177,7 +177,7 @@ function PerformoryStudy() {
 
       {/* 3-col captioned images */}
       <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="grid grid-cols-3 gap-5 max-w-[700px] mx-auto">
+        <div className="grid grid-cols-3 gap-5 max-w-[43.75rem] mx-auto">
           {[
             { label: "Library Screen" },
             { label: "Overview Screen" },
@@ -228,11 +228,11 @@ function PerformoryStudy() {
         <div className="flex flex-col md:flex-row gap-5 items-center justify-center">
           <ImagePlaceholder
             label="Context expansion 1"
-            className="w-[260px] aspect-[260/409]"
+            className="w-[16.25rem] aspect-[260/409]"
           />
           <ImagePlaceholder
             label="Context expansion 2"
-            className="w-[260px] aspect-[260/409]"
+            className="w-[16.25rem] aspect-[260/409]"
           />
         </div>
       </section>
@@ -265,14 +265,14 @@ function PerformoryStudy() {
 
       {/* 2-col cropped images */}
       <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="flex flex-col gap-6 items-center max-w-[700px] mx-auto">
+        <div className="flex flex-col gap-6 items-center max-w-[43.75rem] mx-auto">
           <ImagePlaceholder
             label="Section selector"
-            className="w-full max-w-[300px] aspect-[300/204]"
+            className="w-full max-w-[18.75rem] aspect-[300/204]"
           />
           <ImagePlaceholder
             label="Section practice"
-            className="w-full max-w-[300px] aspect-[300/204]"
+            className="w-full max-w-[18.75rem] aspect-[300/204]"
           />
         </div>
       </section>
@@ -309,7 +309,7 @@ function PerformoryStudy() {
             >
               <ImagePlaceholder
                 label={img.label}
-                className="w-[300px] aspect-[300/295]"
+                className="w-[18.75rem] aspect-[300/295]"
               />
               <span className="font-sans text-body-sm leading-body-sm text-[#777] text-center tracking-[0.01em]">
                 {img.label}
@@ -340,18 +340,18 @@ function PerformoryStudy() {
         <div className="flex flex-col gap-11 items-center">
           <ImagePlaceholder
             label="Scheduling flow 1"
-            className="w-[260px] aspect-[260/462] rounded-[12px]"
+            className="w-[16.25rem] aspect-[260/462] rounded-[12px]"
           />
           <ImagePlaceholder
             label="Scheduling flow 2"
-            className="w-[260px] aspect-[260/485] rounded-[12px]"
+            className="w-[16.25rem] aspect-[260/485] rounded-[12px]"
           />
         </div>
       </section>
 
       {/* Section 8 — bullet list */}
       <ContentBlock heading="The Next Movement: What I'd Improve">
-        <ul className="list-disc ml-[21px] flex flex-col gap-paragraph">
+        <ul className="list-disc ml-[1.3125rem] flex flex-col gap-paragraph">
           <li>
             <span>
               Growing the Audience by Introducing More Techniques
@@ -417,10 +417,10 @@ function PerformoryStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[860px] mx-auto w-full px-page py-4 pb-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
         <Link
           href={`/project/${nextSlug}`}
-          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[18px] transition-colors"
+          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
         >
           <span className="font-sans text-button leading-button text-text whitespace-nowrap">
             next project
