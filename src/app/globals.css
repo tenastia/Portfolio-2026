@@ -30,9 +30,16 @@
   --text-button: clamp(14px, 12.514px + 0.381vw, 18px);
   --text-project-title: clamp(10px, 8.886px + 0.286vw, 13px);
 
+  /* Additional typography — fluid */
+  --text-body-lg: clamp(17px, 15.886px + 0.286vw, 20px);
+  --text-call-out: clamp(18px, 15.029px + 0.762vw, 26px);
+
   /* Line heights — fluid */
   --leading-body-md: clamp(22px, 19.771px + 0.571vw, 28px);
   --leading-body-sm: clamp(19px, 17.143px + 0.476vw, 24px);
+  --leading-body-lg: clamp(27px, 25.143px + 0.476vw, 32px);
+  --leading-h2: clamp(44px, 38.429px + 1.429vw, 59px);
+  --leading-call-out: clamp(28px, 24.286px + 0.952vw, 38px);
   --leading-button: clamp(16px, 14.514px + 0.381vw, 20px);
 
   /* Letter spacing */
@@ -45,6 +52,8 @@
   --spacing-project-card: 16px;
   --spacing-button-x: 16px;
   --spacing-button-y: 8px;
+  --spacing-content-block-y: clamp(48px, 42.057px + 1.524vw, 64px);
+  --spacing-heading-body: 36px;
 }
 
 [data-scheme="light"] {
