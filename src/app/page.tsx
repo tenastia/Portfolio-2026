@@ -22,7 +22,7 @@ export default function Home() {
       className="flex flex-col justify-between min-h-dvh bg-bg transition-colors duration-300"
     >
       {/* Header */}
-      <header className="p-page-mobile md:p-page relative z-40 pointer-events-none">
+      <header className="p-page-mobile md:p-page relative z-50 pointer-events-none">
         <div className="flex flex-wrap gap-y-6 md:gap-y-9 items-start justify-between">
           {/* Mobile: navbar first, then bio */}
           <div className="flex items-center justify-between w-full md:hidden">

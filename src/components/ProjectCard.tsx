@@ -6,8 +6,8 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="flex flex-col gap-2 md:gap-4 items-center w-full max-w-[620px]">
-      <div className="relative w-full aspect-[756/534] rounded-[14px] overflow-hidden border border-[rgba(248,249,250,0.2)] bg-[#1a1a1a]">
+    <article className="flex flex-col gap-2 md:gap-4 items-center w-full max-w-[704px]">
+      <div className="relative w-full aspect-[704/428] rounded-[14px] overflow-hidden border border-[rgba(248,249,250,0.2)] bg-[#1a1a1a]">
         {project.cover && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
