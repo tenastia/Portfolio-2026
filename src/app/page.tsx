@@ -22,7 +22,7 @@ export default function Home() {
       className="flex flex-col justify-between min-h-dvh bg-bg transition-colors duration-300"
     >
       {/* Header */}
-      <header className="p-page relative z-50 pointer-events-none">
+      <header className="p-page relative z-[60] pointer-events-none">
         <div className="flex flex-wrap gap-y-[2.25rem] items-start justify-between">
           {/* Mobile: navbar first, then bio */}
           <div className="flex items-center justify-between w-full md:hidden">
@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           {/* Bio */}
-          <div className="w-full md:w-[29.375rem]">
+          <div className={`w-full md:w-[29.375rem] transition-opacity duration-300 ${overlay !== null ? "opacity-0 pointer-events-none" : ""}`}>
             <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
               I design digital products and interfaces that balance brand with
               system clarity. My work moves between design systems and
