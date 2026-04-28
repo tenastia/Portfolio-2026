@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           {/* Bio */}
-          <div className={`w-full md:w-[29.375rem] transition-opacity duration-300 ${overlay !== null ? "opacity-0 pointer-events-none" : ""}`}>
+          <div className="w-full md:w-[20rem]">
             <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
               I design digital products and interfaces that balance brand with
               system clarity. My work moves between design systems and
