@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           {/* Bio */}
-          <div className="w-full md:w-[20rem]">
+          <div className="w-full md:w-[24rem]">
             <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
               I design digital products and interfaces that balance brand with
               system clarity. My work moves between design systems and
@@ -81,7 +81,7 @@ export default function Home() {
       </header>
 
       {/* Middle Section */}
-      <section className="flex items-center justify-between px-page relative z-40 pointer-events-none">
+      <section className="flex items-center justify-between px-page relative z-[60] pointer-events-none">
         <div className="flex flex-col font-sans font-normal leading-body-md text-body-md tracking-[0.01em]">
           <span className="text-text">Nastia Ten</span>
           <span className="text-text-muted">UX/UI Designer</span>
@@ -93,7 +93,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="p-page relative z-40 pointer-events-none">
+      <footer className="p-page relative z-[60] pointer-events-none">
         <div className="flex items-center justify-between">
           <div className="flex gap-1 items-center text-text text-body-sm leading-body-sm tracking-[0.01em]">
             <span className="whitespace-nowrap">Status:</span>
