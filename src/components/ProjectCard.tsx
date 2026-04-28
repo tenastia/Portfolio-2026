@@ -9,9 +9,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/project/${project.slug}`}
-      className="flex flex-col gap-paragraph items-center w-full max-w-[44rem]"
+      className="flex flex-col gap-[0.8rem] items-center w-full max-w-[35.2rem]"
     >
-      <div className="relative w-full aspect-[704/428] rounded-[14px] overflow-hidden border border-[rgba(248,249,250,0.2)] bg-[#1a1a1a]">
+      <div className="relative w-full aspect-[704/428] rounded-[11px] overflow-hidden border border-[rgba(248,249,250,0.2)] bg-[#1a1a1a]">
         {project.cover && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -26,11 +26,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="flex items-center justify-between w-full font-sans text-project-title tracking-[0.08em] uppercase leading-none gap-y-2 flex-wrap">
-        <div className="flex items-center gap-[3rem] text-text">
+        <div className="flex items-center gap-[2.4rem] text-text">
           <span className="whitespace-nowrap">{project.title}</span>
           <span>{project.year}</span>
         </div>
-        <div className="flex items-center gap-project-card text-button-secondary-active whitespace-nowrap">
+        <div className="flex items-center gap-[0.8rem] text-button-secondary-active whitespace-nowrap">
           {project.chips.map((chip) => (
             <span key={chip}>{chip}</span>
           ))}
