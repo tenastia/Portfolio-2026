@@ -56,7 +56,7 @@ export default function ConnectOverlay({ isOpen }: ConnectOverlayProps) {
           <EmailIcon />
         </a>
         <a
-          href="https://www.linkedin.com/in/nastia-ten"
+          href="https://www.linkedin.com/in/anastasiia-ten"
           target="_blank"
           rel="noopener noreferrer"
           className={iconLinkClass}
