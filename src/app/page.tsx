@@ -5,6 +5,7 @@ import NavButton from "@/components/NavButton";
 import Eyes from "@/components/Eyes";
 import SchemeButton from "@/components/SchemeButton";
 import WorkOverlay from "@/components/WorkOverlay";
+import ConnectOverlay from "@/components/ConnectOverlay";
 import { useScheme } from "@/components/SchemeProvider";
 
 type Overlay = "work" | "lab" | "connect" | null;
@@ -107,6 +108,7 @@ export default function Home() {
 
       {/* Overlays */}
       <WorkOverlay isOpen={overlay === "work"} />
+      <ConnectOverlay isOpen={overlay === "connect"} />
     </main>
   );
 }
