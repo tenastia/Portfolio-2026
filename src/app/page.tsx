@@ -52,11 +52,15 @@ export default function Home() {
           {/* Bio */}
           <div className="w-full md:w-[470px]">
             <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
-              I design digital products and interfaces that balance brand with
-              system clarity. My work moves between design systems and
-              interactive experiences, guided by clarity, intention, and
-              precision. An academic background in piano informs my approach to
-              structure, systems thinking, and care for craft.
+              I design digital products and interfaces that balance brand
+              <br className="hidden md:block" />
+              with system clarity. My work moves between design systems
+              <br className="hidden md:block" />
+              and interactive experiences, guided by clarity, intention, and
+              <br className="hidden md:block" />
+              precision. An academic background in piano informs my
+              <br className="hidden md:block" />
+              approach to structure, systems thinking, and care for craft.
             </p>
           </div>
 
