@@ -8,21 +8,24 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-function ImagePlaceholder({
-  label,
+function StudyImage({
+  src,
+  alt,
   className,
 }: {
-  label: string;
+  src: string;
+  alt: string;
   className?: string;
 }) {
   return (
-    <div
-      className={`bg-[#2a2a2a] rounded-[18px] overflow-hidden flex items-center justify-center ${className || ""}`}
-    >
-      <span className="text-caption text-white/20 text-center px-2">
-        {label}
-      </span>
-    </div>
+    <section className="w-full px-page py-10 flex justify-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-auto ${className || "max-w-[43.75rem]"}`}
+      />
+    </section>
   );
 }
 
@@ -41,7 +44,7 @@ function PerformoryStudy() {
         <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#1a1a1a]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/projects/performory/hero.jpg"
+            src="/projects/performory/performory-hero-img.png"
             alt="Performory"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -95,17 +98,12 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* Image: Two phone mockups */}
-      <section className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-6 w-full">
-        <ImagePlaceholder
-          label="Phone mockup 1"
-          className="w-[18.75rem] md:w-[17.5rem] aspect-[9/19]"
-        />
-        <ImagePlaceholder
-          label="Phone mockup 2"
-          className="w-[18.75rem] md:w-[17.5rem] aspect-[9/19]"
-        />
-      </section>
+      {/* Image: Overview screens */}
+      <StudyImage
+        src="/projects/performory/overview-img.png"
+        alt="Performory overview and events screens"
+        className="max-w-[34rem]"
+      />
 
       {/* Section 2 */}
       <ContentBlock heading="Diving Deeper Into the Problem">
@@ -138,18 +136,12 @@ function PerformoryStudy() {
         just a practice habit, and shaped the direction of the product.
       </CalloutCard>
 
-      {/* Full-bleed image grid */}
-      <section className="bg-[#dbdddd] w-full px-page py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[67.5rem] mx-auto">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <ImagePlaceholder
-              key={i}
-              label={`Screen ${i + 1}`}
-              className="w-full aspect-[240/522]"
-            />
-          ))}
-        </div>
-      </section>
+      {/* All screens */}
+      <StudyImage
+        src="/projects/performory/all-screens-img.png"
+        alt="Performory app screens"
+        className="max-w-[60rem]"
+      />
 
       {/* Section 3 */}
       <ContentBlock heading="The Game Plan">
@@ -175,29 +167,11 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* 3-col captioned images */}
-      <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="grid grid-cols-3 gap-5 max-w-[43.75rem] mx-auto">
-          {[
-            { label: "Library Screen" },
-            { label: "Overview Screen" },
-            { label: "Practice Screen" },
-          ].map((img) => (
-            <div
-              key={img.label}
-              className="flex flex-col gap-4 items-center"
-            >
-              <ImagePlaceholder
-                label={img.label}
-                className="w-full aspect-[1206/2622]"
-              />
-              <span className="font-sans text-body-sm leading-body-sm text-[#777] text-center tracking-[0.01em]">
-                {img.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Library / Overview / Practice screens */}
+      <StudyImage
+        src="/projects/performory/the-game-plan-img.png"
+        alt="Library, Overview and Practice screens"
+      />
 
       {/* Section 4 */}
       <ContentBlock heading="Giving Just Enough Help">
@@ -223,19 +197,11 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* 2-col images */}
-      <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="flex flex-col md:flex-row gap-5 items-center justify-center">
-          <ImagePlaceholder
-            label="Context expansion 1"
-            className="w-[16.25rem] aspect-[260/409]"
-          />
-          <ImagePlaceholder
-            label="Context expansion 2"
-            className="w-[16.25rem] aspect-[260/409]"
-          />
-        </div>
-      </section>
+      {/* Context expansion screens */}
+      <StudyImage
+        src="/projects/performory/govong-help-img.png"
+        alt="Memorization prompt with adjustable bar context"
+      />
 
       {/* Section 5 */}
       <ContentBlock heading="Taming the Monster: Making Long Pieces Manageable">
@@ -263,19 +229,11 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* 2-col cropped images */}
-      <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="flex flex-col gap-6 items-center max-w-[43.75rem] mx-auto">
-          <ImagePlaceholder
-            label="Section selector"
-            className="w-full max-w-[18.75rem] aspect-[300/204]"
-          />
-          <ImagePlaceholder
-            label="Section practice"
-            className="w-full max-w-[18.75rem] aspect-[300/204]"
-          />
-        </div>
-      </section>
+      {/* Section selector for long pieces */}
+      <StudyImage
+        src="/projects/performory/long-pieces-img.png"
+        alt="Section selector for long pieces"
+      />
 
       {/* Section 6 */}
       <ContentBlock heading="Setting the Tempo: Pacing the Preparation">
@@ -296,28 +254,11 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* 2-col captioned iterations */}
-      <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="flex flex-col gap-9 items-center">
-          {[
-            { label: "First Iteration" },
-            { label: "Second Iteration" },
-          ].map((img) => (
-            <div
-              key={img.label}
-              className="flex flex-col gap-4 items-center"
-            >
-              <ImagePlaceholder
-                label={img.label}
-                className="w-[18.75rem] aspect-[300/295]"
-              />
-              <span className="font-sans text-body-sm leading-body-sm text-[#777] text-center tracking-[0.01em]">
-                {img.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Goal-setting flow iterations */}
+      <StudyImage
+        src="/projects/performory/gradual-skill-builder.png"
+        alt="First and second iterations of the goal-setting flow"
+      />
 
       {/* Section 7 — body only (no heading) */}
       <ContentBlock>
@@ -335,19 +276,11 @@ function PerformoryStudy() {
         </p>
       </ContentBlock>
 
-      {/* 2-col vertical phone mockups */}
-      <section className="bg-[#dbdddd] w-full px-page py-9">
-        <div className="flex flex-col gap-11 items-center">
-          <ImagePlaceholder
-            label="Scheduling flow 1"
-            className="w-[16.25rem] aspect-[260/462] rounded-[12px]"
-          />
-          <ImagePlaceholder
-            label="Scheduling flow 2"
-            className="w-[16.25rem] aspect-[260/485] rounded-[12px]"
-          />
-        </div>
-      </section>
+      {/* Scheduling flow */}
+      <StudyImage
+        src="/projects/performory/calendar-img.png"
+        alt="Date selection and practice scheduling screens"
+      />
 
       {/* Section 8 — bullet list */}
       <ContentBlock heading="The Next Movement: What I'd Improve">

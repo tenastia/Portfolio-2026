@@ -12,7 +12,7 @@ export const projects: Project[] = [
     title: "performory",
     year: "2025",
     chips: ["user experience", "interface design", "Mobile App"],
-    cover: "/projects/performory.png",
+    cover: "/projects/performory/performory-hero-img.png",
   },
   {
     slug: "scorebook",
