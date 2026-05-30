@@ -3,6 +3,7 @@
 import { useState } from "react";
 import NavButton from "@/components/NavButton";
 import Eyes from "@/components/Eyes";
+import Headshot from "@/components/Headshot";
 import SchemeButton from "@/components/SchemeButton";
 import WorkOverlay from "@/components/WorkOverlay";
 import ConnectOverlay from "@/components/ConnectOverlay";
@@ -13,6 +14,9 @@ type Overlay = "work" | "lab" | "connect" | null;
 export default function Home() {
   const { scheme } = useScheme();
   const [overlay, setOverlay] = useState<Overlay>(null);
+
+  // A primary nav button (work/lab/connect) is active and its cards have slid in.
+  const isActive = overlay !== null;
 
   const toggle = (name: Exclude<Overlay, null>) => () =>
     setOverlay((prev) => (prev === name ? null : name));
@@ -49,9 +53,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bio */}
-          <div className="w-full md:w-[470px]">
-            <p className="text-body-md text-text leading-body-md tracking-[0.01em]">
+          {/* Bio — transitions to a headshot square when a primary button is triggered */}
+          <div className="relative w-full md:w-[470px]">
+            <p
+              className={`text-body-md text-text leading-body-md tracking-[0.01em] transition-all duration-500 ease-out ${
+                isActive
+                  ? "opacity-0 -translate-y-1 pointer-events-none"
+                  : "opacity-100 translate-y-0"
+              }`}
+            >
               I design digital products and interfaces that balance brand
               <br className="hidden md:block" />
               with system clarity. My work moves between design systems
@@ -62,6 +72,13 @@ export default function Home() {
               <br className="hidden md:block" />
               approach to structure, systems thinking, and care for craft.
             </p>
+            <Headshot
+              className={`absolute top-0 left-0 transition-all duration-500 ease-out ${
+                isActive
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-90 pointer-events-none"
+              }`}
+            />
           </div>
 
           {/* Desktop navbar */}
