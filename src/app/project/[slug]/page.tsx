@@ -29,6 +29,24 @@ function StudyImage({
   );
 }
 
+function ImagePlaceholder({
+  label,
+  className,
+}: {
+  label: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`bg-[#2a2a2a] rounded-[18px] overflow-hidden flex items-center justify-center ${className || ""}`}
+    >
+      <span className="text-caption text-white/20 text-center px-2">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 function getNextProjectSlug(currentSlug: string): string {
   const idx = projects.findIndex((p) => p.slug === currentSlug);
   return projects[(idx + 1) % projects.length].slug;
