@@ -59,10 +59,14 @@ function CenturyGroupStudy() {
     <>
       {/* Hero */}
       <section className="px-page pt-page">
-        <ImagePlaceholder
-          label="Century Group hero"
-          className="w-full aspect-[1404/990] rounded-[8px]"
-        />
+        <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#0e0f10]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/projects/century-group/cg-hero-image.png"
+            alt="Century Group"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
       </section>
 
       {/* Metadata */}
@@ -206,11 +210,15 @@ function CenturyGroupStudy() {
         </p>
       </ContentBlock>
 
-      {/* Cards image */}
+      {/* Cards video */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Card component system"
-          className="w-full aspect-[823/461]"
+        <video
+          src="/projects/century-group/cards-motion.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
@@ -343,12 +351,10 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Token cascade image */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Token cascade diagram"
-          className="w-full aspect-[823/328]"
-        />
-      </section>
+      <StudyImage
+        src="/projects/century-group/token-cascade-img.png"
+        alt="Token cascade diagram"
+      />
 
       <ContentBlock>
         <p>
