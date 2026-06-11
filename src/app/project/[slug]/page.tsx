@@ -34,6 +34,388 @@ function getNextProjectSlug(currentSlug: string): string {
   return projects[(idx + 1) % projects.length].slug;
 }
 
+function CenturyGroupStudy() {
+  const nextSlug = getNextProjectSlug("century-group");
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="px-page pt-page">
+        <ImagePlaceholder
+          label="Century Group hero"
+          className="w-full aspect-[1404/990] rounded-[8px]"
+        />
+      </section>
+
+      {/* Metadata */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+        <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
+          <div className="flex gap-8">
+            <div className="flex flex-col gap-0.5">
+              <span>Design System</span>
+              <span>Interface Design</span>
+              <span>Responsive Design</span>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span>Figma</span>
+              <span>Adobe Suite</span>
+              <span>Claude</span>
+            </div>
+          </div>
+          <span className="whitespace-nowrap">~ 5 mins read</span>
+        </div>
+      </section>
+
+      {/* Title */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+          Building a scalable design system for a multidivisional real-estate developer
+        </h1>
+      </section>
+
+      {/* Role + Outcome */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              label: "Role",
+              body: "Design system lead. I owned the component architecture, the brand application across the site, the responsive behaviour, and the token pipeline.",
+            },
+            {
+              label: "Outcome",
+              body: "A centralized design system that gives Century Group one foundation to scale their portfolio and business verticals on.",
+            },
+          ].map(({ label, body }) => (
+            <div
+              key={label}
+              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
+            >
+              <span className="font-sans text-body-md leading-body-md text-text">
+                {label}
+              </span>
+              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The Context */}
+      <ContentBlock heading="The Context">
+        <p>
+          Century Group is a multidivisional real estate developer. The portfolio
+          was growing across businesses and projects, but the digital foundation
+          had been built one screen at a time, with no shared base. As the company
+          grew, the existing digital infrastructure struggled to adapt.
+        </p>
+        <p>
+          The brand drifted. Without a single source of truth, the site grew
+          visually and functionally inconsistent, which affected the brand
+          presence and user experience.
+        </p>
+        <p>
+          Lack of scalability. Every new property type or vertical meant breaking
+          layouts and heavy dev work, so getting new pages or sections live took
+          longer than the business wanted.
+        </p>
+        <p>
+          No reusable components. The absence of reusable, modular components
+          slowed time to market for new projects and made global updates hard to
+          execute cleanly.
+        </p>
+      </ContentBlock>
+
+      {/* Main Objective */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-3">
+          <span className="font-sans font-medium text-body-md leading-body-md text-text">
+            Main Objective
+          </span>
+          <p className="font-sans text-body-lg leading-body-lg text-text">
+            Build a scalable design system the Century Group&apos;s internal team
+            could rely on whenever they needed to introduce new sections or pages
+            to their website.
+          </p>
+        </div>
+      </section>
+
+      {/* Building a Scalable System */}
+      <ContentBlock heading="Building a Scalable System">
+        <p className="font-medium">
+          Less is more. Bringing structure and hierarchy to the website.
+        </p>
+        <p>
+          One of the first steps toward a scalable system was deciding which
+          elements to consolidate, which to add to the new site, and which to
+          retire.
+        </p>
+        <p>
+          I started with the button styles and introduced three main types. The
+          Primary button carries the main CTA on a page. Secondary buttons move
+          the user to the next page, step, or action. The Tertiary button sits on
+          image cards and smaller actions further down the hierarchy.
+        </p>
+        <p>
+          That replaced the one-off button approach the site had before and gave
+          us a consistent navigation system.
+        </p>
+        <p>
+          The component library grew further once I added other interactive UI
+          elements such as dropdowns, filtering chips, and icon buttons. These
+          gave the product a full set of interactive parts to use across the
+          website.
+        </p>
+      </ContentBlock>
+
+      {/* Button system image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Button system & UI components"
+          className="w-full aspect-[823/413]"
+        />
+      </section>
+
+      {/* Cards */}
+      <ContentBlock>
+        <p className="font-medium">Cards: one structure, any data</p>
+        <p>
+          With the cards, I found that their variety in the old design was driven
+          by content. News cards, project cards, approach cards, and business
+          cards all carried different fields. I broke the existing cards down to
+          their common denominators and built a small suite that holds a strict
+          underlying grid no matter what data gets plugged in.
+        </p>
+      </ContentBlock>
+
+      {/* Cards image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Card component system"
+          className="w-full aspect-[823/461]"
+        />
+      </section>
+
+      {/* AI / Claude section */}
+      <ContentBlock heading="Where did AI help the most">
+        <p>
+          A substantial design system isn&apos;t complete without a clear
+          guideline for using it. That was where I brought Claude Code into the
+          process. To document my component library from scratch, I built a
+          Component-Spec Skill that guided Claude through reading Figma components
+          and writing the finished documentation into the file.
+        </p>
+      </ContentBlock>
+
+      {/* Claude skill image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Claude Code component spec skill"
+          className="w-full aspect-[823/540]"
+        />
+      </section>
+
+      <ContentBlock>
+        <p>
+          The result gave me a solid starting point. I still had to remove the
+          irrelevant and repetitive specifications Claude produced and shape the
+          document around my library, but it saved hours of work up front.
+        </p>
+      </ContentBlock>
+
+      <ContentBlock heading="Documentation is ready, what's next?">
+        <p>
+          A design system is a fluid construct that shifts and evolves over time.
+          Every one of those changes has to reach the documentation, which is the
+          area design teams overlook the most. To keep the documentation current,
+          I set up a specific Routine inside Claude Code that runs each time the
+          design system changes.
+        </p>
+        <p>This kept a mundane but necessary part of the process running in the background, with supervision.</p>
+      </ContentBlock>
+
+      {/* Claude routine image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Claude Code routine"
+          className="w-full aspect-[823/307]"
+        />
+      </section>
+
+      {/* Documentation output image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Design system documentation output"
+          className="w-full aspect-[823/413]"
+        />
+      </section>
+
+      {/* Colour wayfinding */}
+      <ContentBlock heading="Colour as the wayfinding system">
+        <p>
+          The real challenge arrived with the brand handoff. It came with a large,
+          highly vibrant colour palette that had to stand in as the new Century
+          Group identity. Paired with the goal of a clean corporate look, balancing
+          that palette became the hard part.
+        </p>
+        <p>
+          Instead of treating the palette as decoration, I gave it a job. I
+          assigned one anchor colour to each major section of the site — Main,
+          Businesses, Projects, and About — and used it as a functional wayfinding
+          system. As users move through the site, the subtle colour shift acts as
+          a quiet anchor that tells them where they are.
+        </p>
+      </ContentBlock>
+
+      {/* Colour wayfinding image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Colour wayfinding system"
+          className="w-full aspect-[823/413]"
+        />
+      </section>
+
+      <ContentBlock heading="Tradeoffs I had to make around this decision">
+        <p>
+          One was accessibility, specifically how colourblind users rely on the
+          navigation. So the wayfinding colour always rides alongside a redundant
+          cue such as the location label.
+        </p>
+        <p>
+          The other obstacle was that the UI elements had to be adapted for each
+          colour scheme, which in this case meant four separate themes. This was
+          where I had to revisit the wayfinding approach and discuss a
+          single-theme design with the client. A one-theme route would have been
+          simpler, but the colour differentiation wasn&apos;t something the client
+          wanted to give up.
+        </p>
+      </ContentBlock>
+
+      {/* Token cascade */}
+      <ContentBlock heading="The engine: tokens that cascade">
+        <p>
+          The wayfinding logic could only scale if it was wired to tokens.
+          Hard-coded values would have become a nightmare in the shipping phase, so
+          I built the whole system around something the design and dev teams could
+          share.
+        </p>
+        <p>The system consists of four main Variable Collections:</p>
+        <p>
+          Brand. This collection lists the primitive tokens such as colour hexes,
+          typefaces and their variations, and the base scale.
+        </p>
+        <p>
+          Alias. This group sets out the general roles and intent of the brand
+          primitives, including error, information, primary, secondary, and
+          thematic colours.
+        </p>
+        <p>
+          Mapped. These tokens are the ones assigned to the components. Here I
+          tied the alias roles to the specific scenarios where each token should
+          be used.
+        </p>
+        <p>
+          Responsive. This collection carries all the typographic values across
+          desktop, tablet, and mobile viewports.
+        </p>
+        <p>
+          With this setup the design team can update any value in minutes instead
+          of changing it in every instance.
+        </p>
+      </ContentBlock>
+
+      {/* Token cascade image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Token cascade diagram"
+          className="w-full aspect-[823/328]"
+        />
+      </section>
+
+      <ContentBlock>
+        <p>
+          For the dev handoff, the Mapped and Responsive collections were set to
+          be exported to TypeScript and placed on GitHub for the developers to
+          pick up and maintain. Our internal team had never worked this way before,
+          since past projects used much simpler libraries, and bringing this method
+          into our process was my initiative to reduce friction between the teams.
+          Everything was ready to run this way when, at the very last minute, I
+          had to quietly hand the design off to a vendor and had little chance to
+          work with them on any new workflows.
+        </p>
+      </ContentBlock>
+
+      {/* Token collection image */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <ImagePlaceholder
+          label="Token collection overview"
+          className="w-full aspect-[823/413]"
+        />
+      </section>
+
+      {/* Results */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
+        <h3 className="font-sans font-normal text-h2 leading-h2 tracking-[0.03em] text-text mb-8">
+          What we achieved in this redesign session
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            "Built a scalable design system that the Century Group team can now adapt for their growing portfolio.",
+            "Consolidated at least 10 ad-hoc elements like cards and button styles into a set of token-driven and hierarchy-structured components spanning all states.",
+            "The system now absorbs 5 business verticals and 11 projects without a redesign — directly addressing the scalability gap.",
+            "Global brand or colour changes that were previously hours of manual edits now cascade from a single token in a few minutes.",
+            "Tokenized system bridged the gap between design and engineering, significantly reducing friction and handoff time between the teams.",
+          ].map((text, i) => (
+            <div
+              key={i}
+              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7"
+            >
+              <p className="font-sans text-body-lg leading-body-lg text-text">
+                {text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Reflections */}
+      <ContentBlock heading="Reflections">
+        <p>
+          Next time I&apos;d validate the wayfinding idea with users. The logic
+          held up on paper and had clear design reasoning behind it, but a quick
+          unmoderated test would have either confirmed the anchor effect or shown
+          me the cue needed to be more explicit.
+        </p>
+        <p>
+          I&apos;d also rework the token setup to cut down the number of mapped
+          tokens. Right now the mapped collection holds a separate value for the
+          buttons in each theme. I&apos;d treat the four colour schemes as themes
+          and split them one tier earlier by using modes in Figma variables. That
+          would collapse four tokens into one, so{" "}
+          <code className="font-mono text-sm">--surface-button-ochre</code>,{" "}
+          <code className="font-mono text-sm">--surface-button-clay</code>,{" "}
+          <code className="font-mono text-sm">--surface-button-ocean</code>, and{" "}
+          <code className="font-mono text-sm">--surface-button-bark</code> all
+          become <code className="font-mono text-sm">--surface-button</code>.
+        </p>
+      </ContentBlock>
+
+      {/* Next Project */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
+        <Link
+          href={`/project/${nextSlug}`}
+          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
+        >
+          <span className="font-sans text-button leading-button text-text whitespace-nowrap">
+            next project
+          </span>
+          <div className="w-12 h-px bg-text" />
+        </Link>
+      </section>
+    </>
+  );
+}
+
 function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
@@ -383,7 +765,9 @@ export default async function ProjectPage({
 
   return (
     <main className="min-h-dvh bg-bg">
-      {slug === "performory" ? (
+      {slug === "century-group" ? (
+        <CenturyGroupStudy />
+      ) : slug === "performory" ? (
         <PerformoryStudy />
       ) : (
         <div className="flex items-center justify-center min-h-dvh">
