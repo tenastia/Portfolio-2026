@@ -148,20 +148,6 @@ function CenturyGroupStudy() {
         </p>
       </ContentBlock>
 
-      {/* Main Objective */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-3">
-          <span className="font-sans font-medium text-body-md leading-body-md text-text">
-            Main Objective
-          </span>
-          <p className="font-sans text-body-lg leading-body-lg text-text">
-            Build a scalable design system the Century Group&apos;s internal team
-            could rely on whenever they needed to introduce new sections or pages
-            to their website.
-          </p>
-        </div>
-      </section>
-
       {/* Building a Scalable System */}
       <ContentBlock heading="Building a Scalable System">
         <p className="font-medium">
