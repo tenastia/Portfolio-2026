@@ -8,18 +8,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "century-group",
-    title: "century group",
-    year: "2025",
-    chips: ["design system", "interface design", "Web"],
-    cover: "/projects/century-group.png",
-  },
-  {
     slug: "performory",
     title: "performory",
     year: "2025",
     chips: ["user experience", "interface design", "Mobile App"],
     cover: "/projects/performory/performory-hero-img.png",
+  },
+  {
+    slug: "century-group",
+    title: "century group",
+    year: "2025",
+    chips: ["design system", "interface design", "Web"],
+    cover: "/projects/century-group.png",
   },
   {
     slug: "scorebook",
