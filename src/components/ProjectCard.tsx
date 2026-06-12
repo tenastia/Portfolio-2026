@@ -6,13 +6,27 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const href = project.externalUrl ?? `/project/${project.slug}`;
+  const isExternal = !!project.externalUrl;
+
   return (
     <Link
-      href={`/project/${project.slug}`}
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       className="flex flex-col gap-[0.8rem] items-center w-full max-w-[35.2rem]"
     >
       <div className="relative w-full aspect-[704/428] rounded-[11px] overflow-hidden border border-[rgba(248,249,250,0.2)] bg-[#1a1a1a]">
-        {project.cover && (
+        {project.video ? (
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          />
+        ) : project.cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={project.cover}
@@ -22,7 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               e.currentTarget.style.display = "none";
             }}
           />
-        )}
+        ) : null}
       </div>
 
       <div className="flex items-center justify-between w-full font-sans text-project-title tracking-[0.08em] uppercase leading-none gap-y-2 flex-wrap">
