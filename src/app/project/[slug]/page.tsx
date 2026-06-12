@@ -426,6 +426,272 @@ function CenturyGroupStudy() {
   );
 }
 
+function AviaryStudy() {
+  const nextSlug = getNextProjectSlug("aviary");
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="px-page pt-page">
+        <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#1a1a1a]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/projects/aviary/aviary-hero-image.png"
+            alt="Aviary"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      </section>
+
+      {/* Metadata */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+        <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
+          <div className="flex gap-8">
+            <div className="flex flex-col gap-0.5">
+              <span>Interactive Kiosk</span>
+              <span>Interface Design</span>
+              <span>Responsive Design</span>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span>Figma</span>
+              <span>Adobe Suite</span>
+            </div>
+          </div>
+          <span className="whitespace-nowrap">~ 3 mins read</span>
+        </div>
+      </section>
+
+      {/* Title */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+          Designing a multi-platform digital experience for Aviary Living
+        </h1>
+      </section>
+
+      {/* Role + Scope */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              label: "Role",
+              body: "I owned the product and interaction design while a development team built the front end and a brand team supplied the identity.",
+            },
+            {
+              label: "Scope",
+              body: "Multiplatform user experience design across a responsive web app and an interactive sales gallery touchscreen.",
+            },
+          ].map(({ label, body }) => (
+            <div
+              key={label}
+              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
+            >
+              <span className="font-sans text-body-md leading-body-md text-text">
+                {label}
+              </span>
+              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The Context */}
+      <ContentBlock heading="The Context">
+        <p>Aviary needed two digital products at once, and they could not behave the same way.</p>
+        <p>
+          The web app was something people would meet on their own devices,
+          leaning in to read about the lifestyle and the community at their own
+          pace. The touchscreen was a physical product, a large interactive kiosk
+          recessed into a wall of the sales gallery, where prospective buyers
+          would walk up and explore floorplans, the site plan, features, and the
+          surrounding neighbourhood in a few quick minutes.
+        </p>
+      </ContentBlock>
+
+      {/* Full-width kiosk GIF */}
+      <section className="w-full px-page pb-content-block-y">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projects/aviary/aviary-image-1.gif"
+          alt="Aviary kiosk interface"
+          className="w-full h-auto rounded-[8px]"
+        />
+      </section>
+
+      {/* The Constraint */}
+      <ContentBlock heading="The Constraint that Shaped the Approach">
+        <p>
+          I designed the touchscreen without ever touching the hardware. The unit
+          was not available during the design phase, so there was no way to stand
+          in front of it, reach for a control, or sense the comfortable zones.
+        </p>
+        <p>
+          So I built the next best thing. I taped the full outline of the screen
+          onto the wall at its planned mounting height and stood in front of it.
+          How high the top edge sat, how far the reach ran across, and what a
+          shorter or seated visitor could comfortably touch stopped being guesses
+          and became things we could feel.
+        </p>
+      </ContentBlock>
+
+      <StudyImage
+        src="/projects/aviary/aviary-image-2.png"
+        alt="Taped screen outline on wall"
+        className="max-w-[53.75rem]"
+      />
+
+      {/* The Process */}
+      <ContentBlock heading="The Process">
+        <p className="font-medium">Reading the room before the screen</p>
+        <p>
+          Before laying out a single frame, I gathered the physical
+          specifications of where the kiosk would live. I established the
+          mounting height, how deeply the unit would sit recessed into the wall,
+          and the lighting conditions of the space, including how close it sat to
+          windows that could throw glare and reflection across the display.
+        </p>
+        <p className="font-medium">Designing the navigation around reach</p>
+        <p>
+          The navigation went through several iterations, and each one failed for
+          a reason rooted in the body rather than the screen.
+        </p>
+        <p>
+          The first version used a dropdown for the primary menu to conserve
+          space, with a secondary navigation across the top, borrowing a familiar
+          desktop pattern. It looked clean, but a menu placed that high sits out
+          of reach for shorter visitors and anyone seated, so it failed on reach.
+        </p>
+        <p>
+          The second version moved the secondary navigation to the bottom to
+          bring it within reach of everyone. That solved height, but it collided
+          with the hardware. Because the unit was recessed rather than surface
+          mounted, the lip of the wall sat in front of the lower edge of the
+          screen, physically blocking any control placed there.
+        </p>
+      </ContentBlock>
+
+      <StudyImage
+        src="/projects/aviary/aviary-image-3.png"
+        alt="First and second navigation iterations"
+        className="max-w-[53.75rem]"
+      />
+
+      <ContentBlock>
+        <p>
+          The final version resolved both problems at once. I consolidated the
+          primary and secondary navigation into a single vertical menu anchored
+          to the right of the screen, in the band that stays within comfortable
+          reach regardless of a visitor's height and clear of the recessed wall
+          edge. One stable, reachable navigation system replaced two competing
+          ones.
+        </p>
+      </ContentBlock>
+
+      <StudyImage
+        src="/projects/aviary/aviary-image-4.png"
+        alt="Final navigation design"
+        className="max-w-[53.75rem]"
+      />
+
+      {/* The same assets */}
+      <ContentBlock heading="The same assets, reauthored for each screen">
+        <p>
+          The web app and the touchscreen drew on the same set of assets. I knew
+          from the start that a layout built for a screen you walk up to would
+          never be the right answer on one you hold in your hand, and that was
+          the interesting part of the work. The same maps, floorplans, and
+          components had to be reauthored rather than resized, so each feature
+          suited the way its screen is actually used.
+        </p>
+        <p>
+          The interactive map for selecting units was a centrepiece on the kiosk,
+          where the large display gave it room to breathe, and it worked just as
+          well on the desktop web view. On a narrow, vertical phone screen it did
+          not. There the same map became cramped and awkward to operate, so on
+          mobile I moved to a carousel of unit floorplans that a thumb could move
+          through comfortably.
+        </p>
+        <p>
+          The community map followed the same logic in reverse. On the large
+          kiosk, points of interest risked sitting too high to reach and the
+          underlying material was hard to parse at a glance, so I paired the map
+          with an interactive list that kept every destination accessible within
+          the reachable zone. On mobile, where the constraint was small targets
+          rather than height, I leaned on tappable markers sized for a fingertip.
+        </p>
+      </ContentBlock>
+
+      <StudyImage
+        src="/projects/aviary/aviary-image-5.png"
+        alt="Interactive siteplan"
+        className="max-w-[53.75rem]"
+      />
+
+      <StudyImage
+        src="/projects/aviary/aviary-image-6.png"
+        alt="Community map"
+        className="max-w-[53.75rem]"
+      />
+
+      {/* Final Product */}
+      <ContentBlock heading="Final Product">
+        <p>
+          The real test came at launch, the first time anyone stood in front of
+          the finished unit. The design held. Every call I had made from a taped
+          outline on a wall — the menu on the right, the reachable zones, the
+          reauthored maps — worked on hardware. The kiosk did its job in the
+          sales gallery, and Aviary went on to be named a finalist for Best
+          Project Identity at the Georgie Awards.
+        </p>
+      </ContentBlock>
+
+      {/* Reflections */}
+      <ContentBlock heading="Reflections">
+        <p>
+          If I designed Aviary again, I would treat the touchscreen as an
+          extension of the whole presentation centre rather than a single place
+          where a visitor explores everything. The first version tried to do both
+          jobs at once, carrying the lifestyle story alongside the floorplans and
+          the map.
+        </p>
+        <p>
+          The centre already tells that story, and tells it better than a screen
+          can. Its walls carry lifestyle imagery of the community and interior
+          renders. The touchscreen does not need to repeat any of it. So I would
+          push the storytelling to the background and make the kiosk a purely
+          functional engine, with floorplan browsing and the interactive map as
+          its entire purpose, the two things a visitor cannot get just by looking
+          around the room.
+        </p>
+        <p>
+          The second change is about proportion. Designing a large touchscreen on
+          a fifteen inch laptop is quietly misleading. Imagery that looks right on
+          the laptop can turn out so large on the installed screen that a visitor
+          has to step back to take it in, and type that reads cleanly at desk
+          distance can be too thin to hold up on a lower resolution touchscreen.
+          Testing on the actual hardware is ideal, but when that is not possible,
+          printing the interface at full size and standing in front of it catches
+          most of these problems before they ship.
+        </p>
+      </ContentBlock>
+
+      {/* Next Project */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
+        <Link
+          href={`/project/${nextSlug}`}
+          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
+        >
+          <span className="font-sans text-button leading-button text-text whitespace-nowrap">
+            next project
+          </span>
+          <div className="w-12 h-px bg-text" />
+        </Link>
+      </section>
+    </>
+  );
+}
+
 function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
@@ -779,6 +1045,8 @@ export default async function ProjectPage({
         <CenturyGroupStudy />
       ) : slug === "performory" ? (
         <PerformoryStudy />
+      ) : slug === "aviary" ? (
+        <AviaryStudy />
       ) : (
         <div className="flex items-center justify-center min-h-dvh">
           <p className="text-body-md text-text-muted">Coming soon</p>
