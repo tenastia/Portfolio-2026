@@ -104,7 +104,7 @@ function CenturyGroupStudy() {
               body: "Design system lead. I owned the component architecture, the brand application across the site, the responsive behaviour, and the token pipeline.",
             },
             {
-              label: "Outcome",
+              label: "Scope",
               body: "A centralized design system that gives Century Group one foundation to scale their portfolio and business verticals on.",
             },
           ].map(({ label, body }) => (
@@ -147,6 +147,20 @@ function CenturyGroupStudy() {
           execute cleanly.
         </p>
       </ContentBlock>
+
+      {/* Main Objective — mobile only */}
+      <section className="md:hidden max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-3">
+          <span className="font-sans font-normal text-body-lg leading-body-lg text-text">
+            Main Objective
+          </span>
+          <p className="font-sans font-normal text-body-lg leading-body-lg text-text opacity-50">
+            Build a scalable design system the Century Group&apos;s internal
+            team could rely on whenever they needed to introduce new sections
+            or pages to their website.
+          </p>
+        </div>
+      </section>
 
       {/* Building a Scalable System */}
       <ContentBlock heading="Building a Scalable System">
