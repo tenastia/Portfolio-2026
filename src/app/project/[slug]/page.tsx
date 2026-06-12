@@ -111,9 +111,9 @@ function CenturyGroupStudy() {
           ].map(({ label, body }) => (
             <div
               key={label}
-              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
+              className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-muted">
+              <span className="font-sans text-body-md leading-body-md text-text-highlight">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
@@ -511,9 +511,9 @@ function AviaryStudy() {
           ].map(({ label, body }) => (
             <div
               key={label}
-              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
+              className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-muted">
+              <span className="font-sans text-body-md leading-body-md text-text-highlight">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
