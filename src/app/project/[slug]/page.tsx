@@ -293,12 +293,21 @@ function CenturyGroupStudy() {
         </p>
       </ContentBlock>
 
-      {/* Colour wayfinding image */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Colour wayfinding system"
-          className="w-full aspect-[823/413]"
-        />
+      {/* Colour wayfinding — marquee */}
+      <section className="w-full overflow-hidden pb-content-block-y">
+        <div className="flex gap-6 animate-marquee" style={{ width: "max-content" }}>
+          {[...Array(2)].flatMap((_, setIdx) =>
+            [1, 2, 3, 4].map((n) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={`${setIdx}-${n}`}
+                src={`/projects/century-group/marquee-${n}.png`}
+                alt=""
+                className="h-[160px] md:h-[224px] aspect-[398/224] object-cover rounded-[11px] shrink-0"
+              />
+            ))
+          )}
+        </div>
       </section>
 
       <ContentBlock heading="Tradeoffs I had to make around this decision">
