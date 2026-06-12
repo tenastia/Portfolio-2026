@@ -46,11 +46,7 @@ export default function NavButton({
           e.preventDefault();
           onClick?.();
         }}
-        className={`relative flex items-center justify-center gap-2 rounded-[5px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer transition-colors ${
-          isActive
-            ? "bg-surface-glass-active"
-            : "bg-surface-glass hover:bg-surface-glass-active"
-        }`}
+        className="relative flex items-center justify-center gap-2 rounded-[5px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
       >
         <span className="flex">
           {label.split("").map((char, i) => (

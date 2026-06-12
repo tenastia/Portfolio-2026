@@ -132,6 +132,12 @@ body {
 .nav-btn-glow-ring {
   background: conic-gradient(from var(--btn-glow-angle), transparent 70%, #b6f2f9 85%, transparent 100%);
   animation: btn-glow-spin 50s linear infinite;
+  /* Mask to only the 1px border ring — hides the interior */
+  padding: 1px;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
 }
 
 @keyframes marquee {
