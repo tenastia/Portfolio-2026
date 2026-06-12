@@ -168,3 +168,8 @@ body {
   animation: marquee 30s linear infinite;
   will-change: transform;
 }
+
+/* Collapse double top-padding when two ContentBlocks are adjacent */
+.content-block + .content-block {
+  padding-top: 0;
+}
