@@ -1,31 +1,29 @@
+"use client";
+
+import { useState } from "react";
+import { useScheme } from "./SchemeProvider";
+
 export default function Eyes() {
+  const { scheme } = useScheme();
+  const [closed, setClosed] = useState(false);
+
+  const open = scheme === "light" ? "/eyes-open-light.svg" : "/eyes-open-dark.svg";
+  const close = scheme === "light" ? "/eyes-closed-light.svg" : "/eyes-closed-dark.svg";
+
   return (
     <button
-      className="backdrop-blur-[8px] bg-surface-glass-strong flex items-center p-2.5 rounded-[6px] cursor-pointer border-none transition-colors duration-300"
-      aria-label="Toggle eye tracking"
+      className="cursor-pointer border-none bg-transparent p-0"
+      aria-label="Eyes"
+      onMouseEnter={() => setClosed(true)}
+      onMouseLeave={() => setClosed(false)}
     >
-      <div className="flex gap-[5px] items-center">
-        <svg
-          width="18"
-          height="12"
-          viewBox="0 0 18 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <ellipse cx="9" cy="6" rx="9" ry="6" fill="white" fillOpacity="0.9" />
-          <circle cx="9" cy="6" r="3.5" fill="#121212" />
-        </svg>
-        <svg
-          width="18"
-          height="12"
-          viewBox="0 0 18 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <ellipse cx="9" cy="6" rx="9" ry="6" fill="white" fillOpacity="0.9" />
-          <circle cx="9" cy="6" r="3.5" fill="#121212" />
-        </svg>
-      </div>
+      <img
+        src={closed ? close : open}
+        alt=""
+        aria-hidden
+        width={61}
+        height={32}
+      />
     </button>
   );
 }
