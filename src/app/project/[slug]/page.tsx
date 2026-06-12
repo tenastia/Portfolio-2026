@@ -48,8 +48,9 @@ function ImagePlaceholder({
 }
 
 function getNextProjectSlug(currentSlug: string): string {
-  const idx = projects.findIndex((p) => p.slug === currentSlug);
-  return projects[(idx + 1) % projects.length].slug;
+  const caseStudies = projects.filter((p) => !p.externalUrl);
+  const idx = caseStudies.findIndex((p) => p.slug === currentSlug);
+  return caseStudies[(idx + 1) % caseStudies.length].slug;
 }
 
 function CenturyGroupStudy() {
