@@ -571,7 +571,7 @@ function AviaryStudy() {
 
       {/* The Process */}
       <ContentBlock heading="The Process">
-        <p className="font-medium">Reading the room before the screen</p>
+        <p className="font-medium text-text-highlight">Reading the room before the screen</p>
         <p>
           Before laying out a single frame, I gathered the physical
           specifications of where the kiosk would live. I established the
@@ -579,7 +579,7 @@ function AviaryStudy() {
           and the lighting conditions of the space, including how close it sat to
           windows that could throw glare and reflection across the display.
         </p>
-        <p className="font-medium">Designing the navigation around reach</p>
+        <p className="font-medium text-text-highlight">Designing the navigation around reach</p>
         <p>
           The navigation went through several iterations, and each one failed for
           a reason rooted in the body rather than the screen.
