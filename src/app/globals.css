@@ -50,7 +50,7 @@
   --spacing-project-card: 1rem;
   --spacing-button-x: 1rem;
   --spacing-button-y: 0.5rem;
-  --spacing-content-block-y: 4rem;
+  --spacing-content-block-y: 64px;
   --spacing-heading-body: 2.25rem;
 }
 
@@ -109,4 +109,10 @@ body {
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-content-block-y: 128px;
+  }
 }
