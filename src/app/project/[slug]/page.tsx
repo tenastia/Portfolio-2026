@@ -90,7 +90,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
         <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
@@ -504,7 +504,7 @@ function AviaryStudy() {
       </section>
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
         <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
@@ -772,7 +772,7 @@ function PerformoryStudy() {
       </section>
 
       {/* Tagline */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
         <p className="font-sans font-medium text-body-lg leading-body-lg text-text opacity-30">
           A practice platform for musicians who struggle with memory lapses and
           confidence under pressure.
