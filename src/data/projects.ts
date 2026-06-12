@@ -6,6 +6,7 @@ export type Project = {
   cover?: string;
   video?: string;
   externalUrl?: string;
+  liveUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -30,6 +31,7 @@ export const projects: Project[] = [
     year: "2025",
     chips: ["user experience", "user interface", "web"],
     cover: "/projects/century-group/cg-hero-image.png",
+    liveUrl: "https://centurygroup.ca",
   },
   {
     slug: "aviary",

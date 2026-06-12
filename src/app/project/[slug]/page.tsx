@@ -1086,7 +1086,7 @@ export default async function ProjectPage({
           <p className="text-body-md text-text-muted">Coming soon</p>
         </div>
       )}
-      <CaseStudyNav />
+      <CaseStudyNav liveUrl={project.liveUrl} />
     </main>
   );
 }
