@@ -393,7 +393,7 @@ function CenturyGroupStudy() {
 
       {/* Results */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
-        <h3 className="font-sans font-normal text-h2 leading-h2 tracking-[0.03em] text-text mb-8">
+        <h3 className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight mb-4">
           What we achieved in this redesign session
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -406,7 +406,7 @@ function CenturyGroupStudy() {
           ].map((text, i) => (
             <div
               key={i}
-              className="border border-[#4e4e4f] rounded-[16px] px-7 py-7"
+              className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8"
             >
               <p className="font-sans text-body-md leading-body-md text-text">
                 {text}
