@@ -8,6 +8,7 @@ import SchemeButton from "@/components/SchemeButton";
 import WorkOverlay from "@/components/WorkOverlay";
 import ConnectOverlay from "@/components/ConnectOverlay";
 import ProjectCard from "@/components/ProjectCard";
+import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
 
@@ -146,7 +147,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex gap-1 items-center text-text text-body-sm leading-body-sm tracking-[0.01em]">
               <span className="whitespace-nowrap">Status:</span>
-              <span>on a look for a watermelon sorbet &#x1F367; |</span>
+              <TypewriterText />
             </div>
             <div className="hidden md:block pointer-events-auto">
               <Eyes />
