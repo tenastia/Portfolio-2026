@@ -235,9 +235,13 @@ function CenturyGroupStudy() {
 
       {/* Claude skill image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Claude Code component spec skill"
-          className="w-full aspect-[823/540]"
+        <video
+          src="/projects/century-group/claude-skill-img.mov"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
@@ -262,17 +266,23 @@ function CenturyGroupStudy() {
 
       {/* Claude routine image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Claude Code routine"
-          className="w-full aspect-[823/307]"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projects/century-group/claude-routine-img.png"
+          alt="Claude Code routine"
+          className="w-full rounded-[18px]"
         />
       </section>
 
-      {/* Documentation output image */}
+      {/* Documentation output video */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Design system documentation output"
-          className="w-full aspect-[823/413]"
+        <video
+          src="/projects/century-group/documentation-img.mov"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
