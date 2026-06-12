@@ -130,9 +130,6 @@ body {
 }
 
 .nav-btn-glow-ring {
-  /* Large square centered on the wrapper — clipped to the rounded-rect
-     border by overflow:hidden on the parent. The conic-gradient rotates
-     via --btn-glow-angle; bg-bg on the inner <a> masks the interior. */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -146,7 +143,20 @@ body {
     #B6F2F9 88%,
     transparent 100%
   );
-  animation: btn-glow-spin 50s linear infinite;
+  animation: btn-glow-spin 17s linear infinite;
+}
+
+/* Letter float — paused by default, running only on hover (not active) */
+.nav-btn-char {
+  display: inline-block;
+  animation: letter-float var(--char-dur, 3s) ease-in-out infinite;
+  animation-delay: var(--char-delay, 0s);
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.nav-btn-wrapper:not(.nav-btn--active):hover .nav-btn-char {
+  animation-play-state: running;
 }
 
 @keyframes marquee {

@@ -1,6 +1,5 @@
 "use client";
 
-// Per-character float timing — varied durations and delays for organic randomness
 const CHAR_FLOAT = [
   { dur: "3.2s", delay: "0s" },
   { dur: "2.8s", delay: "0.45s" },
@@ -25,12 +24,15 @@ export default function NavButton({
   href = "#",
 }: NavButtonProps) {
   return (
-    /* overflow-hidden clips the rotating glow square to the rounded-rect border */
-    <div className="relative rounded-[6px] p-px overflow-hidden group/btn">
-      {/* Rotating glow — large square, clips to border ring via overflow-hidden */}
+    <div
+      className={`nav-btn-wrapper relative rounded-[6px] p-px overflow-hidden group/btn${
+        isActive ? " nav-btn--active" : ""
+      }`}
+    >
+      {/* Rotating glow — visible on hover (suppressed when active) */}
       <span
         className={`nav-btn-glow-ring transition-opacity duration-500 ${
-          isActive ? "opacity-100" : "opacity-0 group-hover/btn:opacity-100"
+          isActive ? "opacity-0" : "opacity-0 group-hover/btn:opacity-100"
         }`}
         aria-hidden
       />
@@ -41,8 +43,7 @@ export default function NavButton({
         }`}
         aria-hidden
       />
-      {/* bg-bg fills the interior with the page background colour,
-          masking the glow ring so only the 1px border ring is visible */}
+      {/* bg-bg fills the interior, masking the glow ring so only the border ring is visible */}
       <a
         href={href}
         onClick={(e) => {
@@ -55,12 +56,11 @@ export default function NavButton({
           {label.split("").map((char, i) => (
             <span
               key={i}
+              className="nav-btn-char"
               style={{
-                display: "inline-block",
-                animation: `letter-float ${CHAR_FLOAT[i % CHAR_FLOAT.length].dur} ease-in-out infinite`,
-                animationDelay: CHAR_FLOAT[i % CHAR_FLOAT.length].delay,
-                willChange: "transform",
-              }}
+                "--char-dur": CHAR_FLOAT[i % CHAR_FLOAT.length].dur,
+                "--char-delay": CHAR_FLOAT[i % CHAR_FLOAT.length].delay,
+              } as React.CSSProperties}
             >
               {char === " " ? " " : char}
             </span>
