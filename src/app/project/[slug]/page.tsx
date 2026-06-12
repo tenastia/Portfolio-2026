@@ -394,7 +394,7 @@ function CenturyGroupStudy() {
               key={i}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7"
             >
-              <p className="font-sans text-body-lg leading-body-lg text-text">
+              <p className="font-sans text-body-md leading-body-md text-text">
                 {text}
               </p>
             </div>
