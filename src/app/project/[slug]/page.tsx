@@ -817,12 +817,15 @@ function PerformoryStudy() {
         just a practice habit, and shaped the direction of the product.
       </CalloutCard>
 
-      {/* All screens */}
-      <StudyImage
-        src="/projects/performory/all-screens-img.png"
-        alt="Performory app screens"
-        className="max-w-[60rem]"
-      />
+      {/* All screens — full bleed */}
+      <section className="w-full py-10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projects/performory/all-screens-img.png"
+          alt="Performory app screens"
+          className="w-full h-auto"
+        />
+      </section>
 
       {/* Section 3 */}
       <ContentBlock heading="The Game Plan">
