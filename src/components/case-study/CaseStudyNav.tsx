@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CaseStudyNav({ liveUrl }: { liveUrl?: string }) {
   return (
-    <div className="fixed z-50 flex gap-2 left-1/2 -translate-x-1/2 top-[80dvh] md:left-auto md:translate-x-0 md:top-auto md:bottom-page md:right-page">
+    <div className="fixed z-50 flex gap-2 left-1/2 -translate-x-1/2 top-[80dvh] md:left-auto md:translate-x-0 md:top-auto md:bottom-page md:right-[calc(var(--spacing-page)+14px)]">
       {liveUrl && (
         <a
           href={liveUrl}
