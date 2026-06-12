@@ -25,28 +25,31 @@ export default function NavButton({
   href = "#",
 }: NavButtonProps) {
   return (
-    <div className="relative rounded-[6px] p-px group/btn">
-      {/* Default border — fades out on hover/active */}
+    /* overflow-hidden clips the rotating glow square to the rounded-rect border */
+    <div className="relative rounded-[6px] p-px overflow-hidden group/btn">
+      {/* Rotating glow — large square, clips to border ring via overflow-hidden */}
       <span
-        className={`pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] transition-opacity duration-300 ${
-          isActive ? "opacity-0" : "group-hover/btn:opacity-0"
-        }`}
-        aria-hidden
-      />
-      {/* Circling glow ring — fades in on hover/active */}
-      <span
-        className={`nav-btn-glow-ring pointer-events-none absolute inset-0 rounded-[6px] transition-opacity duration-300 ${
+        className={`nav-btn-glow-ring transition-opacity duration-500 ${
           isActive ? "opacity-100" : "opacity-0 group-hover/btn:opacity-100"
         }`}
         aria-hidden
       />
+      {/* Default static border — fades out on hover/active */}
+      <span
+        className={`pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] transition-opacity duration-500 ${
+          isActive ? "opacity-0" : "group-hover/btn:opacity-0"
+        }`}
+        aria-hidden
+      />
+      {/* bg-bg fills the interior with the page background colour,
+          masking the glow ring so only the 1px border ring is visible */}
       <a
         href={href}
         onClick={(e) => {
           e.preventDefault();
           onClick?.();
         }}
-        className="relative flex items-center justify-center gap-2 rounded-[5px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
+        className="relative z-10 flex items-center justify-center gap-2 rounded-[5px] bg-bg px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
       >
         <span className="flex">
           {label.split("").map((char, i) => (

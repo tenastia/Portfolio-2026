@@ -130,24 +130,23 @@ body {
 }
 
 .nav-btn-glow-ring {
-  /* Comet: dark tail fades in through blue, peaks at cyan tip.
-     Tip sits at 100% (leading edge), tail trails counterclockwise. */
+  /* Large square centered on the wrapper — clipped to the rounded-rect
+     border by overflow:hidden on the parent. The conic-gradient rotates
+     via --btn-glow-angle; bg-bg on the inner <a> masks the interior. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
   background: conic-gradient(
     from var(--btn-glow-angle),
     transparent 0%,
-    transparent 60%,
-    #121212 68%,
-    #678EF2 83%,
-    #8DBEF3 91%,
-    #B6F2F9 100%
+    transparent 70%,
+    #B6F2F9 88%,
+    transparent 100%
   );
   animation: btn-glow-spin 50s linear infinite;
-  /* Mask to only the 1px border ring — hides the interior */
-  padding: 1px;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
 }
 
 @keyframes marquee {
