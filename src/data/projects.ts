@@ -19,7 +19,7 @@ export const projects: Project[] = [
     title: "century group",
     year: "2025",
     chips: ["design system", "interface design", "Web"],
-    cover: "/projects/century-group.png",
+    cover: "/projects/century-group/cg-hero-image.png",
   },
   {
     slug: "aviary",
