@@ -16,6 +16,7 @@
   --color-surface-glass-active: rgba(248, 249, 250, 0.3);
   --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
+  --color-btn-glow: #B6F2F9;
 
   /* Typography — rem (scales via root font-size) */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -64,6 +65,7 @@
   --color-surface-glass-active: rgba(18, 18, 18, 0.3);
   --color-surface-glass-strong: rgba(18, 18, 18, 0.15);
   --color-button-secondary-active: #b3b4b4;
+  --color-btn-glow: #5878CA;
 }
 
 html {
@@ -140,7 +142,7 @@ body {
     from var(--btn-glow-angle),
     transparent 0%,
     transparent 70%,
-    #B6F2F9 88%,
+    var(--color-btn-glow) 88%,
     transparent 100%
   );
   animation: btn-glow-spin 17s linear infinite;
