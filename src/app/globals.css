@@ -114,6 +114,26 @@ body {
 }
 
 
+@property --btn-glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes btn-glow-spin {
+  to { --btn-glow-angle: 360deg; }
+}
+
+@keyframes letter-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+.nav-btn-glow-ring {
+  background: conic-gradient(from var(--btn-glow-angle), transparent 70%, #b6f2f9 85%, transparent 100%);
+  animation: btn-glow-spin 50s linear infinite;
+}
+
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
