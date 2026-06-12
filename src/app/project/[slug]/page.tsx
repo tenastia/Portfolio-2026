@@ -151,7 +151,7 @@ function CenturyGroupStudy() {
 
       {/* Building a Scalable System */}
       <ContentBlock heading="Building a Scalable System">
-        <p className="font-medium">
+        <p className="font-medium text-text-highlight">
           Less is more. Bringing structure and hierarchy to the website.
         </p>
         <p>
@@ -187,7 +187,7 @@ function CenturyGroupStudy() {
 
       {/* Cards */}
       <ContentBlock>
-        <p className="font-medium">Cards: one structure, any data</p>
+        <p className="font-medium text-text-highlight">Cards: one structure, any data</p>
         <p>
           With the cards, I found that their variety in the old design was driven
           by content. News cards, project cards, approach cards, and business
