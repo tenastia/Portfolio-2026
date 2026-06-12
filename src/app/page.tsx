@@ -150,7 +150,7 @@ export default function Home() {
       {overlay === "work" && (
         <div
           ref={mobileWorkRef}
-          className="md:hidden flex flex-col gap-6 px-page pt-6 pb-page"
+          className="md:hidden flex flex-col gap-[36px] px-page pt-6 pb-page"
         >
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
