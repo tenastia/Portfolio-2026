@@ -111,11 +111,6 @@ body {
   animation: blink 1s step-end infinite;
 }
 
-@media (min-width: 768px) {
-  :root {
-    --spacing-content-block-y: 128px;
-  }
-}
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
