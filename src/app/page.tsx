@@ -56,11 +56,6 @@ export default function Home() {
                   onClick={toggle("work")}
                 />
                 <NavButton
-                  label="lab"
-                  isActive={overlay === "lab"}
-                  onClick={toggle("lab")}
-                />
-                <NavButton
                   label="connect"
                   isActive={overlay === "connect"}
                   onClick={toggle("connect")}
@@ -115,11 +110,6 @@ export default function Home() {
                 label="work"
                 isActive={overlay === "work"}
                 onClick={toggle("work")}
-              />
-              <NavButton
-                label="lab"
-                isActive={overlay === "lab"}
-                onClick={toggle("lab")}
               />
               <NavButton
                 label="connect"
