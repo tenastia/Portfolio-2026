@@ -74,12 +74,11 @@ export default function Home() {
             <div className="relative w-full md:w-[470px]">
               {/* Mobile bio — always visible */}
               <p className="text-body-md text-text leading-body-md tracking-[0.01em] md:hidden">
-                I design experiences and interfaces at the intersection of brand
-                and digital product. My work ranges from scalable design systems
-                to interactive experiences. I have a master&apos;s in piano and
-                studied illustration at the British Higher School of Art and
-                Design. Most recently, I&apos;ve been designing at Free Agency
-                Creative and BAM Digital.
+                Designing digital products and interfaces where brand meets
+                system clarity. My work spans design systems, interactive
+                experiences, and product design. An academic background in
+                piano informs the rest — structure, systems thinking, and care
+                for craft.
               </p>
               {/* Desktop bio — hides when overlay is active */}
               <p
