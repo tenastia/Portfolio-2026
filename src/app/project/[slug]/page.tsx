@@ -90,7 +90,7 @@ function CenturyGroupStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
       </section>
@@ -112,7 +112,7 @@ function CenturyGroupStudy() {
               key={label}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
             >
-              <span className="font-sans text-body-md leading-body-md text-text">
+              <span className="font-sans text-body-md leading-body-md text-text-muted">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
@@ -151,7 +151,7 @@ function CenturyGroupStudy() {
       {/* Main Objective — mobile only */}
       <section className="md:hidden max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
         <div className="border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-3">
-          <span className="font-sans font-normal text-body-lg leading-body-lg text-text">
+          <span className="font-sans font-normal text-body-lg leading-body-lg text-text-muted">
             Main Objective
           </span>
           <p className="font-sans font-normal text-body-lg leading-body-lg text-text opacity-50">
@@ -235,9 +235,13 @@ function CenturyGroupStudy() {
 
       {/* Claude skill image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Claude Code component spec skill"
-          className="w-full aspect-[823/540]"
+        <video
+          src="/projects/century-group/claude-skill-img.mov"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
@@ -262,17 +266,23 @@ function CenturyGroupStudy() {
 
       {/* Claude routine image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Claude Code routine"
-          className="w-full aspect-[823/307]"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projects/century-group/claude-routine-img.png"
+          alt="Claude Code routine"
+          className="w-full rounded-[18px]"
         />
       </section>
 
-      {/* Documentation output image */}
+      {/* Documentation output video */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Design system documentation output"
-          className="w-full aspect-[823/413]"
+        <video
+          src="/projects/century-group/documentation-img.mov"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
@@ -293,12 +303,21 @@ function CenturyGroupStudy() {
         </p>
       </ContentBlock>
 
-      {/* Colour wayfinding image */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Colour wayfinding system"
-          className="w-full aspect-[823/413]"
-        />
+      {/* Colour wayfinding — marquee */}
+      <section className="w-full overflow-hidden pb-content-block-y">
+        <div className="flex gap-6 animate-marquee" style={{ width: "max-content" }}>
+          {[...Array(2)].flatMap((_, setIdx) =>
+            [1, 2, 3, 4].map((n) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={`${setIdx}-${n}`}
+                src={`/projects/century-group/marquee-${n}.png`}
+                alt=""
+                className="h-[160px] md:h-[224px] aspect-[398/224] object-cover rounded-[11px] shrink-0"
+              />
+            ))
+          )}
+        </div>
       </section>
 
       <ContentBlock heading="Tradeoffs I had to make around this decision">
@@ -369,12 +388,20 @@ function CenturyGroupStudy() {
         </p>
       </ContentBlock>
 
-      {/* Token collection image */}
+      {/* Token collection image — scrollable */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Token collection overview"
-          className="w-full aspect-[823/413]"
-        />
+        <div className="w-full h-[260px] md:h-[413px] rounded-[8px] bg-[#202020] overflow-hidden">
+          <div className="h-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="pt-[113px] pb-16 flex justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/projects/century-group/tokens-collection.png"
+                alt="Token collection overview"
+                className="w-[56%]"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Results */}
@@ -394,7 +421,7 @@ function CenturyGroupStudy() {
               key={i}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7"
             >
-              <p className="font-sans text-body-lg leading-body-lg text-text">
+              <p className="font-sans text-body-md leading-body-md text-text">
                 {text}
               </p>
             </div>
@@ -477,7 +504,7 @@ function AviaryStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
       </section>
@@ -499,7 +526,7 @@ function AviaryStudy() {
               key={label}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
             >
-              <span className="font-sans text-body-md leading-body-md text-text">
+              <span className="font-sans text-body-md leading-body-md text-text-muted">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
@@ -808,12 +835,15 @@ function PerformoryStudy() {
         just a practice habit, and shaped the direction of the product.
       </CalloutCard>
 
-      {/* All screens */}
-      <StudyImage
-        src="/projects/performory/all-screens-img.png"
-        alt="Performory app screens"
-        className="max-w-[60rem]"
-      />
+      {/* All screens — full bleed */}
+      <section className="w-full py-10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projects/performory/all-screens-img.png"
+          alt="Performory app screens"
+          className="w-full h-auto"
+        />
+      </section>
 
       {/* Section 3 */}
       <ContentBlock heading="The Game Plan">
@@ -1066,7 +1096,7 @@ export default async function ProjectPage({
           <p className="text-body-md text-text-muted">Coming soon</p>
         </div>
       )}
-      <CaseStudyNav />
+      <CaseStudyNav liveUrl={project.liveUrl} />
     </main>
   );
 }

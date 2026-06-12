@@ -1,52 +1,50 @@
 import Link from "next/link";
 
-export default function CaseStudyNav() {
+export default function CaseStudyNav({ liveUrl }: { liveUrl?: string }) {
   return (
-    <>
-      {/* Bio overlay — desktop only, fixed top-left */}
-      <p className="hidden md:block fixed top-page left-page z-50 max-w-[27rem] font-sans font-normal text-body-md leading-body-md tracking-[0.01em] text-text pointer-events-none">
-        I design experiences and interfaces at the intersection of brand and
-        digital product. My work ranges from scalable design systems to
-        interactive experiences. I have a master&apos;s in piano and studied
-        illustration at the British Higher School of Art and Design. Most
-        recently, I&apos;ve been designing at Free Agency Creative and BAM
-        Digital.
-      </p>
-
-      {/* Footer bar — desktop only, fixed bottom */}
-      <footer className="hidden md:flex fixed bottom-0 left-0 right-0 px-page py-[0.875rem] z-50 items-center justify-between pointer-events-none">
-        <div className="flex gap-1 items-center font-sans font-normal text-body-sm leading-body-sm tracking-[0.01em] text-text">
-          <span className="whitespace-nowrap">status:</span>
-          <span>on a look for a watermelon sorbet &#x1F367;</span>
-        </div>
-        <span className="font-sans font-normal text-body-sm leading-body-sm tracking-[0.01em] text-text opacity-50">
-          ©All rights reserved 2025
-        </span>
-      </footer>
-
-      {/* Close button — fixed bottom-right */}
-      <div className="fixed bottom-page right-page z-50 flex gap-2">
-        <Link
-          href="/"
+    <div className="fixed z-50 flex gap-2 left-1/2 -translate-x-1/2 top-[80dvh] md:left-auto md:translate-x-0 md:top-auto md:bottom-page md:right-page">
+      {liveUrl && (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center size-[2.625rem] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active transition-colors text-text"
-          aria-label="Back to home"
+          aria-label="Visit live site"
         >
           <svg
-            width="13"
-            height="13"
-            viewBox="0 0 13 13"
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M1 1L12 12M12 1L1 12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
+            <circle cx="7.5" cy="7.5" r="6.25" stroke="currentColor" strokeWidth="1.4" />
+            <ellipse cx="7.5" cy="7.5" rx="2.75" ry="6.25" stroke="currentColor" strokeWidth="1.4" />
+            <line x1="1.25" y1="5" x2="13.75" y2="5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            <line x1="1.25" y1="10" x2="13.75" y2="10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
-        </Link>
-      </div>
-    </>
+        </a>
+      )}
+      <Link
+        href="/"
+        className="flex items-center justify-center size-[2.625rem] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active transition-colors text-text"
+        aria-label="Back to home"
+      >
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 13 13"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1 1L12 12M12 1L1 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </Link>
+    </div>
   );
 }

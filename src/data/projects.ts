@@ -4,29 +4,49 @@ export type Project = {
   year: string;
   chips: string[];
   cover?: string;
+  video?: string;
+  externalUrl?: string;
+  liveUrl?: string;
 };
 
 export const projects: Project[] = [
   {
+    slug: "emera",
+    title: "emera",
+    year: "2025",
+    chips: ["user experience", "user interface", "motion"],
+    video: "/projects/other/emera-thumb.mp4",
+    externalUrl: "https://emeraliving.com/",
+  },
+  {
     slug: "performory",
     title: "performory",
     year: "2025",
-    chips: ["user experience", "interface design", "Mobile App"],
+    chips: ["user experience", "user interface", "mobile app"],
     cover: "/projects/performory/performory-hero-img.png",
   },
   {
     slug: "century-group",
     title: "century group",
     year: "2025",
-    chips: ["design system", "interface design", "Web"],
+    chips: ["user experience", "user interface", "web"],
     cover: "/projects/century-group/cg-hero-image.png",
+    liveUrl: "https://centurygroup.ca",
   },
   {
     slug: "aviary",
     title: "aviary",
     year: "2024",
-    chips: ["interactive kiosk", "interface design", "Web App"],
+    chips: ["user experience", "user interface", "touchscreen"],
     cover: "/projects/aviary/aviary-hero-image.png",
+  },
+  {
+    slug: "tera",
+    title: "tera development",
+    year: "2024",
+    chips: ["user experience", "user interface", "web"],
+    video: "/projects/other/tera-thumb.mp4",
+    externalUrl: "https://www.teradevelopment.com/",
   },
   {
     slug: "scorebook",

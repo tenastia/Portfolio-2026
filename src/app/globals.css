@@ -50,7 +50,7 @@
   --spacing-project-card: 1rem;
   --spacing-button-x: 1rem;
   --spacing-button-y: 0.5rem;
-  --spacing-content-block-y: 4rem;
+  --spacing-content-block-y: 64px;
   --spacing-heading-body: 2.25rem;
 }
 
@@ -100,4 +100,29 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-content-block-y: 128px;
+  }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
 }
