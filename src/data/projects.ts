@@ -11,12 +11,12 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "emera",
-    title: "emera",
+    slug: "century-group",
+    title: "century group",
     year: "2025",
-    chips: ["user experience", "user interface", "motion"],
-    video: "/projects/other/emera-thumb.mp4",
-    externalUrl: "https://emeraliving.com/",
+    chips: ["user experience", "user interface", "web"],
+    cover: "/projects/century-group/cg-hero-image.png",
+    liveUrl: "https://centurygroup.ca",
   },
   {
     slug: "performory",
@@ -24,14 +24,6 @@ export const projects: Project[] = [
     year: "2025",
     chips: ["user experience", "user interface", "mobile app"],
     cover: "/projects/performory/performory-hero-img.png",
-  },
-  {
-    slug: "century-group",
-    title: "century group",
-    year: "2025",
-    chips: ["user experience", "user interface", "web"],
-    cover: "/projects/century-group/cg-hero-image.png",
-    liveUrl: "https://centurygroup.ca",
   },
   {
     slug: "aviary",
@@ -49,24 +41,11 @@ export const projects: Project[] = [
     externalUrl: "https://www.teradevelopment.com/",
   },
   {
-    slug: "scorebook",
-    title: "scorebook",
-    year: "2024",
-    chips: ["design system", "interface design", "Web App"],
-    cover: "/projects/scorebook.png",
-  },
-  {
-    slug: "cadence",
-    title: "cadence",
-    year: "2024",
-    chips: ["brand identity", "interaction", "Landing"],
-    cover: "/projects/cadence.png",
-  },
-  {
-    slug: "metronome",
-    title: "metronome",
-    year: "2023",
-    chips: ["product design", "prototyping", "Mobile App"],
-    cover: "/projects/metronome.png",
+    slug: "emera",
+    title: "emera",
+    year: "2025",
+    chips: ["user experience", "user interface", "motion"],
+    video: "/projects/other/emera-thumb.mp4",
+    externalUrl: "https://emeraliving.com/",
   },
 ];
