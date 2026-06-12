@@ -90,7 +90,7 @@ function CenturyGroupStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
       </section>
@@ -112,7 +112,7 @@ function CenturyGroupStudy() {
               key={label}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
             >
-              <span className="font-sans text-body-md leading-body-md text-text">
+              <span className="font-sans text-body-md leading-body-md text-text-muted">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
@@ -151,7 +151,7 @@ function CenturyGroupStudy() {
       {/* Main Objective — mobile only */}
       <section className="md:hidden max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
         <div className="border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-3">
-          <span className="font-sans font-normal text-body-lg leading-body-lg text-text">
+          <span className="font-sans font-normal text-body-lg leading-body-lg text-text-muted">
             Main Objective
           </span>
           <p className="font-sans font-normal text-body-lg leading-body-lg text-text opacity-50">
@@ -486,7 +486,7 @@ function AviaryStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-6">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text">
+        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
       </section>
@@ -508,7 +508,7 @@ function AviaryStudy() {
               key={label}
               className="border border-[#4e4e4f] rounded-[16px] px-7 py-7 flex flex-col gap-2"
             >
-              <span className="font-sans text-body-md leading-body-md text-text">
+              <span className="font-sans text-body-md leading-body-md text-text-muted">
                 {label}
               </span>
               <p className="font-sans text-body-md leading-body-md text-text opacity-50">
