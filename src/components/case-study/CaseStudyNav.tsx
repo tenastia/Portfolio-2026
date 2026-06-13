@@ -2,10 +2,8 @@ import Link from "next/link";
 
 const wrapperClass =
   "nav-btn-wrapper relative size-[42px] rounded-[6px] p-px overflow-hidden group/btn";
-const glowClass =
-  "nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500";
-const borderClass =
-  "pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500";
+const glowClass = "hidden";
+const borderClass = "hidden";
 const innerClass =
   "relative z-10 flex items-center justify-center w-full h-full rounded-[5px] bg-surface-glass text-text backdrop-blur-[4px]";
 
