@@ -7,7 +7,7 @@ const glowClass =
 const borderClass =
   "pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500";
 const innerClass =
-  "relative z-10 flex items-center justify-center w-full h-full rounded-[5px] bg-bg text-text backdrop-blur-[4px]";
+  "relative z-10 flex items-center justify-center w-full h-full rounded-[5px] bg-surface-glass text-text backdrop-blur-[4px]";
 
 export default function CaseStudyNav({ liveUrl }: { liveUrl?: string }) {
   return (
