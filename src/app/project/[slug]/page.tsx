@@ -179,9 +179,13 @@ function CenturyGroupStudy() {
 
       {/* Button system image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <ImagePlaceholder
-          label="Button system & UI components"
-          className="w-full aspect-[823/413]"
+        <video
+          src="/projects/century-group/button-image-1.mov"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-[18px]"
         />
       </section>
 
