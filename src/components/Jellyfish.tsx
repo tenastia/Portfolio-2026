@@ -28,13 +28,13 @@ export default function Jellyfish() {
     const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
     let rafId = 0;
-    let pollId: ReturnType<typeof setInterval>;
+    let pollId: ReturnType<typeof setInterval> | undefined;
     let velocity = 0;
     let lastX = -1, lastY = -1;
     let frameIdx = 0;
     let lastFrameTs = 0;
-    let charOps: Float32Array;
-    let parsed: string[][];
+    let charOps = new Float32Array(0);
+    let parsed: string[][] = [];
     let cw = 0;
     let lh = 0;
     let drawW = 0, drawH = 0;
@@ -145,7 +145,7 @@ export default function Jellyfish() {
     window.addEventListener("mousemove", onMove);
 
     return () => {
-      clearInterval(pollId);
+      if (pollId !== undefined) clearInterval(pollId);
       cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMove);
     };
