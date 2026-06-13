@@ -71,7 +71,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
         <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
           <div className="flex gap-8">
             <div className="flex flex-col gap-0.5">
@@ -477,7 +477,7 @@ function AviaryStudy() {
       </section>
 
       {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
         <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
           <div className="flex gap-8">
             <div className="flex flex-col gap-0.5">
@@ -744,7 +744,7 @@ function PerformoryStudy() {
       </section>
 
       {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
         <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
           <div className="flex gap-8">
             <div className="flex flex-col gap-0.5">
