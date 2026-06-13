@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import Jellyfish from "./Jellyfish";
 
@@ -20,10 +21,12 @@ export function useJellyfish() {
 
 export default function JellyfishProvider({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(true);
+  const pathname = usePathname();
+  const showJellyfish = !pathname.startsWith("/project/");
 
   return (
     <JellyfishContext.Provider value={{ visible, toggle: () => setVisible((v) => !v) }}>
-      <Jellyfish visible={visible} />
+      {showJellyfish && <Jellyfish visible={visible} />}
       {children}
     </JellyfishContext.Provider>
   );
