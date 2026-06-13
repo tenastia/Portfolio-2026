@@ -19,7 +19,7 @@ export default function BioTypewriter() {
 
   return (
     <>
-      {BIO.slice(0, count)}
+      {BIO.slice(BIO.length - count)}
       {!done && <span className="animate-blink">|</span>}
     </>
   );
