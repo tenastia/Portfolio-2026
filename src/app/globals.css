@@ -148,17 +148,14 @@ body {
   animation: btn-glow-spin 17s linear infinite;
 }
 
-/* Letter float — paused by default, running only on hover (not active) */
 .nav-btn-char {
   display: inline-block;
-  animation: letter-float var(--char-dur, 3s) ease-in-out infinite;
-  animation-delay: var(--char-delay, 0s);
-  animation-play-state: paused;
   will-change: transform;
 }
 
 .nav-btn-wrapper:not(.nav-btn--active):hover .nav-btn-char {
-  animation-play-state: running;
+  animation: letter-float var(--char-dur, 3s) ease-in-out infinite;
+  animation-delay: var(--char-delay, 0s);
 }
 
 @keyframes marquee {
