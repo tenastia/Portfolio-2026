@@ -11,6 +11,7 @@ import ProjectCard from "@/components/ProjectCard";
 import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
+import Jellyfish from "@/components/Jellyfish";
 
 type Overlay = "work" | "lab" | "connect" | null;
 
@@ -42,6 +43,7 @@ export default function Home() {
       data-scheme={scheme}
       className="flex flex-col bg-bg transition-colors duration-300"
     >
+      <Jellyfish />
       {/* Homepage — full viewport height */}
       <div className="flex flex-col justify-between min-h-dvh">
         {/* Header */}
