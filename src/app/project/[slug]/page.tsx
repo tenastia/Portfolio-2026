@@ -362,7 +362,7 @@ function CenturyGroupStudy() {
 
       {/* Token collection image — scrollable */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="w-full h-[260px] md:h-[413px] rounded-[8px] bg-[#202020] overflow-hidden">
+        <div className="w-full h-[130px] md:h-[413px] rounded-[8px] bg-[#202020] overflow-hidden">
           <div className="h-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="pt-[113px] pb-16 flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -14,8 +14,7 @@ export default function Eyes() {
     <button
       className="cursor-pointer border-none bg-transparent p-0"
       aria-label="Eyes"
-      onMouseEnter={() => setClosed(true)}
-      onMouseLeave={() => setClosed(false)}
+      onClick={() => setClosed((prev) => !prev)}
     >
       <img
         src={closed ? close : open}
