@@ -32,6 +32,7 @@ export default function Jellyfish() {
 
     let rafId = 0;
     let velocity = 0;
+    let revealLevel = 0;
     let lastX = -1;
     let lastY = -1;
     let frameIdx = 0;
@@ -79,24 +80,26 @@ export default function Jellyfish() {
         lastFrameTs = ts;
       }
 
-      const intensity = Math.min(velocity * 0.012, 1);
-
       if (!isMobile) {
         for (let i = 0; i < charOps.length; i++) charOps[i] *= DECAY;
 
-        if (intensity > 0.015) {
-          const count = Math.ceil(intensity * charOps.length * 0.035);
+        if (velocity > 0.5) {
+          // Any movement floods a large random batch to full opacity each frame —
+          // particle-by-particle so the reveal feels organic, not a sudden pop
+          const count = Math.ceil(charOps.length * 0.045);
           for (let k = 0; k < count; k++) {
             const i = Math.floor(Math.random() * charOps.length);
-            charOps[i] = Math.min(1, charOps[i] + 0.15 + intensity * 0.85);
+            charOps[i] = 1;
           }
+          revealLevel = Math.min(1, revealLevel + 0.08);
+        } else {
+          revealLevel *= 0.94;
         }
 
         velocity *= VEL_DECAY;
       }
 
-      // Glow via CSS filter (not per-char shadowBlur — that blurs the glyphs)
-      const glowPx = isMobile ? 6 : intensity * 14;
+      const glowPx = isMobile ? 6 : revealLevel * 10;
       canvas.style.filter =
         glowPx > 0.4
           ? `drop-shadow(0 0 ${glowPx.toFixed(1)}px ${GLOW_COLOR})`
