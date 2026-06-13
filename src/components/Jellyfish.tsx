@@ -37,8 +37,10 @@ export default function Jellyfish({ visible }: { visible: boolean }) {
     function init(frames: string[]) {
       parsed = frames.map((f) => f.split("\n"));
 
-      const rawSize = (window.innerWidth * 0.9) / (BB_COLS * 0.55);
-      const fontSize = Math.max(3, Math.min(rawSize, 12));
+      const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      const scale = isMobile ? 1 : 0.7;
+      const rawSize = (window.innerWidth * 0.9 * scale) / (BB_COLS * 0.55);
+      const fontSize = Math.max(3, Math.min(rawSize, 12 * scale));
 
       ctx.font = `${fontSize}px "Courier New", monospace`;
       cw = ctx.measureText("░").width;
