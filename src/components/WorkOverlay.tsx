@@ -74,7 +74,7 @@ export default function WorkOverlay({ isOpen }: WorkOverlayProps) {
   return (
     <div
       aria-hidden={!isOpen}
-      className={`hidden md:block fixed inset-0 z-50 bg-bg transition-transform duration-500 ease-out ${
+      className={`hidden md:block fixed inset-0 z-50 transition-transform duration-500 ease-out ${
         isOpen ? "translate-y-0" : "translate-y-full pointer-events-none"
       }`}
     >
