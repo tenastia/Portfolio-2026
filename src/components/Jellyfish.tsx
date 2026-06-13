@@ -21,8 +21,9 @@ export default function Jellyfish() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const maybeCanvas = canvasRef.current;
+    if (!maybeCanvas) return;
+    const canvas: HTMLCanvasElement = maybeCanvas;
     const maybeCtx = canvas.getContext("2d");
     if (!maybeCtx) return;
     const ctx: CanvasRenderingContext2D = maybeCtx;
