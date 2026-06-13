@@ -29,10 +29,10 @@ export default function NavButton({
         isActive ? " nav-btn--active" : ""
       }`}
     >
-      {/* Rotating glow — visible on hover (suppressed when active) */}
+      {/* Rotating glow — visible on hover and always on when active */}
       <span
         className={`nav-btn-glow-ring transition-opacity duration-500 ${
-          isActive ? "opacity-0" : "opacity-0 group-hover/btn:opacity-100"
+          isActive ? "opacity-100" : "opacity-0 group-hover/btn:opacity-100"
         }`}
         aria-hidden
       />
