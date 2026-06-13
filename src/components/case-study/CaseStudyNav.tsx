@@ -11,7 +11,7 @@ const innerClass =
 
 export default function CaseStudyNav({ liveUrl }: { liveUrl?: string }) {
   return (
-    <div className="fixed z-50 flex gap-[14px] left-1/2 -translate-x-1/2 top-[96dvh] md:left-auto md:translate-x-0 md:top-auto md:bottom-page md:right-[calc(var(--spacing-page)+14px)]">
+    <div className="fixed z-50 flex gap-[14px] left-1/2 -translate-x-1/2 top-[86dvh] md:left-auto md:translate-x-0 md:top-auto md:bottom-page md:right-[calc(var(--spacing-page)+14px)]">
       {liveUrl && (
         <div className={wrapperClass}>
           <span className={glowClass} aria-hidden />
