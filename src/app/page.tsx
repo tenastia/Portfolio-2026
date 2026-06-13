@@ -9,7 +9,6 @@ import WorkOverlay from "@/components/WorkOverlay";
 import ConnectOverlay from "@/components/ConnectOverlay";
 import ProjectCard from "@/components/ProjectCard";
 import TypewriterText from "@/components/TypewriterText";
-import BioTypewriter from "@/components/BioTypewriter";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
 
@@ -71,7 +70,11 @@ export default function Home() {
             <div className="relative w-full md:w-[470px]">
               {/* Mobile bio — always visible */}
               <p className="text-body-md text-text leading-body-md tracking-[0.01em] md:hidden">
-                <BioTypewriter />
+                Designing digital products and interfaces where brand meets
+                system clarity. My work spans design systems, interactive
+                experiences, and product design. An academic background in
+                piano informs the rest — structure, systems thinking, and care
+                for craft.
               </p>
               {/* Desktop bio — hides when overlay is active */}
               <p
@@ -81,7 +84,15 @@ export default function Home() {
                     : "opacity-100 translate-y-0"
                 }`}
               >
-                <BioTypewriter />
+                Designing digital products and interfaces where brand meets
+                <br />
+                system clarity. My work spans design systems, interactive
+                <br />
+                experiences, and product design. An academic background in
+                <br />
+                piano informs the rest — structure, systems thinking, and care
+                <br />
+                for craft.
               </p>
               {/* Headshot — desktop only */}
               <Headshot
