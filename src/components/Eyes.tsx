@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useScheme } from "./SchemeProvider";
+import { useJellyfish } from "./JellyfishProvider";
 
 export default function Eyes() {
   const { scheme } = useScheme();
-  const [closed, setClosed] = useState(false);
+  const { visible, toggle } = useJellyfish();
 
   const open = scheme === "light" ? "/eyes-open-light.svg" : "/eyes-open-dark.svg";
   const close = scheme === "light" ? "/eyes-closed-light.svg" : "/eyes-closed-dark.svg";
@@ -13,11 +13,11 @@ export default function Eyes() {
   return (
     <button
       className="cursor-pointer border-none bg-transparent p-0"
-      aria-label="Eyes"
-      onClick={() => setClosed((prev) => !prev)}
+      aria-label={visible ? "Hide jellyfish" : "Show jellyfish"}
+      onClick={toggle}
     >
       <img
-        src={closed ? close : open}
+        src={visible ? open : close}
         alt=""
         aria-hidden
         width={61}

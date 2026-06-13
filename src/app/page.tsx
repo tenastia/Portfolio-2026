@@ -11,7 +11,6 @@ import ProjectCard from "@/components/ProjectCard";
 import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
-import Jellyfish from "@/components/Jellyfish";
 
 type Overlay = "work" | "lab" | "connect" | null;
 
@@ -43,7 +42,6 @@ export default function Home() {
       data-scheme={scheme}
       className="flex flex-col bg-bg transition-colors duration-300"
     >
-      <Jellyfish />
       {/* Homepage — full viewport height */}
       <div className="flex flex-col justify-between min-h-dvh">
         {/* Header */}
@@ -152,7 +150,7 @@ export default function Home() {
       {overlay === "work" && (
         <div
           ref={mobileWorkRef}
-          className="md:hidden flex flex-col gap-[36px] px-page pt-6 pb-page"
+          className="md:hidden relative z-10 flex flex-col gap-[36px] px-page pt-6 pb-page"
         >
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />

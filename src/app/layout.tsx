@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemeProvider from "@/components/SchemeProvider";
+import JellyfishProvider from "@/components/JellyfishProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SchemeProvider>{children}</SchemeProvider>
+        <SchemeProvider>
+          <JellyfishProvider>{children}</JellyfishProvider>
+        </SchemeProvider>
       </body>
     </html>
   );
