@@ -47,7 +47,8 @@ export default function Jellyfish() {
       parsed = frames.map((f) => f.split("\n"));
 
       const rawSize = (window.innerWidth * 0.9) / (BB_COLS * 0.55);
-      const fontSize = Math.max(3, Math.min(rawSize, 8));
+      const minSize = isMobile ? 3 : 8;
+      const fontSize = Math.max(minSize, Math.min(rawSize, 12));
 
       ctx.font = `${fontSize}px "Courier New", monospace`;
       cw = ctx.measureText("░").width;
@@ -94,11 +95,16 @@ export default function Jellyfish() {
         velocity *= VEL_DECAY;
       }
 
+      // Glow via CSS filter (not per-char shadowBlur — that blurs the glyphs)
+      const glowPx = isMobile ? 6 : intensity * 14;
+      canvas.style.filter =
+        glowPx > 0.4
+          ? `drop-shadow(0 0 ${glowPx.toFixed(1)}px ${GLOW_COLOR})`
+          : "none";
+
       ctx.clearRect(0, 0, drawW, drawH);
       ctx.textBaseline = "top";
       ctx.fillStyle = GLOW_COLOR;
-      ctx.shadowColor = GLOW_COLOR;
-      ctx.shadowBlur = isMobile ? 8 : intensity * 22;
 
       const fr = parsed[frameIdx];
       if (!fr) return;
@@ -123,7 +129,6 @@ export default function Jellyfish() {
       }
 
       ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
     }
 
     const script = document.createElement("script");
