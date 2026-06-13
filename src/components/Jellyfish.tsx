@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
 
-// Bounding box of content across all frames (pre-computed)
 const BB_R0 = 0;
 const BB_R1 = 92;
 const BB_C0 = 3;
 const BB_C1 = 299;
-const BB_ROWS = BB_R1 - BB_R0 + 1; // 93
-const BB_COLS = BB_C1 - BB_C0 + 1; // 297
+const BB_ROWS = BB_R1 - BB_R0 + 1;
+const BB_COLS = BB_C1 - BB_C0 + 1;
 
 const GLOW_COLOR = "#B6F2F9";
 const FPS = 30;
-const DECAY = 0.93;       // opacity decay per frame
-const VEL_SMOOTH = 0.35;  // EMA factor for velocity
-const VEL_DECAY = 0.88;   // velocity decay per frame
+const DECAY = 0.93;
+const VEL_SMOOTH = 0.35;
+const VEL_DECAY = 0.88;
+
+type JellyWindow = Window & typeof globalThis & { __jellyfishFrames?: string[] };
 
 export default function Jellyfish() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -23,26 +23,27 @@ export default function Jellyfish() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
     let rafId = 0;
-    let pollId: ReturnType<typeof setInterval> | undefined;
     let velocity = 0;
-    let lastX = -1, lastY = -1;
+    let lastX = -1;
+    let lastY = -1;
     let frameIdx = 0;
     let lastFrameTs = 0;
     let charOps = new Float32Array(0);
     let parsed: string[][] = [];
     let cw = 0;
     let lh = 0;
-    let drawW = 0, drawH = 0;
+    let drawW = 0;
+    let drawH = 0;
 
     function init(frames: string[]) {
       parsed = frames.map((f) => f.split("\n"));
 
-      // Responsive font size: fill ~90% viewport width, cap at 8px
       const rawSize = (window.innerWidth * 0.9) / (BB_COLS * 0.55);
       const fontSize = Math.max(3, Math.min(rawSize, 8));
 
@@ -78,10 +79,8 @@ export default function Jellyfish() {
       const intensity = Math.min(velocity * 0.012, 1);
 
       if (!isMobile) {
-        // Decay all character opacities
         for (let i = 0; i < charOps.length; i++) charOps[i] *= DECAY;
 
-        // Reveal random characters proportional to movement intensity
         if (intensity > 0.015) {
           const count = Math.ceil(intensity * charOps.length * 0.035);
           for (let k = 0; k < count; k++) {
@@ -100,6 +99,7 @@ export default function Jellyfish() {
       ctx.shadowBlur = isMobile ? 8 : intensity * 22;
 
       const fr = parsed[frameIdx];
+      if (!fr) return;
 
       for (let r = 0; r < BB_ROWS; r++) {
         const srcR = r + BB_R0;
@@ -113,7 +113,7 @@ export default function Jellyfish() {
           if (ch === " ") continue;
 
           const op = isMobile ? 1 : charOps[r * BB_COLS + c];
-          if (op < 0.008) continue;
+          if (!op || op < 0.008) continue;
 
           ctx.globalAlpha = op;
           ctx.fillText(ch, c * cw, r * lh);
@@ -124,19 +124,21 @@ export default function Jellyfish() {
       ctx.shadowBlur = 0;
     }
 
-    pollId = setInterval(() => {
-      const frames = (window as any).__jellyfishFrames as string[] | undefined;
-      if (frames?.length) {
-        clearInterval(pollId);
-        init(frames);
-      }
-    }, 100);
+    const script = document.createElement("script");
+    script.src = "/jellyfish/animation.js";
+    script.addEventListener("load", () => {
+      const frames = (window as JellyWindow).__jellyfishFrames;
+      if (frames && frames.length > 0) init(frames);
+    });
+    document.head.appendChild(script);
 
     const onMove = (e: MouseEvent) => {
       if (lastX >= 0) {
         const dx = e.clientX - lastX;
         const dy = e.clientY - lastY;
-        velocity = velocity * (1 - VEL_SMOOTH) + Math.sqrt(dx * dx + dy * dy) * VEL_SMOOTH;
+        velocity =
+          velocity * (1 - VEL_SMOOTH) +
+          Math.sqrt(dx * dx + dy * dy) * VEL_SMOOTH;
       }
       lastX = e.clientX;
       lastY = e.clientY;
@@ -145,18 +147,15 @@ export default function Jellyfish() {
     window.addEventListener("mousemove", onMove);
 
     return () => {
-      if (pollId !== undefined) clearInterval(pollId);
       cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMove);
+      if (document.head.contains(script)) document.head.removeChild(script);
     };
   }, []);
 
   return (
-    <>
-      <Script src="/jellyfish/animation.js" strategy="afterInteractive" />
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[5] overflow-hidden">
-        <canvas ref={canvasRef} />
-      </div>
-    </>
+    <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[5] overflow-hidden">
+      <canvas ref={canvasRef} />
+    </div>
   );
 }
