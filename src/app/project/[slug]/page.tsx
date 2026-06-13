@@ -18,7 +18,7 @@ function StudyImage({
   className?: string;
 }) {
   return (
-    <section className="w-full px-page py-10 flex justify-center">
+    <section className="w-full px-page pb-content-block-y flex justify-center">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
@@ -97,7 +97,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Role + Outcome */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -392,7 +392,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Results */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
         <h3 className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight mb-4">
           What we achieved in this redesign session
         </h3>
@@ -439,16 +439,17 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
-        <Link
-          href={`/project/${nextSlug}`}
-          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
-        >
-          <span className="font-sans text-button leading-button text-text whitespace-nowrap">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
+          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
+          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
+          <Link
+            href={`/project/${nextSlug}`}
+            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+          >
             next project
-          </span>
-          <div className="w-12 h-px bg-text" />
-        </Link>
+          </Link>
+        </div>
       </section>
     </>
   );
@@ -497,7 +498,7 @@ function AviaryStudy() {
       </section>
 
       {/* Role + Scope */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-content-block-y">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
@@ -705,16 +706,17 @@ function AviaryStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
-        <Link
-          href={`/project/${nextSlug}`}
-          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
-        >
-          <span className="font-sans text-button leading-button text-text whitespace-nowrap">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
+          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
+          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
+          <Link
+            href={`/project/${nextSlug}`}
+            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+          >
             next project
-          </span>
-          <div className="w-12 h-px bg-text" />
-        </Link>
+          </Link>
+        </div>
       </section>
     </>
   );
@@ -758,7 +760,7 @@ function PerformoryStudy() {
       </section>
 
       {/* Tagline */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] pb-content-block-y">
         <p className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight">
           A practice platform for musicians who struggle with memory lapses and
           confidence under pressure.
@@ -823,7 +825,7 @@ function PerformoryStudy() {
       </CalloutCard>
 
       {/* All screens — full bleed */}
-      <section className="w-full py-10">
+      <section className="w-full pb-content-block-y">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/projects/performory/all-screens-img.png"
@@ -1039,16 +1041,17 @@ function PerformoryStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page py-4 pb-content-block-y">
-        <Link
-          href={`/project/${nextSlug}`}
-          className="inline-flex gap-4 items-center bg-surface-glass hover:bg-surface-glass-active rounded-[6px] px-6 py-[1.125rem] transition-colors"
-        >
-          <span className="font-sans text-button leading-button text-text whitespace-nowrap">
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
+          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
+          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
+          <Link
+            href={`/project/${nextSlug}`}
+            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+          >
             next project
-          </span>
-          <div className="w-12 h-px bg-text" />
-        </Link>
+          </Link>
+        </div>
       </section>
     </>
   );
