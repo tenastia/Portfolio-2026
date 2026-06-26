@@ -14,7 +14,7 @@ const FPS = 30;
 
 type JellyWindow = Window & typeof globalThis & { __jellyfishFrames?: string[] };
 
-export default function Jellyfish({ visible }: { visible: boolean }) {
+export default function Jellyfish({ visible, blurred = false }: { visible: boolean; blurred?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -102,9 +102,13 @@ export default function Jellyfish({ visible }: { visible: boolean }) {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center pointer-events-none z-[5] overflow-hidden transition-opacity duration-700 ${
+      className={`fixed inset-0 flex items-center justify-center pointer-events-none z-[5] overflow-hidden ${
         visible ? "opacity-100" : "opacity-0"
       }`}
+      style={{
+        filter: blurred ? "blur(12px)" : "blur(0px)",
+        transition: "opacity 700ms, filter 500ms",
+      }}
     >
       <canvas ref={canvasRef} />
     </div>

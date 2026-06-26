@@ -11,17 +11,23 @@ import LabOverlay from "@/components/LabOverlay";
 import ProjectCard from "@/components/ProjectCard";
 import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
+import { useJellyfish } from "@/components/JellyfishProvider";
 import { projects } from "@/data/projects";
 
 type Overlay = "work" | "about" | "lab" | "connect" | null;
 
 export default function Home() {
   const { scheme } = useScheme();
+  const { setBlurred } = useJellyfish();
   const [overlay, setOverlay] = useState<Overlay>(null);
   const mobileWorkRef = useRef<HTMLDivElement>(null);
 
   const toggle = (name: Exclude<Overlay, null>) => () =>
     setOverlay((prev) => (prev === name ? null : name));
+
+  useEffect(() => {
+    setBlurred(overlay !== null);
+  }, [overlay, setBlurred]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
