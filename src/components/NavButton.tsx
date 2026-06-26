@@ -43,14 +43,14 @@ export default function NavButton({
         }`}
         aria-hidden
       />
-      {/* bg-bg fills the interior, masking the glow ring so only the border ring is visible */}
+      {/* 2% opacity fill + backdrop blur creates a glass panel over the glow ring */}
       <a
         href={href}
         onClick={(e) => {
           e.preventDefault();
           onClick?.();
         }}
-        className="relative z-10 flex items-center justify-center gap-2 rounded-[5px] bg-bg px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
+        className="relative z-10 flex items-center justify-center gap-2 rounded-[5px] bg-text/[0.02] backdrop-blur-[8px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
       >
         <span className="flex">
           {label.split("").map((char, i) => (

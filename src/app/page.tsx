@@ -4,22 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import NavButton from "@/components/NavButton";
 import Eyes from "@/components/Eyes";
 import Headshot from "@/components/Headshot";
-import SchemeButton from "@/components/SchemeButton";
 import WorkOverlay from "@/components/WorkOverlay";
 import ConnectOverlay from "@/components/ConnectOverlay";
+import AboutOverlay from "@/components/AboutOverlay";
+import LabOverlay from "@/components/LabOverlay";
 import ProjectCard from "@/components/ProjectCard";
 import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
 
-type Overlay = "work" | "lab" | "connect" | null;
+type Overlay = "work" | "about" | "lab" | "connect" | null;
 
 export default function Home() {
   const { scheme } = useScheme();
   const [overlay, setOverlay] = useState<Overlay>(null);
   const mobileWorkRef = useRef<HTMLDivElement>(null);
-
-  const isActive = overlay !== null;
 
   const toggle = (name: Exclude<Overlay, null>) => () =>
     setOverlay((prev) => (prev === name ? null : name));
@@ -43,73 +42,40 @@ export default function Home() {
       className="flex flex-col bg-bg transition-colors duration-300"
     >
       {/* Homepage — full viewport height */}
-      <div className="flex flex-col justify-between min-h-dvh">
-        {/* Header */}
+      <div className="flex flex-col min-h-dvh">
+
+        {/* Header — headshot + name/title left, nav right */}
         <header className="p-page relative z-[60] pointer-events-none">
-          <div className="flex flex-wrap gap-y-[2.25rem] items-start justify-between">
-            {/* Mobile: navbar first, then bio */}
-            <div className="flex items-center justify-between w-full md:hidden">
-              <nav className="flex gap-nav items-center pointer-events-auto">
-                <NavButton
-                  label="work"
-                  isActive={overlay === "work"}
-                  onClick={toggle("work")}
-                />
-                <NavButton
-                  label="connect"
-                  isActive={overlay === "connect"}
-                  onClick={toggle("connect")}
-                />
-              </nav>
-              <div className="pointer-events-auto">
-                <Eyes />
+          <div className="flex items-start justify-between">
+            {/* Left: headshot + name/title (always visible on all breakpoints) */}
+            <div className="flex items-center gap-3 pointer-events-auto">
+              <Headshot className="size-12 shrink-0" />
+              <div className="flex flex-col">
+                <span className="font-sans text-body-md leading-body-md text-text">
+                  nastia ten
+                </span>
+                <span className="font-sans text-body-md leading-body-md text-text-muted">
+                  product designer
+                </span>
               </div>
             </div>
 
-            {/* Bio */}
-            <div className="relative w-full md:w-[470px]">
-              {/* Mobile bio — always visible */}
-              <p className="text-body-md text-text leading-body-md tracking-[0.01em] md:hidden">
-                Designing digital products and interfaces where brand meets
-                system clarity. My work spans design systems, interactive
-                experiences, and product design. An academic background in
-                piano informs the rest — structure, systems thinking, and care
-                for craft.
-              </p>
-              {/* Desktop bio — hides when overlay is active */}
-              <p
-                className={`text-body-md text-text leading-body-md tracking-[0.01em] transition-all duration-500 ease-out hidden md:block ${
-                  isActive
-                    ? "opacity-0 -translate-y-1 pointer-events-none"
-                    : "opacity-100 translate-y-0"
-                }`}
-              >
-                Designing digital products and interfaces where brand meets
-                <br />
-                system clarity. My work spans design systems, interactive
-                <br />
-                experiences, and product design. An academic background in
-                <br />
-                piano informs the rest — structure, systems thinking, and care
-                <br />
-                for craft.
-              </p>
-              {/* Headshot — desktop only */}
-              <Headshot
-                className={`hidden md:block md:absolute md:top-0 md:left-0 transition-all duration-500 ease-out ${
-                  isActive
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-90 pointer-events-none"
-                }`}
-              />
-            </div>
-
-            {/* Desktop navbar */}
+            {/* Right: nav (desktop only) */}
             <nav className="hidden md:flex gap-nav items-center pointer-events-auto">
               <NavButton
                 label="work"
                 isActive={overlay === "work"}
                 onClick={toggle("work")}
+              />
+              <NavButton
+                label="about"
+                isActive={overlay === "about"}
+                onClick={toggle("about")}
+              />
+              <NavButton
+                label="lab"
+                isActive={overlay === "lab"}
+                onClick={toggle("lab")}
               />
               <NavButton
                 label="connect"
@@ -120,16 +86,44 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Middle Section */}
-        <section className="flex items-center justify-between px-page relative z-[60] pointer-events-none">
-          <div className="flex flex-col font-sans font-normal leading-body-md text-body-md tracking-[0.01em]">
-            <span className="text-text">Nastia Ten</span>
-            <span className="text-text-muted">Product Designer</span>
-          </div>
-          <div className="flex flex-col items-end pointer-events-auto">
-            <SchemeButton color="#121212" scheme="dark" />
-            <SchemeButton color="#f8f9fA" scheme="light" />
-          </div>
+        {/* Spacer — jellyfish animation shows through the transparent page */}
+        <div className="flex-1" />
+
+        {/* Mobile nav — sits below the jellyfish area, above the bio text */}
+        <nav className="md:hidden flex gap-nav items-center flex-wrap px-page pb-4 relative z-[60] pointer-events-auto">
+          <NavButton
+            label="work"
+            isActive={overlay === "work"}
+            onClick={toggle("work")}
+          />
+          <NavButton
+            label="about"
+            isActive={overlay === "about"}
+            onClick={toggle("about")}
+          />
+          <NavButton
+            label="lab"
+            isActive={overlay === "lab"}
+            onClick={toggle("lab")}
+          />
+          <NavButton
+            label="connect"
+            isActive={overlay === "connect"}
+            onClick={toggle("connect")}
+          />
+        </nav>
+
+        {/* Bio display text — large uppercase justified */}
+        <section className="px-page pb-6 relative z-[10] pointer-events-none">
+          <p className="font-sans text-h1 uppercase tracking-[0.08em] leading-[1.1] text-justify text-text">
+            Designing digital products and interfaces where brand meets system
+            clarity. My work spans{" "}
+            <span className="text-text-muted">
+              design systems, interactive experiences, and product design.
+            </span>{" "}
+            An academic background in piano informs the rest — structure,
+            systems thinking, and care for craft.
+          </p>
         </section>
 
         {/* Footer */}
@@ -139,7 +133,7 @@ export default function Home() {
               <span className="whitespace-nowrap">Status:</span>
               <TypewriterText />
             </div>
-            <div className="hidden md:block pointer-events-auto">
+            <div className="pointer-events-auto">
               <Eyes />
             </div>
           </div>
@@ -160,6 +154,8 @@ export default function Home() {
 
       {/* Overlays */}
       <WorkOverlay isOpen={overlay === "work"} />
+      <AboutOverlay isOpen={overlay === "about"} />
+      <LabOverlay isOpen={overlay === "lab"} />
       <ConnectOverlay isOpen={overlay === "connect"} />
     </main>
   );
