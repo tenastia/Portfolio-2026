@@ -15,13 +15,13 @@ export default function AboutOverlay({ isOpen }: AboutOverlayProps) {
   return (
     <div
       aria-hidden={!isOpen}
-      className={`fixed inset-0 z-50 bg-bg transition-transform duration-500 ease-out ${
+      className={`fixed inset-0 z-50 transition-transform duration-500 ease-out ${
         isOpen ? "translate-y-0" : "translate-y-full pointer-events-none"
       }`}
     >
       {/* Desktop: scrollable overlay, bio in a narrow left-aligned column */}
-      <div className="hidden md:flex flex-col h-full overflow-y-auto pt-[6.5rem] px-page pb-page">
-        <div className="flex flex-col gap-paragraph max-w-[36.3rem]">
+      <div className="hidden md:flex flex-col h-full overflow-y-auto pt-[9rem] px-page pb-[7rem]">
+        <div className="flex flex-col gap-paragraph max-w-[43.56rem]">
           {paragraphs.map((text, i) => (
             <p
               key={i}

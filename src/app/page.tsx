@@ -78,11 +78,13 @@ export default function Home() {
                 isActive={overlay === "about"}
                 onClick={toggle("about")}
               />
+              {/* lab — hidden for now
               <NavButton
                 label="lab"
                 isActive={overlay === "lab"}
                 onClick={toggle("lab")}
               />
+              */}
               <NavButton
                 label="connect"
                 isActive={overlay === "connect"}
@@ -107,11 +109,13 @@ export default function Home() {
             isActive={overlay === "about"}
             onClick={toggle("about")}
           />
+          {/* lab — hidden for now
           <NavButton
             label="lab"
             isActive={overlay === "lab"}
             onClick={toggle("lab")}
           />
+          */}
           <NavButton
             label="connect"
             isActive={overlay === "connect"}
@@ -119,8 +123,12 @@ export default function Home() {
           />
         </nav>
 
-        {/* Bio display text — large uppercase justified */}
-        <section className="px-page pb-6 relative z-[10] pointer-events-none">
+        {/* Bio display text — large uppercase justified; fades out when an overlay is open */}
+        <section
+          className={`px-page pb-6 relative z-[10] pointer-events-none transition-opacity duration-500 ${
+            overlay !== null ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <p className="font-sans text-[clamp(1rem,2.29vw,2.75rem)] uppercase tracking-[0.03em] leading-[1.389] text-justify text-text-muted">
             Designing digital products and interfaces where brand meets system
             clarity. My work spans{" "}
