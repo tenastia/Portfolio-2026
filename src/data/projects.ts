@@ -11,6 +11,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "landmark-district",
+    title: "landmark district",
+    year: "2026",
+    chips: ["user experience", "user interface", "web"],
+    cover: "/projects/landmark-district/landmark-project-cover.png",
+  },
+  {
     slug: "century-group",
     title: "century group",
     year: "2025",
