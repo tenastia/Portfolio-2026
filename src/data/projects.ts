@@ -45,7 +45,7 @@ export const projects: Project[] = [
     year: "2024",
     chips: ["user experience", "user interface", "web"],
     video: "/projects/other/tera-thumb.mp4",
-    externalUrl: "https://www.teradevelopment.com/",
+    liveUrl: "https://www.teradevelopment.com/",
   },
   {
     slug: "emera",

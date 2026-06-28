@@ -8,6 +8,7 @@ interface StudyHeroProps {
   /** CSS aspect-ratio value matching the image, e.g. "2880 / 2048" */
   aspect?: string;
   bg?: string;
+  video?: boolean;
   children?: React.ReactNode;
 }
 
@@ -22,6 +23,7 @@ export default function StudyHero({
   alt,
   aspect = "2880 / 2048",
   bg = "#1a1a1a",
+  video = false,
   children,
 }: StudyHeroProps) {
   const [failed, setFailed] = useState(false);
@@ -38,15 +40,26 @@ export default function StudyHero({
         className="relative w-full overflow-hidden"
         style={{ aspectRatio: aspect, background: bg }}
       >
-        {!failed && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            ref={imgRef}
+        {video ? (
+          <video
             src={src}
-            alt={alt}
-            onError={() => setFailed(true)}
+            autoPlay
+            loop
+            muted
+            playsInline
             className="absolute inset-0 h-full w-full object-cover"
           />
+        ) : (
+          !failed && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              ref={imgRef}
+              src={src}
+              alt={alt}
+              onError={() => setFailed(true)}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )
         )}
       </div>
       {children}
