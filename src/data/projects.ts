@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "landmark district",
     year: "2026",
     chips: ["user experience", "user interface", "web"],
-    cover: "/projects/landmark-district/landmark-project-cover.png",
+    cover: "/projects/landmark-district/landmark-district-thumb.png",
   },
   {
     slug: "century-group",

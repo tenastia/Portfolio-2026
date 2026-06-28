@@ -1123,7 +1123,7 @@ function LandmarkDistrictStudy() {
 
       {/* Hero video — full bleed */}
       <StudyFigure
-        src="/projects/landmark-district/landmark-district-hero-video.mp4"
+        src="/projects/landmark-district/landmark-district-video.mp4"
         aspect="1440 / 748"
         video
         fullBleed
@@ -1190,9 +1190,9 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/events-page.png"
-        alt="Events page"
+        src="/projects/landmark-district/events-page.mp4"
         aspect="823 / 549"
+        video
       />
 
       {/* Process */}
