@@ -121,7 +121,7 @@ export default function Home() {
 
         {/* Bio display text — large uppercase justified */}
         <section className="px-page pb-6 relative z-[10] pointer-events-none">
-          <p className="font-sans text-h1 uppercase tracking-[0.08em] leading-[1.1] text-justify text-text">
+          <p className="font-sans text-[clamp(1rem,2.04vw,2.75rem)] uppercase tracking-[0.08em] leading-[1.1] text-justify text-text">
             Designing digital products and interfaces where brand meets system
             clarity. My work spans{" "}
             <span className="text-text-muted">
