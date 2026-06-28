@@ -91,7 +91,7 @@ function CenturyGroupStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight">
+        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
       </section>
@@ -397,7 +397,7 @@ function CenturyGroupStudy() {
 
       {/* Results */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <h3 className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight mb-4">
+        <h3 className="font-sans font-normal text-case-heading leading-case-heading tracking-[0.03em] text-text-muted mb-heading-body">
           What we achieved in this redesign session
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -496,7 +496,7 @@ function AviaryStudy() {
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight">
+        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
       </section>
@@ -765,7 +765,7 @@ function PerformoryStudy() {
 
       {/* Tagline */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] pb-content-block-y">
-        <p className="font-sans font-medium text-body-lg leading-body-lg text-text-highlight">
+        <p className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           A practice platform for musicians who struggle with memory lapses and
           confidence under pressure.
         </p>

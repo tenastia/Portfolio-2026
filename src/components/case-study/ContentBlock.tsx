@@ -8,11 +8,11 @@ export default function ContentBlock({ heading, children }: ContentBlockProps) {
     <section className="content-block max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
       <div className="flex flex-col gap-heading-body">
         {heading && (
-          <h3 className="font-sans font-normal text-h2 leading-h2 tracking-[0.03em] text-text">
+          <h3 className="font-sans font-normal text-case-heading leading-case-heading tracking-[0.03em] text-text-muted">
             {heading}
           </h3>
         )}
-        <div className="font-sans font-normal text-body-md leading-body-md tracking-[0.01em] text-text flex flex-col gap-paragraph">
+        <div className="font-sans font-normal text-case-body leading-case-body tracking-[0.02em] text-text-muted flex flex-col gap-paragraph">
           {children}
         </div>
       </div>
