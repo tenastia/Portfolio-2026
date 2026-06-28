@@ -121,18 +121,14 @@ export default function Home() {
 
         {/* Bio display text — large uppercase justified */}
         <section className="px-page pb-6 relative z-[10] pointer-events-none">
-          <p className="font-sans text-[clamp(1rem,2.07vw,2.75rem)] uppercase tracking-[0.08em] leading-[1.3] text-text">
-            Designing digital products and interfaces where brand meets
-            <br />
-            System clarity. My work spans{" "}
-            <span className="text-text-muted">
-              design systems, interactive
-              <br />
-              experiences, and product design.
+          <p className="font-sans text-[clamp(1rem,2.29vw,2.75rem)] uppercase tracking-[0.03em] leading-[1.389] text-justify text-text-muted">
+            Designing digital products and interfaces where brand meets system
+            clarity. My work spans{" "}
+            <span className="text-text-highlight">
+              design systems, interactive experiences, and product design.
             </span>{" "}
-            An academic background in piano
-            <br />
-            informs the rest — structure, systems thinking, and care for craft.
+            An academic background in piano informs the rest — structure,
+            systems thinking, and care for craft.
           </p>
         </section>
 
