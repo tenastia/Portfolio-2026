@@ -1205,7 +1205,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/card-sorting.png"
+        src="/projects/landmark-district/card-sorting-image.png"
         alt="Card sorting results"
         aspect="823 / 593"
         contain
@@ -1256,7 +1256,7 @@ function LandmarkDistrictStudy() {
       />
 
       {/* Refining the directory */}
-      <ContentBlock subheading="Making the directory findable">
+      <ContentBlock subheading="Making the businesses discoverability faster">
         <p>{`Refining the directory was where competing priorities had to be ranked rather than balanced. The page had to hold clear navigation, the marketing team's introductory copy for the page and each category, and the brand look, and I settled the trade-offs in that order, usability first, then business and marketing goals, then visual aesthetics. The category filters had sat at the top of the page, too far from the results and split off by the headline, so I moved them down beside the list to tighten the loop between picking a category and seeing what it returned. Keeping the whole directory on a single page rather than breaking each category onto its own like it was before kept the search quick, and a short description under the selected category oriented people without an extra click.`}</p>
       </ContentBlock>
 
