@@ -62,23 +62,15 @@ function CenturyGroupStudy() {
   return (
     <>
       {/* Hero */}
-      <section className="px-page pt-page">
-        <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#0e0f10]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/projects/century-group/cg-hero-image.png"
-            alt="Century Group"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <CaseStudyMeta
-            title="century group"
-            year="2025"
-            categories={["Design System", "Interface Design", "Responsive Design"]}
-            tools={["Figma", "Adobe Suite", "Claude"]}
-            readTime="~ 5 mins read"
-          />
-        </div>
-      </section>
+      <StudyHero src="/cg-hero-image.png" alt="Century Group" aspect="2880 / 2048">
+        <CaseStudyMeta
+          title="century group"
+          year="2025"
+          categories={["Design System", "Interface Design", "Responsive Design"]}
+          tools={["Figma", "Adobe Suite", "Claude"]}
+          readTime="~ 5 mins read"
+        />
+      </StudyHero>
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
@@ -456,23 +448,15 @@ function AviaryStudy() {
   return (
     <>
       {/* Hero */}
-      <section className="px-page pt-page">
-        <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#1a1a1a]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/projects/aviary/aviary-hero-image.png"
-            alt="Aviary"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <CaseStudyMeta
-            title="aviary"
-            year="2024"
-            categories={["Interactive Kiosk", "Interface Design", "Responsive Design"]}
-            tools={["Figma", "Adobe Suite"]}
-            readTime="~ 3 mins read"
-          />
-        </div>
-      </section>
+      <StudyHero src="/aviary-hero-image.png" alt="Aviary" aspect="2880 / 2048">
+        <CaseStudyMeta
+          title="aviary"
+          year="2024"
+          categories={["Interactive Kiosk", "Interface Design", "Responsive Design"]}
+          tools={["Figma", "Adobe Suite"]}
+          readTime="~ 3 mins read"
+        />
+      </StudyHero>
 
       {/* Title */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
@@ -712,23 +696,19 @@ function PerformoryStudy() {
   return (
     <>
       {/* Hero */}
-      <section className="px-page pt-page">
-        <div className="relative w-full aspect-[1404/990] rounded-[8px] overflow-hidden bg-[#1a1a1a]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/projects/performory/performory-hero-img.png"
-            alt="Performory"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <CaseStudyMeta
-            title="performory"
-            year="2025"
-            categories={["UX Research", "Interface Design", "Brand"]}
-            tools={["Figma", "Adobe Suite", "Chat GPT", "Midjourney"]}
-            readTime="~ 5 mins read"
-          />
-        </div>
-      </section>
+      <StudyHero
+        src="/performory-hero-image.png"
+        alt="Performory"
+        aspect="2880 / 2048"
+      >
+        <CaseStudyMeta
+          title="performory"
+          year="2025"
+          categories={["UX Research", "Interface Design", "Brand"]}
+          tools={["Figma", "Adobe Suite", "Chat GPT", "Midjourney"]}
+          readTime="~ 5 mins read"
+        />
+      </StudyHero>
 
       {/* Tagline */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] pb-content-block-y">

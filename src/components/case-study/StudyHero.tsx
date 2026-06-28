@@ -5,21 +5,22 @@ import { useEffect, useRef, useState } from "react";
 interface StudyHeroProps {
   src: string;
   alt: string;
-  /** CSS aspect-ratio value, e.g. "1440 / 972" */
+  /** CSS aspect-ratio value matching the image, e.g. "2880 / 2048" */
   aspect?: string;
   bg?: string;
   children?: React.ReactNode;
 }
 
 /**
- * Case study hero. Holds its aspect ratio with a dark panel so the layout stays
- * intact before the cover is uploaded, and hides a missing image gracefully.
- * Children (e.g. the metadata card) overlay the cover.
+ * Full-bleed case study hero. The cover image spans the full viewport width
+ * with no border or rounded corners, sitting flush to the top so the metadata
+ * card (passed as children) top-aligns with the fixed floating buttons. Holds
+ * its aspect ratio with a dark panel and hides a missing image gracefully.
  */
 export default function StudyHero({
   src,
   alt,
-  aspect = "1440 / 972",
+  aspect = "2880 / 2048",
   bg = "#1a1a1a",
   children,
 }: StudyHeroProps) {
@@ -32,9 +33,9 @@ export default function StudyHero({
   }, []);
 
   return (
-    <section className="px-page pt-page">
+    <section className="relative w-full">
       <div
-        className="relative w-full overflow-hidden rounded-[8px]"
+        className="relative w-full overflow-hidden"
         style={{ aspectRatio: aspect, background: bg }}
       >
         {!failed && (
@@ -47,8 +48,8 @@ export default function StudyHero({
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
-        {children}
       </div>
+      {children}
     </section>
   );
 }
