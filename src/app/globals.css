@@ -145,11 +145,9 @@ body {
 
 .nav-btn-glow-ring {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  aspect-ratio: 1;
-  translate: -50% -50%;
+  inset: 0;
+  border-radius: 6px;
+  padding: 1px;
   background: conic-gradient(
     from var(--btn-glow-angle),
     transparent 0%,
@@ -157,6 +155,15 @@ body {
     var(--color-btn-glow) 88%,
     transparent 100%
   );
+  /* Clip the glow to the 1px border frame so it never reflects into the fill */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
   animation: btn-glow-spin 17s linear infinite;
 }
 
