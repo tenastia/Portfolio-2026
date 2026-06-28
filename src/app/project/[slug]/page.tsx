@@ -2,6 +2,7 @@ import { projects } from "@/data/projects";
 import ContentBlock from "@/components/case-study/ContentBlock";
 import CalloutCard from "@/components/case-study/CalloutCard";
 import CaseStudyNav from "@/components/case-study/CaseStudyNav";
+import CaseStudyMeta from "@/components/case-study/CaseStudyMeta";
 import Link from "next/link";
 
 export function generateStaticParams() {
@@ -67,25 +68,13 @@ function CenturyGroupStudy() {
             alt="Century Group"
             className="absolute inset-0 w-full h-full object-cover"
           />
-        </div>
-      </section>
-
-      {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
-        <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
-          <div className="flex gap-8">
-            <div className="flex flex-col gap-0.5">
-              <span>Design System</span>
-              <span>Interface Design</span>
-              <span>Responsive Design</span>
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <span>Figma</span>
-              <span>Adobe Suite</span>
-              <span>Claude</span>
-            </div>
-          </div>
-          <span className="whitespace-nowrap">~ 5 mins read</span>
+          <CaseStudyMeta
+            title="century group"
+            year="2025"
+            categories={["Design System", "Interface Design", "Responsive Design"]}
+            tools={["Figma", "Adobe Suite", "Claude"]}
+            readTime="~ 5 mins read"
+          />
         </div>
       </section>
 
@@ -473,24 +462,13 @@ function AviaryStudy() {
             alt="Aviary"
             className="absolute inset-0 w-full h-full object-cover"
           />
-        </div>
-      </section>
-
-      {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
-        <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
-          <div className="flex gap-8">
-            <div className="flex flex-col gap-0.5">
-              <span>Interactive Kiosk</span>
-              <span>Interface Design</span>
-              <span>Responsive Design</span>
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <span>Figma</span>
-              <span>Adobe Suite</span>
-            </div>
-          </div>
-          <span className="whitespace-nowrap">~ 3 mins read</span>
+          <CaseStudyMeta
+            title="aviary"
+            year="2024"
+            categories={["Interactive Kiosk", "Interface Design", "Responsive Design"]}
+            tools={["Figma", "Adobe Suite"]}
+            readTime="~ 3 mins read"
+          />
         </div>
       </section>
 
@@ -740,26 +718,13 @@ function PerformoryStudy() {
             alt="Performory"
             className="absolute inset-0 w-full h-full object-cover"
           />
-        </div>
-      </section>
-
-      {/* Metadata */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[24px] md:pt-content-block-y">
-        <div className="flex justify-between text-body-md leading-body-md tracking-[0.01em] text-[rgba(152,152,152,0.7)]">
-          <div className="flex gap-8">
-            <div className="flex flex-col gap-0.5">
-              <span>UX Research</span>
-              <span>Interface Design</span>
-              <span>Brand</span>
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <span>Figma</span>
-              <span>Adobe Suite</span>
-              <span>Chat GPT</span>
-              <span>Midjourney</span>
-            </div>
-          </div>
-          <span className="whitespace-nowrap">~ 5 mins read</span>
+          <CaseStudyMeta
+            title="performory"
+            year="2025"
+            categories={["UX Research", "Interface Design", "Brand"]}
+            tools={["Figma", "Adobe Suite", "Chat GPT", "Midjourney"]}
+            readTime="~ 5 mins read"
+          />
         </div>
       </section>
 
@@ -818,6 +783,14 @@ function PerformoryStudy() {
           something more tangible: musicians lacked a structured way to prepare
           material and build confidence before a performance.
         </p>
+        <a
+          href="https://www.figma.com/design/gOhnoapbSw89M3rbU44Ov1/Performory_UX_Research?node-id=108-137"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="self-start mt-6 inline-flex items-center justify-center rounded-[6px] border border-[#2a2a2a] bg-text/[0.02] backdrop-blur-[8px] px-4 py-2 text-body-md leading-body-md text-text-muted no-underline transition-colors duration-300 hover:bg-text/[0.05]"
+        >
+          see the research findings
+        </a>
       </ContentBlock>
 
       {/* Callout */}
