@@ -74,21 +74,23 @@ export default function WorkOverlay({ isOpen }: WorkOverlayProps) {
   return (
     <div
       aria-hidden={!isOpen}
-      className={`hidden md:block fixed inset-0 z-50 transition-transform duration-500 ease-out ${
+      className={`hidden md:flex flex-col fixed inset-0 z-50 transition-transform duration-500 ease-out ${
         isOpen ? "translate-y-0" : "translate-y-full pointer-events-none"
       }`}
     >
+      {/* Spacer matching the header height so the band sits between header and footer */}
+      <div className="shrink-0 h-[6.5rem]" aria-hidden />
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide overscroll-contain scroll-pt-[12.5rem] scroll-pb-[6.25rem]"
+        className="flex-1 min-h-0 overflow-y-scroll snap-y snap-mandatory scrollbar-hide overscroll-contain"
       >
-        <div ref={trackRef} className="flex flex-col items-center py-[50vh]">
+        <div ref={trackRef} className="flex flex-col items-center gap-[48px] py-[50vh]">
           {Array.from({ length: COPIES }).flatMap((_, copyIdx) =>
             projects.map((project) => (
               <div
                 key={`${copyIdx}-${project.slug}`}
-                className="snap-center flex justify-center w-full px-page py-8"
+                className="snap-center flex justify-center w-full px-page"
               >
                 <ProjectCard project={project} />
               </div>
@@ -96,6 +98,8 @@ export default function WorkOverlay({ isOpen }: WorkOverlayProps) {
           )}
         </div>
       </div>
+      {/* Spacer matching the footer height */}
+      <div className="shrink-0 h-[6.5rem]" aria-hidden />
     </div>
   );
 }
