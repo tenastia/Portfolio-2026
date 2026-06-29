@@ -53,6 +53,6 @@ export const projects: Project[] = [
     year: "2025",
     chips: ["user experience", "user interface", "motion"],
     video: "/projects/other/emera-thumb.mp4",
-    externalUrl: "https://emeraliving.com/",
+    liveUrl: "https://emeraliving.com/",
   },
 ];

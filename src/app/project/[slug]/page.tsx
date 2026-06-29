@@ -1394,6 +1394,91 @@ function TeraDevelopmentStudy() {
   );
 }
 
+function EmeraStudy() {
+  const nextSlug = getNextProjectSlug("emera");
+
+  return (
+    <>
+      {/* Hero */}
+      <StudyHero
+        src="/emera-hero-image.png"
+        alt="Emera"
+        aspect="1440 / 881"
+        bg="#4a4d3a"
+      >
+        <CaseStudyMeta
+          title="emera"
+          year="2025"
+          categories={["Web Design"]}
+          tools={["Figma", "Adobe Suite"]}
+          readTime="~ 1 min read"
+        />
+      </StudyHero>
+
+      {/* Title */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+          Storytelling as the conversion engine.
+        </h1>
+      </section>
+
+      {/* Role + Scope */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page py-content-block-y">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              label: "Role",
+              body: "I led the UX/UI design and ran QA through launch, working with a development and marketing teams.",
+            },
+            {
+              label: "Scope",
+              body: "A presale marketing site for a single development, built to turn interest into registrations across location, architecture, interiors and floorplans.",
+            },
+          ].map(({ label, body }) => (
+            <div
+              key={label}
+              className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
+            >
+              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+                {label}
+              </span>
+              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About the Project */}
+      <ContentBlock subheading="About the Project">
+        <p>
+          Emera is a boutique collection of 26 townhomes in Vancouver West, so
+          the product job here was turning interest into presale registrations
+          from buyers genuinely weighing a long-term family home. Homes at this
+          level sell on how life there feels more than on a list of features, so
+          I built the experience around a clear story of family-oriented living
+          and let it carry people from one page to the next.
+        </p>
+      </ContentBlock>
+
+      {/* Next Project */}
+      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
+        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
+          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
+          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
+          <Link
+            href={`/project/${nextSlug}`}
+            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+          >
+            next project
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
+
 export default async function ProjectPage({
   params,
 }: {
@@ -1422,6 +1507,8 @@ export default async function ProjectPage({
         <LandmarkDistrictStudy />
       ) : slug === "tera" ? (
         <TeraDevelopmentStudy />
+      ) : slug === "emera" ? (
+        <EmeraStudy />
       ) : (
         <div className="flex items-center justify-center min-h-dvh">
           <p className="text-body-md text-text-muted">Coming soon</p>
