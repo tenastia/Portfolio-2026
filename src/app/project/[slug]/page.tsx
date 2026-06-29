@@ -1307,12 +1307,13 @@ function TeraDevelopmentStudy() {
 
   return (
     <>
-      {/* Hero — light brand site cover */}
+      {/* Hero — light brand site preview */}
       <StudyHero
-        src="/tera-hero-image.png"
+        src="/projects/other/tera-thumb.mp4"
         alt="Tera Development"
         aspect="1440 / 881"
         bg="#e7e1da"
+        video
       >
         <CaseStudyMeta
           title="tera development"
@@ -1401,10 +1402,11 @@ function EmeraStudy() {
     <>
       {/* Hero */}
       <StudyHero
-        src="/emera-hero-image.png"
+        src="/projects/other/emera-thumb.mp4"
         alt="Emera"
         aspect="1440 / 881"
         bg="#4a4d3a"
+        video
       >
         <CaseStudyMeta
           title="emera"
