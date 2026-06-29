@@ -4,8 +4,12 @@ interface CaseStudyMetaProps {
   categories: string[];
   tools: string[];
   readTime: string;
-  /** "dark" for light text over a dark hero (default), "light" for dark text over a light hero */
-  theme?: "dark" | "light";
+  /**
+   * "dark" for light text over a dark hero (default), "light" for dark text
+   * over a light hero, "muted" for uniform muted text with a white-tinted
+   * border over a dark hero.
+   */
+  theme?: "dark" | "light" | "muted";
 }
 
 const THEMES = {
@@ -15,6 +19,13 @@ const THEMES = {
     title: "text-text-muted",
     secondary: "text-text-highlight",
     categories: "text-[rgba(152,152,152,0.7)]",
+  },
+  muted: {
+    container: "border-text/15 bg-text/[0.02] backdrop-blur-[15px]",
+    divider: "bg-text/15",
+    title: "text-text-muted",
+    secondary: "text-text-muted",
+    categories: "text-text-muted",
   },
   light: {
     container: "border-black/10 bg-black/[0.02] backdrop-blur-[15px]",

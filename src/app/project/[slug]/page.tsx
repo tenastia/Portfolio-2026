@@ -1033,6 +1033,7 @@ function LandmarkDistrictStudy() {
           categories={["UX Research", "Interface Design", "Brand"]}
           tools={["Figma", "Adobe Suite"]}
           readTime="~ 5 mins read"
+          theme="muted"
         />
       </StudyHero>
 
@@ -1414,6 +1415,7 @@ function EmeraStudy() {
           categories={["Web Design"]}
           tools={["Figma", "Adobe Suite"]}
           readTime="~ 1 min read"
+          theme="muted"
         />
       </StudyHero>
 
