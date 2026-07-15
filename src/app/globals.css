@@ -177,6 +177,40 @@ body {
   animation-delay: var(--char-delay, 0s);
 }
 
+/* Project card hover — rotating border glow + floating title text */
+.card-glow-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--btn-glow-angle),
+    transparent 0%,
+    transparent 70%,
+    var(--color-btn-glow) 88%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: btn-glow-spin 17s linear infinite;
+}
+
+.card-float {
+  display: inline-block;
+  will-change: transform;
+}
+
+.project-card:hover .card-float {
+  animation: letter-float var(--float-dur, 3s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }

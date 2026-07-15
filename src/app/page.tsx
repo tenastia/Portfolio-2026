@@ -123,7 +123,7 @@ export default function Home() {
           />
         </nav>
 
-        {/* Bio display text — large uppercase justified; fades out when an overlay is open */}
+        {/* Bio display text — hidden for now
         <section
           className={`px-page pb-6 relative z-[10] pointer-events-none transition-opacity duration-500 ${
             overlay !== null ? "opacity-0" : "opacity-100"
@@ -139,6 +139,7 @@ export default function Home() {
             systems thinking, and care for craft.
           </p>
         </section>
+        */}
 
         {/* Footer */}
         <footer className="p-page relative z-[60] pointer-events-none">

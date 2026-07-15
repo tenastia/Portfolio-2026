@@ -9,7 +9,7 @@ export default function Headshot({ className = "" }: HeadshotProps) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/projects/headshot.png"
+        src="/headshot-ii.jpg"
         alt="Nastia Ten"
         className="w-full h-full object-cover pointer-events-none"
         onError={(e) => {

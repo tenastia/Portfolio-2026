@@ -12,7 +12,7 @@ export default function Eyes() {
 
   return (
     <button
-      className="cursor-pointer border-none bg-transparent p-0"
+      className="flex items-center justify-center h-11 w-[72px] rounded-[6px] border border-[#2a2a2a] bg-text/[0.02] backdrop-blur-[8px] cursor-pointer transition-colors duration-300 hover:bg-text/[0.05]"
       aria-label={visible ? "Hide jellyfish" : "Show jellyfish"}
       onClick={toggle}
     >
@@ -20,8 +20,8 @@ export default function Eyes() {
         src={visible ? open : close}
         alt=""
         aria-hidden
-        width={61}
-        height={32}
+        width={42}
+        height={22}
       />
     </button>
   );
