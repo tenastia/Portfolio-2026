@@ -145,7 +145,7 @@ export default function Home() {
         <footer className="p-page relative z-[60] pointer-events-none">
           <div className="flex items-center justify-between">
             <div className="flex gap-1 items-center text-text text-body-sm leading-body-sm tracking-[0.01em]">
-              <span className="whitespace-nowrap">Status:</span>
+              <span className="whitespace-nowrap">status:</span>
               <TypewriterText />
             </div>
             <div className="pointer-events-auto">
