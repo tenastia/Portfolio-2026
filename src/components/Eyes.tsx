@@ -12,29 +12,12 @@ export default function Eyes() {
 
   return (
     <button
-      className="group/eyes relative h-11 w-[72px] rounded-[6px] p-px overflow-hidden cursor-pointer"
+      className="flex items-center justify-center cursor-pointer border-none bg-transparent p-0"
       aria-label={visible ? "Hide jellyfish" : "Show jellyfish"}
       onClick={toggle}
     >
-      {/* Rotating glow border — revealed on hover */}
-      <span
-        className="nav-btn-glow-ring opacity-0 group-hover/eyes:opacity-100 transition-opacity duration-500"
-        aria-hidden
-      />
-      {/* Default static border — fades out on hover */}
-      <span
-        className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/eyes:opacity-0 transition-opacity duration-500"
-        aria-hidden
-      />
-      <span className="relative z-10 flex items-center justify-center w-full h-full rounded-[5px] bg-text/[0.02] backdrop-blur-[8px]">
-        <img
-          src={visible ? open : close}
-          alt=""
-          aria-hidden
-          width={42}
-          height={22}
-        />
-      </span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={visible ? open : close} alt="" aria-hidden width={42} height={22} />
     </button>
   );
 }
