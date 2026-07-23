@@ -49,9 +49,9 @@ export default function PetalBio({
     const angJit = new Float64Array(n);
     const asleep = new Uint8Array(n);
 
-    // Tunables — small, chaotic scatter (no clean circle)
-    const RADIUS = 66; // base reach around the cursor (px)
-    const PUSH = 34; // base displacement
+    // Tunables — letters gather toward the cursor, small and chaotic
+    const RADIUS = 84; // base reach around the cursor (px)
+    const PULL = 0.65; // max fraction of the way pulled toward the cursor
     const ROT_MAX = 8; // deg — subtle tumble
     const STIFF = 0.075; // spring pull home
     const DAMP = 0.74; // velocity damping
@@ -102,10 +102,15 @@ export default function PetalBio({
             const d = Math.sqrt(d2) || 0.0001;
             let f = 1 - d / ri;
             f = f * f; // ease off toward the ragged edge
-            const ang = Math.atan2(dy, dx) + angJit[i]; // scatter the push direction
-            const p = PUSH * f * magJit[i];
-            tx = Math.cos(ang) * p;
-            ty = Math.sin(ang) * p;
+            // Pull toward the cursor with a slight per-letter swirl and scatter
+            const a = angJit[i] * 0.6;
+            const cos = Math.cos(a);
+            const sin = Math.sin(a);
+            const toX = -dx; // vector from home toward the cursor
+            const toY = -dy;
+            const k = PULL * f * magJit[i];
+            tx = (toX * cos - toY * sin) * k;
+            ty = (toX * sin + toY * cos) * k;
             tr = ROT_MAX * f * rotSeed[i];
           }
         }
