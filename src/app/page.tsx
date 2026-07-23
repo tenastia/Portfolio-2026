@@ -83,12 +83,27 @@ export default function Home() {
     };
 
     let locked = false;
-    let unlock = 0;
+    let unlockTimer = 0;
+    let unlockAt = 0;
+    // Keep the lock alive until the wheel goes quiet (never shorten it), so a
+    // single continuous gesture — however long or forceful — advances only one
+    // card instead of overrunning into the next.
+    const armUnlock = (ms: number) => {
+      const at = performance.now() + ms;
+      if (at <= unlockAt) return;
+      unlockAt = at;
+      window.clearTimeout(unlockTimer);
+      unlockTimer = window.setTimeout(() => {
+        locked = false;
+        unlockAt = 0;
+      }, at - performance.now());
+    };
 
     const onWheel = (e: WheelEvent) => {
       if (!inCarousel()) return; // let the hero/about/contact scroll freely
       if (locked) {
         e.preventDefault(); // swallow momentum → resistance
+        armUnlock(250); // ...and stay locked until it stops arriving
         return;
       }
       const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
@@ -119,16 +134,13 @@ export default function Home() {
 
       e.preventDefault();
       locked = true;
-      window.clearTimeout(unlock);
       window.scrollTo({ top: snapY[target], behavior: "smooth" });
-      unlock = window.setTimeout(() => {
-        locked = false;
-      }, 700);
+      armUnlock(500); // base lock covers the smooth scroll for discrete clicks
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
-      window.clearTimeout(unlock);
+      window.clearTimeout(unlockTimer);
       window.removeEventListener("wheel", onWheel);
     };
   }, []);
