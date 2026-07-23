@@ -97,7 +97,7 @@ export default function Home() {
         ref={projectsRef}
         className="scroll-mt-[7rem] pt-[7rem] pb-[4rem]"
       >
-        <div className="flex flex-col items-center gap-[64px] px-page">
+        <div className="flex flex-col items-center gap-[64px] px-page lg:px-[100px]">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
