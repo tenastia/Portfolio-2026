@@ -11,9 +11,10 @@ interface PetalBioProps {
 }
 
 /**
- * Bio text whose letters behave like petals on water: the cursor gently pushes
- * nearby letters apart (with a slight swirl), and they drift back into place
- * once it leaves. Mouse-only — falls back to static text on touch devices.
+ * Bio text whose letters behave like petals on water. The cursor carves a
+ * pill-shaped void — a "boat" — that points along its direction of travel and
+ * parts nearby letters sideways like a wake; they drift back into place once it
+ * leaves. Mouse-only — falls back to static text on touch devices.
  */
 export default function PetalBio({
   paragraphs,
@@ -49,15 +50,16 @@ export default function PetalBio({
       rotSeed[i] = (Math.random() < 0.5 ? -1 : 1) * (0.5 + Math.random() * 0.5);
     }
 
-    // Tunables — gentle "slowly stirred water" feel
-    const RADIUS = 100; // px reach around the cursor
-    const PUSH = 46; // max displacement
-    const TANGENT = 0.35; // swirl amount (0 = pure repel)
-    const ROT_MAX = 7; // deg — kept subtle per request
+    // Tunables — a pill-shaped "boat" void that parts the letters along its heading
+    const HALF_LEN = 80; // half-length of the pill's straight axis (px)
+    const HALF_WID = 40; // pill half-width — how far letters are held off the axis (px)
+    const PUSH = 44; // max displacement
+    const ROT_MAX = 7; // deg — kept subtle
     const STIFF = 0.075; // spring pull home
     const DAMP = 0.74; // velocity damping
 
-    const pointer = { x: 0, y: 0, active: false };
+    // hx/hy = smoothed heading (direction of travel) the pill points along
+    const pointer = { x: 0, y: 0, hx: 1, hy: 0, active: false };
 
     const measure = () => {
       for (let i = 0; i < n; i++) letters[i].style.transform = "";
@@ -82,7 +84,7 @@ export default function PetalBio({
 
     const tick = () => {
       let awake = pointer.active;
-      const r2 = RADIUS * RADIUS;
+      const cull = (HALF_LEN + HALF_WID) * (HALF_LEN + HALF_WID);
       for (let i = 0; i < n; i++) {
         let tx = 0;
         let ty = 0;
@@ -90,17 +92,37 @@ export default function PetalBio({
         if (pointer.active) {
           const dx = homeX[i] - pointer.x;
           const dy = homeY[i] - pointer.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < r2) {
-            const d = Math.sqrt(d2) || 0.0001;
-            let f = 1 - d / RADIUS;
-            f = f * f; // ease off toward the edge of the reach
-            const nx = dx / d;
-            const ny = dy / d;
-            const p = PUSH * f;
-            tx = nx * p - ny * p * TANGENT;
-            ty = ny * p + nx * p * TANGENT;
-            tr = ROT_MAX * f * rotSeed[i];
+          if (dx * dx + dy * dy < cull) {
+            const hx = pointer.hx;
+            const hy = pointer.hy;
+            const gx = -hy; // perpendicular to the heading
+            const gy = hx;
+            // Project into the pill's frame: along the axis and across it.
+            const along = dx * hx + dy * hy;
+            const across = dx * gx + dy * gy;
+            // Distance to the pill's central segment (capsule) → a pill-shaped void.
+            const alongC =
+              along < -HALF_LEN ? along + HALF_LEN : along > HALF_LEN ? along - HALF_LEN : 0;
+            const segDist = Math.sqrt(alongC * alongC + across * across) || 0.0001;
+            if (segDist < HALF_WID) {
+              let f = 1 - segDist / HALF_WID;
+              f = f * f; // ease off toward the pill's edge
+              // Push away from the pill's axis — letters part sideways like a wake.
+              let dirAlong = alongC;
+              let dirAcross = across;
+              if (segDist < 0.5) {
+                // On the axis: send it to one side so it still parts.
+                dirAlong = 0;
+                dirAcross = rotSeed[i] < 0 ? -1 : 1;
+              }
+              const wx = dirAlong * hx + dirAcross * gx;
+              const wy = dirAlong * hy + dirAcross * gy;
+              const wl = Math.hypot(wx, wy) || 1;
+              const p = PUSH * f;
+              tx = (wx / wl) * p;
+              ty = (wy / wl) * p;
+              tr = ROT_MAX * f * rotSeed[i];
+            }
           }
         }
         // critically-ish damped spring toward the target offset
