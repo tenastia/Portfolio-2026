@@ -28,7 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className="project-card group/card flex flex-col gap-2 items-center w-full max-w-[42.75rem]"
+      className="project-card group/card flex flex-col gap-2 items-center w-full max-w-[42.75rem] snap-start scroll-mt-[7rem]"
     >
       <div className="relative w-full aspect-[684/418] rounded-[14px] p-px overflow-hidden">
         {/* Rotating glow border — revealed on hover */}
