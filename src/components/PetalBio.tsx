@@ -13,8 +13,7 @@ interface PetalBioProps {
 /**
  * Bio text whose letters behave like petals on water: the cursor gently pushes
  * nearby letters apart (with a slight swirl), and they drift back into place
- * once it leaves. Mouse-only — falls back to static text on touch devices and
- * when the user prefers reduced motion.
+ * once it leaves. Mouse-only — falls back to static text on touch devices.
  */
 export default function PetalBio({
   paragraphs,
@@ -27,9 +26,9 @@ export default function PetalBio({
     const container = containerRef.current;
     if (!container) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Mouse-only: on touch devices there's no cursor, so leave the text static.
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (reduce || !finePointer) return;
+    if (!finePointer) return;
 
     const letters = Array.from(container.querySelectorAll<HTMLElement>(".petal"));
     const n = letters.length;
