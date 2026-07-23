@@ -17,8 +17,11 @@ const NAV: { label: string; target: string }[] = [
   { label: "connect", target: "contact" },
 ];
 
-const BIO =
-  "I grew up in Moscow, where I became an artist and a musician. I earned a master's degree in academic piano and music theory, won and placed in international competitions, toured Europe with concerts, and spent more than twelve years teaching, drawn especially to how music education can serve children with ADHD. Twenty two years in music taught me to think in systems and to watch people closely, noticing how they learn and where they get stuck. When I was ready for something new, I studied illustration and published a children's book, then asked myself what I wanted to make next. Design became the place my artistic side and my interest in human behaviour finally met. I made that move alongside my move to Vancouver, where I took my first real steps in interactive design, building digital experiences for real estate developers. Away from the screen, my best ideas still arrive when I improvise at the piano. I have a cat named Mia who crossed the Atlantic with me and taught me how to lie on the bed, belly up, and enjoy doing nothing at all. On hard days I brew coffee and do yoga, because small slow things bring me back fastest. On good days I make things, from music to interactive experiences, and reach for something I have never tried before.";
+const BIO_PARAGRAPHS = [
+  "I grew up in Moscow, where I became an artist and a musician. I earned a master's degree in academic piano and music theory, won and placed in international competitions, toured Europe with concerts, and spent more than twelve years teaching, drawn especially to how music education can serve children with ADHD. Twenty two years in music taught me to think in systems and to watch people closely, noticing how they learn and where they get stuck.",
+  "When I was ready for something new, I studied illustration and published a children's book, then asked myself what I wanted to make next. Design became the place my artistic side and my interest in human behaviour finally met. I made that move alongside my move to Vancouver, where I took my first real steps in interactive design, building digital experiences for real estate developers.",
+  "Away from the screen, my best ideas still arrive when I improvise at the piano. I have a cat named Mia who crossed the Atlantic with me and taught me how to lie on the bed, belly up, and enjoy doing nothing at all. On hard days I brew coffee and do yoga, because small slow things bring me back fastest. On good days I make things, from music to interactive experiences, and reach for something I have never tried before.",
+];
 
 export default function Home() {
   const { scheme } = useScheme();
@@ -107,33 +110,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* statement */}
-      <section
-        id="statement"
-        className="scroll-mt-[7rem] min-h-dvh flex items-center px-page py-[7rem]"
-      >
-        <p className="font-sans text-[clamp(1rem,2.29vw,2.75rem)] uppercase tracking-[0.03em] leading-[1.389] text-justify text-text-muted">
-          Designing digital products and interfaces where brand meets system
-          clarity. My work spans{" "}
-          <span className="text-text-highlight">
-            design systems, interactive experiences, and product design.
-          </span>{" "}
-          An academic background in piano informs the rest — structure, systems
-          thinking, and care for craft.
-        </p>
-      </section>
-
       {/* about */}
       <section
         id="about"
-        className="scroll-mt-[7rem] min-h-dvh flex flex-col justify-center gap-8 px-page py-[7rem]"
+        className="scroll-mt-[7rem] min-h-dvh flex flex-col items-center justify-center gap-6 px-page py-[7rem]"
       >
-        <p className="font-sans text-body-md leading-body-md text-text-highlight">
-          about me 👩🏻‍🎨 |
-        </p>
-        <p className="max-w-[36.3rem] font-sans text-body-md leading-body-md tracking-[0.01em] text-text-muted">
-          {BIO}
-        </p>
+        <div className="w-full max-w-[36.375rem] flex flex-col gap-4">
+          <p className="font-sans text-body-md leading-body-md text-text-highlight">
+            about me 👩🏻‍🎨 |
+          </p>
+          {BIO_PARAGRAPHS.map((paragraph, i) => (
+            <p
+              key={i}
+              className="font-sans text-body-md leading-body-md tracking-[0.01em] text-justify text-text-muted"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </section>
 
       {/* contact */}
