@@ -42,10 +42,19 @@ export default function Home() {
       const rect = el.getBoundingClientRect();
       const mid = window.innerHeight * 0.5;
       setInProjects(rect.top < mid && rect.bottom > mid);
-      const progress = (mid - rect.top) / rect.height;
-      const total = projects.length;
-      const idx = Math.min(total - 1, Math.max(0, Math.round(progress * (total - 1))));
-      setActive(idx);
+      // Activate the bar whose card center is closest to the viewport center.
+      const cards = el.querySelectorAll<HTMLElement>(".project-card");
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((card, i) => {
+        const r = card.getBoundingClientRect();
+        const dist = Math.abs(r.top + r.height / 2 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      setActive(best);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
