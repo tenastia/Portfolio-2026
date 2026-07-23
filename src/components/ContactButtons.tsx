@@ -22,7 +22,7 @@ function MaskIcon({ src, className }: { src: string; className?: string }) {
 }
 
 const iconLinkClass =
-  "flex items-center justify-center size-[2.625rem] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active text-text transition-colors duration-300";
+  "flex items-center justify-center size-[2.625rem] rounded-[6px] bg-surface-glass hover:bg-surface-glass-active text-text-muted hover:text-text transition-colors duration-300";
 
 const EMAIL = "ahactacna.teh@gmail.com";
 
@@ -54,7 +54,7 @@ export default function ContactButtons() {
           className={iconLinkClass}
           aria-label="Copy email address"
         >
-          <MaskIcon src="/mail-icon.svg" className="size-[1.125rem]" />
+          <MaskIcon src="/mail-icon.svg" className="w-[21px] h-[15px]" />
         </button>
         <a
           href="https://www.linkedin.com/in/anastasiia-ten"
