@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import NavButton from "@/components/NavButton";
-import Eyes from "@/components/Eyes";
 import Headshot from "@/components/Headshot";
 import ProjectCard from "@/components/ProjectCard";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -171,12 +170,11 @@ export default function Home() {
 
       {/* Fixed footer */}
       <footer className="fixed bottom-0 inset-x-0 z-50 bg-bg p-page">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-end gap-4">
           <div className="flex gap-1 items-center text-text-highlight text-body-sm leading-body-sm tracking-[0.01em]">
             <span className="whitespace-nowrap">status:</span>
             <TypewriterText />
           </div>
-          <Eyes />
         </div>
       </footer>
 
