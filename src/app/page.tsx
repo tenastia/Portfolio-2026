@@ -7,6 +7,7 @@ import Headshot from "@/components/Headshot";
 import ProjectCard from "@/components/ProjectCard";
 import ScrollProgress from "@/components/ScrollProgress";
 import ContactButtons from "@/components/ContactButtons";
+import PetalBio from "@/components/PetalBio";
 import TypewriterText from "@/components/TypewriterText";
 import { useScheme } from "@/components/SchemeProvider";
 import { projects } from "@/data/projects";
@@ -119,14 +120,11 @@ export default function Home() {
           <p className="font-sans text-body-md leading-body-md text-text-highlight">
             about me 👩🏻‍🎨 |
           </p>
-          {BIO_PARAGRAPHS.map((paragraph, i) => (
-            <p
-              key={i}
-              className="font-sans text-body-md leading-body-md tracking-[0.01em] text-justify text-text-muted"
-            >
-              {paragraph}
-            </p>
-          ))}
+          <PetalBio
+            paragraphs={BIO_PARAGRAPHS}
+            className="flex flex-col gap-4"
+            paragraphClassName="font-sans text-body-md leading-body-md tracking-[0.01em] text-justify text-text-muted"
+          />
         </div>
       </section>
 
