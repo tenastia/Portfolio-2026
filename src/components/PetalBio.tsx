@@ -44,25 +44,18 @@ export default function PetalBio({
     const vy = new Float64Array(n);
     const vr = new Float64Array(n);
     const rotSeed = new Float64Array(n);
-    const reach = new Float64Array(n);
-    const magJit = new Float64Array(n);
-    const angJit = new Float64Array(n);
     const asleep = new Uint8Array(n);
-
-    // Tunables — letters gather toward the cursor, small and chaotic
-    const RADIUS = 84; // base reach around the cursor (px)
-    const PULL = 0.65; // max fraction of the way pulled toward the cursor
-    const ROT_MAX = 8; // deg — subtle tumble
-    const STIFF = 0.075; // spring pull home
-    const DAMP = 0.74; // velocity damping
-
     for (let i = 0; i < n; i++) {
       rotSeed[i] = (Math.random() < 0.5 ? -1 : 1) * (0.5 + Math.random() * 0.5);
-      // Per-letter randomness breaks the circular boundary and even spacing
-      reach[i] = RADIUS * (0.55 + Math.random() * 0.75); // ragged edge
-      magJit[i] = 0.4 + Math.random() * 1.2; // varied push distance
-      angJit[i] = (Math.random() * 2 - 1) * 1.0; // ±~57° direction scatter
     }
+
+    // Tunables — gentle "slowly stirred water" feel
+    const RADIUS = 100; // px reach around the cursor
+    const PUSH = 46; // max displacement
+    const TANGENT = 0.35; // swirl amount (0 = pure repel)
+    const ROT_MAX = 7; // deg — kept subtle per request
+    const STIFF = 0.075; // spring pull home
+    const DAMP = 0.74; // velocity damping
 
     const pointer = { x: 0, y: 0, active: false };
 
@@ -89,6 +82,7 @@ export default function PetalBio({
 
     const tick = () => {
       let awake = pointer.active;
+      const r2 = RADIUS * RADIUS;
       for (let i = 0; i < n; i++) {
         let tx = 0;
         let ty = 0;
@@ -96,21 +90,16 @@ export default function PetalBio({
         if (pointer.active) {
           const dx = homeX[i] - pointer.x;
           const dy = homeY[i] - pointer.y;
-          const ri = reach[i];
           const d2 = dx * dx + dy * dy;
-          if (d2 < ri * ri) {
+          if (d2 < r2) {
             const d = Math.sqrt(d2) || 0.0001;
-            let f = 1 - d / ri;
-            f = f * f; // ease off toward the ragged edge
-            // Pull toward the cursor with a slight per-letter swirl and scatter
-            const a = angJit[i] * 0.6;
-            const cos = Math.cos(a);
-            const sin = Math.sin(a);
-            const toX = -dx; // vector from home toward the cursor
-            const toY = -dy;
-            const k = PULL * f * magJit[i];
-            tx = (toX * cos - toY * sin) * k;
-            ty = (toX * sin + toY * cos) * k;
+            let f = 1 - d / RADIUS;
+            f = f * f; // ease off toward the edge of the reach
+            const nx = dx / d;
+            const ny = dy / d;
+            const p = PUSH * f;
+            tx = nx * p - ny * p * TANGENT;
+            ty = ny * p + nx * p * TANGENT;
             tr = ROT_MAX * f * rotSeed[i];
           }
         }
