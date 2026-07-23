@@ -65,6 +65,74 @@ export default function Home() {
     };
   }, []);
 
+  // Step the projects carousel one card per scroll gesture (mouse/trackpad).
+  useEffect(() => {
+    const section = projectsRef.current;
+    if (!section) return;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!finePointer) return; // touch keeps native scrolling + CSS snap
+
+    const headerOffset = () =>
+      7 * parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
+
+    // Are the projects the section currently filling the viewport?
+    const inCarousel = () => {
+      const r = section.getBoundingClientRect();
+      const mid = window.innerHeight / 2;
+      return r.top < mid && r.bottom > mid;
+    };
+
+    let locked = false;
+    let unlock = 0;
+
+    const onWheel = (e: WheelEvent) => {
+      if (!inCarousel()) return; // let the hero/about/contact scroll freely
+      if (locked) {
+        e.preventDefault(); // swallow momentum → resistance
+        return;
+      }
+      const dir = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+      if (!dir) return;
+
+      const cards = Array.from(section.querySelectorAll<HTMLElement>(".project-card"));
+      const offset = headerOffset();
+      const sy = window.scrollY;
+      // The scroll position at which each card is snapped to the top.
+      const snapY = cards.map((c) => sy + c.getBoundingClientRect().top - offset);
+
+      let target = -1;
+      if (dir > 0) {
+        for (let i = 0; i < snapY.length; i++)
+          if (snapY[i] > sy + 4) {
+            target = i;
+            break;
+          }
+      } else {
+        for (let i = snapY.length - 1; i >= 0; i--)
+          if (snapY[i] < sy - 4) {
+            target = i;
+            break;
+          }
+      }
+      // No card in that direction → release to scroll out of the carousel.
+      if (target < 0) return;
+
+      e.preventDefault();
+      locked = true;
+      window.clearTimeout(unlock);
+      window.scrollTo({ top: snapY[target], behavior: "smooth" });
+      unlock = window.setTimeout(() => {
+        locked = false;
+      }, 700);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      window.clearTimeout(unlock);
+      window.removeEventListener("wheel", onWheel);
+    };
+  }, []);
+
   return (
     <main data-scheme={scheme} className="relative z-10 text-text">
       {/* Fixed header */}
