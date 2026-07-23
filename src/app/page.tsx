@@ -91,6 +91,9 @@ export default function Home() {
       <ScrollProgress active={active} total={projects.length} visible={inProjects} />
 
       {/* Scrolling content */}
+      {/* landing hero — only the fixed header and footer show over the background */}
+      <section id="hero" aria-hidden className="min-h-dvh" />
+
       {/* projects */}
       <section
         id="projects"
