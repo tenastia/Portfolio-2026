@@ -28,9 +28,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className="project-card group/card flex flex-col gap-2 items-center w-full max-w-[48.125rem]"
+      className="project-card group/card flex flex-col gap-2 items-center w-full max-w-[42.75rem] snap-start scroll-mt-[7rem]"
     >
-      <div className="relative w-full aspect-[770/471] rounded-[14px] p-px overflow-hidden">
+      <div className="relative w-full aspect-[684/418] rounded-[14px] p-px overflow-hidden">
         {/* Rotating glow border — revealed on hover */}
         <span
           className="card-glow-ring opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"
@@ -38,7 +38,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         />
         {/* Default static border — fades out on hover */}
         <span
-          className="pointer-events-none absolute inset-0 rounded-[14px] border border-[#2a2a2a] group-hover/card:opacity-0 transition-opacity duration-500"
+          className="pointer-events-none absolute inset-0 rounded-[14px] border border-[rgba(248,249,250,0.05)] group-hover/card:opacity-0 transition-opacity duration-500"
           aria-hidden
         />
         <div className="relative z-10 w-full h-full rounded-[13px] overflow-hidden bg-[#1a1a1a]">
@@ -65,8 +65,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
 
-      <div className="flex items-start justify-between w-full font-sans text-project-title tracking-[0.06em] uppercase leading-[1.25rem] gap-x-4 gap-y-2 flex-wrap text-text-muted">
-        <div className="flex items-center justify-between w-[13.5rem] shrink-0">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between w-full font-sans text-[0.75rem] tracking-[0.06em] uppercase leading-[1.25rem] gap-x-4 gap-y-2 text-text-muted">
+        <div className="flex items-center justify-between w-full sm:w-[13.5rem] shrink-0">
           <span className="card-float whitespace-nowrap" style={floatStyle(0)}>
             {project.title}
           </span>
@@ -74,9 +74,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             {project.year}
           </span>
         </div>
-        <div className="flex items-start gap-4 whitespace-nowrap">
+        <div className="flex flex-wrap sm:flex-nowrap items-start gap-x-4 gap-y-1 sm:justify-end">
           {project.chips.map((chip, i) => (
-            <span key={chip} className="card-float" style={floatStyle(i + 2)}>
+            <span key={chip} className="card-float whitespace-nowrap" style={floatStyle(i + 2)}>
               {chip}
             </span>
           ))}
