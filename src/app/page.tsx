@@ -25,7 +25,7 @@ const BIO_PARAGRAPHS = [
 
 // Shared Didone display headline styling
 const DIDONE =
-  "font-serif text-[2rem] leading-[2.2rem] md:text-[3.375rem] md:leading-[3.125rem] tracking-[0.02em] uppercase text-center text-text-muted";
+  "font-serif text-[2rem] leading-[2.2rem] md:text-[3.375rem] md:leading-[3.75rem] tracking-[0.02em] uppercase text-center text-text-muted";
 
 export default function Home() {
   const { scheme } = useScheme();
