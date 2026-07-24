@@ -1,177 +1,127 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import NavButton from "@/components/NavButton";
-import Eyes from "@/components/Eyes";
 import Headshot from "@/components/Headshot";
-import WorkOverlay from "@/components/WorkOverlay";
-import ConnectOverlay from "@/components/ConnectOverlay";
-import AboutOverlay from "@/components/AboutOverlay";
-import LabOverlay from "@/components/LabOverlay";
 import ProjectCard from "@/components/ProjectCard";
+import ContactButtons from "@/components/ContactButtons";
+import PetalBio from "@/components/PetalBio";
 import TypewriterText from "@/components/TypewriterText";
+import LiveTime from "@/components/LiveTime";
 import { useScheme } from "@/components/SchemeProvider";
-import { useJellyfish } from "@/components/JellyfishProvider";
 import { projects } from "@/data/projects";
 
-type Overlay = "work" | "about" | "lab" | "connect" | null;
+const NAV: { label: string; target: string }[] = [
+  { label: "work", target: "projects" },
+  { label: "about", target: "about" },
+  { label: "lab", target: "lab" },
+  { label: "connect", target: "contact" },
+];
+
+const BIO_PARAGRAPHS = [
+  "I grew up in Moscow, where I became an artist and a musician. I earned a master's degree in academic piano and music theory, won and placed in international competitions, toured Europe with concerts, and spent more than twelve years teaching, drawn especially to how music education can serve children with ADHD. Twenty two years in music taught me to think in systems and to watch people closely, noticing how they learn and where they get stuck.",
+  "When I was ready for something new, I studied illustration and published a children's book, then asked myself what I wanted to make next. Design became the place my artistic side and my interest in human behaviour finally met. I made that move alongside my move to Vancouver, where I took my first real steps in interactive design, building digital experiences for real estate developers.",
+  "Away from the screen, my best ideas still arrive when I improvise at the piano. I have a cat named Mia who crossed the Atlantic with me and taught me how to lie on the bed, belly up, and enjoy doing nothing at all. On hard days I brew coffee and do yoga, because small slow things bring me back fastest. On good days I make things, from music to interactive experiences, and reach for something I have never tried before.",
+];
+
+// Shared Didone display headline styling
+const DIDONE =
+  "font-serif text-[2rem] leading-[2.2rem] md:text-[3.375rem] md:leading-[3.125rem] tracking-[0.02em] uppercase text-center text-text-muted";
 
 export default function Home() {
   const { scheme } = useScheme();
-  const { setBlurred } = useJellyfish();
-  const [overlay, setOverlay] = useState<Overlay>(null);
-  const mobileWorkRef = useRef<HTMLDivElement>(null);
 
-  const toggle = (name: Exclude<Overlay, null>) => () =>
-    setOverlay((prev) => (prev === name ? null : name));
-
-  useEffect(() => {
-    setBlurred(overlay !== null);
-  }, [overlay, setBlurred]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.innerWidth >= 768) return;
-
-    if (overlay === "work") {
-      setTimeout(() => {
-        mobileWorkRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [overlay]);
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
-    <main
-      data-scheme={scheme}
-      className="flex flex-col bg-bg transition-colors duration-300"
-    >
-      {/* Homepage — full viewport height */}
-      <div className="flex flex-col min-h-dvh">
-
-        {/* Header — headshot + name/title left, nav right */}
-        <header className="p-page relative z-[60] pointer-events-none">
-          <div className="flex items-start justify-between">
-            {/* Left: headshot + name/title (always visible on all breakpoints) */}
-            <div className="flex items-center gap-3 pointer-events-auto">
-              <Headshot className="size-12 shrink-0" />
-              <div className="flex flex-col">
-                <span className="font-sans text-body-md leading-body-md text-text">
-                  nastia ten
-                </span>
-                <span className="font-sans text-body-md leading-body-md text-text-muted">
-                  product designer
-                </span>
-              </div>
-            </div>
-
-            {/* Right: nav (desktop only) */}
-            <nav className="hidden md:flex gap-nav items-center pointer-events-auto">
-              <NavButton
-                label="work"
-                isActive={overlay === "work"}
-                onClick={toggle("work")}
-              />
-              <NavButton
-                label="about"
-                isActive={overlay === "about"}
-                onClick={toggle("about")}
-              />
-              {/* lab — hidden for now
-              <NavButton
-                label="lab"
-                isActive={overlay === "lab"}
-                onClick={toggle("lab")}
-              />
-              */}
-              <NavButton
-                label="connect"
-                isActive={overlay === "connect"}
-                onClick={toggle("connect")}
-              />
-            </nav>
-          </div>
-        </header>
-
-        {/* Spacer — jellyfish animation shows through the transparent page */}
-        <div className="flex-1" />
-
-        {/* Mobile nav — sits below the jellyfish area, above the bio text */}
-        <nav className="md:hidden flex gap-nav items-center flex-wrap px-page pb-4 relative z-[60] pointer-events-auto">
-          <NavButton
-            label="work"
-            isActive={overlay === "work"}
-            onClick={toggle("work")}
-          />
-          <NavButton
-            label="about"
-            isActive={overlay === "about"}
-            onClick={toggle("about")}
-          />
-          {/* lab — hidden for now
-          <NavButton
-            label="lab"
-            isActive={overlay === "lab"}
-            onClick={toggle("lab")}
-          />
-          */}
-          <NavButton
-            label="connect"
-            isActive={overlay === "connect"}
-            onClick={toggle("connect")}
-          />
-        </nav>
-
-        {/* Bio display text — hidden for now
-        <section
-          className={`px-page pb-6 relative z-[10] pointer-events-none transition-opacity duration-500 ${
-            overlay !== null ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <p className="font-sans text-[clamp(1rem,2.29vw,2.75rem)] uppercase tracking-[0.03em] leading-[1.389] text-justify text-text-muted">
-            Designing digital products and interfaces where brand meets system
-            clarity. My work spans{" "}
-            <span className="text-text-highlight">
-              design systems, interactive experiences, and product design.
-            </span>{" "}
-            An academic background in piano informs the rest — structure,
-            systems thinking, and care for craft.
-          </p>
-        </section>
-        */}
-
-        {/* Footer */}
-        <footer className="p-page relative z-[60] pointer-events-none">
-          <div className="flex items-center justify-between">
-            <div className="flex gap-1 items-center text-text text-body-sm leading-body-sm tracking-[0.01em]">
-              <span className="whitespace-nowrap">status:</span>
-              <TypewriterText />
-            </div>
-            <div className="pointer-events-auto">
-              <Eyes />
+    <main data-scheme={scheme} className="relative z-10 text-text">
+      {/* Fixed header */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-5 shrink-0">
+            <Headshot className="size-16" />
+            <div className="flex flex-col gap-0.5">
+              <span className="font-sans font-medium text-body-md leading-body-md lowercase text-text-muted">
+                nastia ten
+              </span>
+              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+                product designer
+              </span>
             </div>
           </div>
-        </footer>
-      </div>
+          <nav className="flex gap-nav items-center flex-wrap justify-end">
+            {NAV.map(({ label, target }) => (
+              <NavButton key={label} label={label} onClick={() => scrollToSection(target)} />
+            ))}
+          </nav>
+        </div>
+      </header>
 
-      {/* Mobile work section — scrollable cards below homepage */}
-      {overlay === "work" && (
-        <div
-          ref={mobileWorkRef}
-          className="md:hidden relative z-10 flex flex-col gap-[36px] px-page pt-6 pb-page"
-        >
+      {/* Fixed footer */}
+      <footer className="fixed bottom-0 inset-x-0 z-50 bg-bg p-page">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex gap-1 items-center text-text-highlight text-body-sm leading-body-sm tracking-[0.01em]">
+            <span className="whitespace-nowrap">status:</span>
+            <TypewriterText />
+          </div>
+          <span className="hidden md:block whitespace-nowrap text-text-highlight text-body-sm leading-body-sm tracking-[0.01em]">
+            built with claude in vancouver
+          </span>
+        </div>
+      </footer>
+
+      {/* Hero statement */}
+      <section id="hero" className="min-h-dvh flex items-center justify-center px-page">
+        <p className={`${DIDONE} max-w-[43.25rem]`}>
+          i build digital products and interfaces where brand meets system clarity
+        </p>
+      </section>
+
+      {/* Projects grid */}
+      <section id="projects" className="scroll-mt-[7rem] px-page pt-[3rem] pb-[9rem]">
+        <div className="mx-auto max-w-[87rem] grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
-      )}
+      </section>
 
-      {/* Overlays */}
-      <WorkOverlay isOpen={overlay === "work"} />
-      <AboutOverlay isOpen={overlay === "about"} />
-      <LabOverlay isOpen={overlay === "lab"} />
-      <ConnectOverlay isOpen={overlay === "connect"} />
+      {/* About */}
+      <section
+        id="about"
+        className="scroll-mt-[7rem] min-h-dvh flex flex-col items-center justify-center gap-6 px-page py-[7rem]"
+      >
+        <div className="w-full max-w-[36.375rem] flex flex-col gap-4">
+          <p className="font-sans text-body-md leading-body-md text-text-highlight">
+            about me 👩🏻‍🎨 |
+          </p>
+          <PetalBio
+            paragraphs={BIO_PARAGRAPHS}
+            className="flex flex-col gap-4"
+            paragraphClassName="font-sans text-body-md leading-body-md tracking-[0.01em] text-justify text-text-muted"
+          />
+        </div>
+      </section>
+
+      {/* Availability / contact */}
+      <section
+        id="contact"
+        className="scroll-mt-[7rem] min-h-dvh flex flex-col items-center justify-center gap-12 px-page py-[7rem]"
+      >
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex items-center gap-4 rounded-[6px] border border-text/[0.05] bg-text/[0.02] px-5 py-2">
+            <span className="size-1.5 rounded-full bg-[#4ade80] shrink-0" aria-hidden />
+            <span className="font-sans text-body-md leading-body-md tracking-[0.01em] text-text-muted whitespace-nowrap">
+              <LiveTime />
+            </span>
+          </div>
+          <p className={`${DIDONE} max-w-[43.25rem]`}>
+            open to local and global collaborations
+          </p>
+        </div>
+        <ContactButtons />
+      </section>
     </main>
   );
 }
