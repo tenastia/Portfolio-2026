@@ -71,8 +71,9 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Hero statement */}
-      <section id="hero" className="min-h-dvh flex items-center justify-center px-page">
+      {/* Hero statement — a touch under a full screen so the first project row
+          peeks above the footer, hinting there's more to scroll to. */}
+      <section id="hero" className="min-h-[calc(100dvh-11rem)] flex items-center justify-center px-page">
         <p className={`${DIDONE} max-w-[43.25rem]`}>
           i build digital products and interfaces where brand meets system clarity
         </p>
