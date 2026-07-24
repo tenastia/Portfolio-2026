@@ -41,11 +41,11 @@ export default function Home() {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-5 shrink-0">
             <Headshot className="size-16" />
-            <div className="flex flex-col gap-0.5">
-              <span className="font-sans font-medium text-body-md leading-body-md lowercase text-text-muted">
+            <div className="flex flex-col">
+              <span className="font-sans font-medium text-body-md leading-[1.125rem] lowercase text-text-muted">
                 nastia ten
               </span>
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-body-md leading-[1.125rem] text-text-highlight">
                 product designer
               </span>
             </div>
