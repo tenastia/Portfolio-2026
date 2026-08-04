@@ -31,7 +31,23 @@ export default function Home() {
   const { scheme } = useScheme();
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = document.getElementById(id);
+    if (!el) return;
+    // The bio and contact sections are anchored vertically centered in the
+    // space between the fixed header and footer, so their content isn't
+    // partially covered. Other targets align their top below the header.
+    const centered = id === "about" || id === "contact";
+    if (!centered) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
+    const header = 7 * rem; // fixed header height
+    const footer = 4.5 * rem; // fixed footer height
+    const rect = el.getBoundingClientRect();
+    const availableCenter = header + (window.innerHeight - header - footer) / 2;
+    const target = window.scrollY + rect.top + rect.height / 2 - availableCenter;
+    window.scrollTo({ top: target, behavior: "smooth" });
   };
 
   return (
