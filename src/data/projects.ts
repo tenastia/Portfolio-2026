@@ -21,11 +21,7 @@ export const projects: Project[] = [
     slug: "landmark-district",
     title: "landmark district",
     year: "2024-2026",
-    chips: [
-      "rental engine",
-      "design system",
-      "web presence for a downtown kelowna",
-    ],
+    chips: ["rental engine", "design system"],
     cover: "/projects/landmark-district/landmark-district-thumb.png",
   },
   {

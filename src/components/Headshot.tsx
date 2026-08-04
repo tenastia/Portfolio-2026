@@ -5,7 +5,7 @@ interface HeadshotProps {
 export default function Headshot({ className = "" }: HeadshotProps) {
   return (
     <div
-      className={`overflow-hidden rounded-[7px] size-16 bg-[#e0e0e0] shrink-0 ${className}`}
+      className={`overflow-hidden rounded-[36px] border border-[rgba(248,249,250,0.3)] size-16 bg-[#e0e0e0] shrink-0 ${className}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

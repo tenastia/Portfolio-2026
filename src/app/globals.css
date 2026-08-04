@@ -16,10 +16,11 @@
   --color-surface-glass-active: rgba(248, 249, 250, 0.3);
   --color-surface-glass-strong: rgba(248, 249, 250, 0.15);
   --color-button-secondary-active: #575758;
-  --color-btn-glow: #B6F2F9;
+  --color-btn-glow: #B3B4B4;
 
   /* Typography — rem (scales via root font-size) */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "PP Right Didone", ui-serif, Georgia, "Times New Roman", serif;
 
   --text-display: 3.375rem;
   --text-h1: 2.8125rem;
@@ -77,7 +78,7 @@
   --color-surface-glass-active: rgba(18, 18, 18, 0.3);
   --color-surface-glass-strong: rgba(18, 18, 18, 0.15);
   --color-button-secondary-active: #b3b4b4;
-  --color-btn-glow: #5878CA;
+  --color-btn-glow: #B3B4B4;
 }
 
 html {
@@ -98,6 +99,14 @@ html {
   src: url("/fonts/PPNeueMontreal-Medium.woff2") format("woff2"),
     url("/fonts/PPNeueMontreal-Medium.woff") format("woff");
   font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Right Didone";
+  src: url("/fonts/PP Right Didone - Compact Dark.otf") format("opentype");
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
 }

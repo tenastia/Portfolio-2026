@@ -28,10 +28,12 @@ export default function JellyfishProvider({ children }: { children: ReactNode })
   const [blurred, setBlurred] = useState(false);
   const pathname = usePathname();
   const showJellyfish = !pathname.startsWith("/project/");
+  // Floating jellyfish hidden for now — flip to true to bring it back.
+  const SHOW_JELLYFISH = false;
 
   return (
     <JellyfishContext.Provider value={{ visible, toggle: () => setVisible((v) => !v), blurred, setBlurred }}>
-      {showJellyfish && <Jellyfish visible={visible} blurred={blurred} />}
+      {SHOW_JELLYFISH && showJellyfish && <Jellyfish visible={visible} blurred={blurred} />}
       {children}
     </JellyfishContext.Provider>
   );
