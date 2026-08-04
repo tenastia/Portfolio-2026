@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import NavButton from "@/components/NavButton";
 import Headshot from "@/components/Headshot";
 import ProjectCard from "@/components/ProjectCard";
@@ -29,6 +30,32 @@ const DIDONE =
 
 export default function Home() {
   const { scheme } = useScheme();
+  const [activeSection, setActiveSection] = useState("hero");
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Highlight the nav button for whichever section is under the viewport middle.
+  useEffect(() => {
+    const ids = ["hero", "projects", "about", "contact"];
+    const onScroll = () => {
+      const mid = window.innerHeight / 2;
+      let current = "hero";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) current = id;
+      }
+      setActiveSection(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -56,7 +83,14 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-5 shrink-0">
-            <Headshot className="size-16" />
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label="Back to top"
+              className="rounded-[36px] cursor-pointer transition-opacity duration-300 hover:opacity-80"
+            >
+              <Headshot className="size-16" />
+            </button>
             <div className="flex flex-col">
               <span className="font-sans font-medium text-body-md leading-[1.125rem] lowercase text-text-muted">
                 nastia ten
@@ -68,7 +102,12 @@ export default function Home() {
           </div>
           <nav className="flex gap-nav items-center flex-wrap justify-end">
             {NAV.map(({ label, target }) => (
-              <NavButton key={label} label={label} onClick={() => scrollToSection(target)} />
+              <NavButton
+                key={label}
+                label={label}
+                isActive={activeSection === target}
+                onClick={() => scrollToSection(target)}
+              />
             ))}
           </nav>
         </div>
