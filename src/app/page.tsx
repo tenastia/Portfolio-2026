@@ -126,16 +126,17 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Hero statement — a touch under a full screen so the first project row
-          peeks above the footer, hinting there's more to scroll to. */}
-      <section id="hero" className="min-h-[calc(100dvh-11rem)] flex items-center justify-center px-page">
+      {/* Hero statement — ends just above the peeking first project row, with
+          top padding for the header, so the copy is centered in the band
+          between the header and the cards (not the full screen). */}
+      <section id="hero" className="min-h-[calc(100dvh-8rem)] pt-[7rem] flex items-center justify-center px-page">
         <p className={`${DIDONE} max-w-[43.25rem]`}>
           i build digital products and interfaces where brand meets system clarity
         </p>
       </section>
 
       {/* Projects grid */}
-      <section id="projects" className="scroll-mt-[7rem] px-page pt-[3rem] pb-[9rem]">
+      <section id="projects" className="scroll-mt-[7rem] px-page pb-[9rem]">
         <div className="mx-auto max-w-[87rem] grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
