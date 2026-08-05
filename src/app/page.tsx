@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import NavButton from "@/components/NavButton";
 import Headshot from "@/components/Headshot";
 import ProjectCard from "@/components/ProjectCard";
@@ -29,9 +30,51 @@ const DIDONE =
 
 export default function Home() {
   const { scheme } = useScheme();
+  const [activeSection, setActiveSection] = useState("hero");
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Highlight the nav button for whichever section is under the viewport middle.
+  useEffect(() => {
+    const ids = ["hero", "projects", "about", "contact"];
+    const onScroll = () => {
+      const mid = window.innerHeight / 2;
+      let current = "hero";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) current = id;
+      }
+      setActiveSection(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = document.getElementById(id);
+    if (!el) return;
+    // The bio and contact sections are anchored vertically centered in the
+    // space between the fixed header and footer, so their content isn't
+    // partially covered. Other targets align their top below the header.
+    const centered = id === "about" || id === "contact";
+    if (!centered) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
+    const header = 7 * rem; // fixed header height
+    const footer = 4.5 * rem; // fixed footer height
+    const rect = el.getBoundingClientRect();
+    const availableCenter = header + (window.innerHeight - header - footer) / 2;
+    const target = window.scrollY + rect.top + rect.height / 2 - availableCenter;
+    window.scrollTo({ top: target, behavior: "smooth" });
   };
 
   return (
@@ -40,7 +83,14 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-5 shrink-0">
-            <Headshot className="size-16" />
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label="Back to top"
+              className="rounded-[36px] cursor-pointer transition-opacity duration-300 hover:opacity-80"
+            >
+              <Headshot className="size-16" />
+            </button>
             <div className="flex flex-col">
               <span className="font-sans font-medium text-body-md leading-[1.125rem] lowercase text-text-muted">
                 nastia ten
@@ -52,7 +102,12 @@ export default function Home() {
           </div>
           <nav className="flex gap-nav items-center flex-wrap justify-end">
             {NAV.map(({ label, target }) => (
-              <NavButton key={label} label={label} onClick={() => scrollToSection(target)} />
+              <NavButton
+                key={label}
+                label={label}
+                isActive={activeSection === target}
+                onClick={() => scrollToSection(target)}
+              />
             ))}
           </nav>
         </div>
@@ -71,16 +126,17 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Hero statement — a touch under a full screen so the first project row
-          peeks above the footer, hinting there's more to scroll to. */}
-      <section id="hero" className="min-h-[calc(100dvh-11rem)] flex items-center justify-center px-page">
+      {/* Hero statement — ends just above the peeking first project row, with
+          top padding for the header, so the copy is centered in the band
+          between the header and the cards (not the full screen). */}
+      <section id="hero" className="min-h-[calc(100dvh-8rem)] pt-[7rem] flex items-center justify-center px-page">
         <p className={`${DIDONE} max-w-[43.25rem]`}>
           i build digital products and interfaces where brand meets system clarity
         </p>
       </section>
 
       {/* Projects grid */}
-      <section id="projects" className="scroll-mt-[7rem] px-page pt-[3rem] pb-[9rem]">
+      <section id="projects" className="scroll-mt-[7rem] px-page pb-[9rem]">
         <div className="mx-auto max-w-[87rem] grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
@@ -95,7 +151,7 @@ export default function Home() {
       >
         <div className="w-full max-w-[36.375rem] flex flex-col gap-4">
           <p className="font-sans text-body-md leading-body-md text-text-highlight">
-            about me 👩🏻‍🎨 |
+            <TypewriterText text="about me 👩🏻‍🎨 " startOnView />
           </p>
           <PetalBio
             paragraphs={BIO_PARAGRAPHS}

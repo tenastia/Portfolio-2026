@@ -181,7 +181,8 @@ body {
   will-change: transform;
 }
 
-.nav-btn-wrapper:not(.nav-btn--active):hover .nav-btn-char {
+.nav-btn-wrapper:hover .nav-btn-char,
+.nav-btn-wrapper.nav-btn--active .nav-btn-char {
   animation: letter-float var(--char-dur, 3s) ease-in-out infinite;
   animation-delay: var(--char-delay, 0s);
 }
