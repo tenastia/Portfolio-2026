@@ -151,7 +151,7 @@ export default function Home() {
       >
         <div className="w-full max-w-[36.375rem] flex flex-col gap-4">
           <p className="font-sans text-body-md leading-body-md text-text-highlight">
-            about me 👩🏻‍🎨 |
+            <TypewriterText text="about me 👩🏻‍🎨 " startOnView />
           </p>
           <PetalBio
             paragraphs={BIO_PARAGRAPHS}
