@@ -96,7 +96,7 @@ export default function Home() {
                 nastia ten
               </span>
               <span className="font-sans text-body-md leading-[1.125rem] text-text-highlight">
-                product designer
+                product & web designer
               </span>
             </div>
           </div>
