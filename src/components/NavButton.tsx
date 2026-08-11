@@ -50,7 +50,7 @@ export default function NavButton({
           e.preventDefault();
           onClick?.();
         }}
-        className="relative z-10 flex items-center justify-center gap-2 rounded-[5px] bg-text/[0.02] backdrop-blur-[8px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
+        className="relative z-10 flex items-center justify-center rounded-[5px] bg-text/[0.02] backdrop-blur-[8px] px-button-x py-button-y text-body-md leading-body-md text-text whitespace-nowrap no-underline cursor-pointer"
       >
         <span className="flex">
           {label.split("").map((char, i) => (
@@ -66,22 +66,6 @@ export default function NavButton({
             </span>
           ))}
         </span>
-        {isActive && (
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 10 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L9 9M9 1L1 9"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        )}
       </a>
     </div>
   );
