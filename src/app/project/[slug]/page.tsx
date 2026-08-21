@@ -904,19 +904,29 @@ function PerformoryStudy() {
         {/* Design */}
         <SectionDivider id="design" label="Design" />
 
+        {/* The two screens settle in from opposite directions — the higher one
+            down from the top, the lower one up from the bottom — so the pair
+            closes on its offset arrangement as you reach it. */}
         <section className="w-full px-page">
-          <Reveal className="relative mx-auto aspect-[880/882] w-full max-w-study">
-            <StudyImage
-              src="/projects/performory/design-screen-1.png"
-              alt="Practice screen with a single bar prompt"
-              className="absolute left-[10%] top-[1%] w-[40%] rounded-[18px]"
-            />
-            <StudyImage
-              src="/projects/performory/design-screen-2.png"
-              alt="Practice screen with the bar context expanded"
-              className="absolute left-[50%] top-[20%] w-[40%] rounded-[18px]"
-            />
-          </Reveal>
+          <div className="relative mx-auto aspect-[880/882] w-full max-w-study">
+            <Reveal
+              y={-48}
+              className="absolute left-[10.23%] top-[1.02%] w-[39.77%]"
+            >
+              <StudyImage
+                src="/projects/performory/performory-design-left-img.png"
+                alt="Practice overview with the weekly progress graph"
+                className="w-full"
+              />
+            </Reveal>
+            <Reveal y={48} className="absolute left-[50%] top-[20.29%] w-[39.77%]">
+              <StudyImage
+                src="/projects/performory/performory-design-right-img.png"
+                alt="Home screen with upcoming events and reading"
+                className="w-full"
+              />
+            </Reveal>
+          </div>
         </section>
 
         <AnnotatedPanel
