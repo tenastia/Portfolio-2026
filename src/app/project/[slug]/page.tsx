@@ -403,12 +403,6 @@ function CenturyGroupStudy() {
         </div>
       </section>
 
-      {/* Token cascade image */}
-      <CenteredFigure
-        src="/projects/century-group/token-cascade-img.png"
-        alt="Token cascade diagram"
-      />
-
       <ContentBlock>
         <p>
           For the dev handoff, the Mapped and Responsive collections were set to
