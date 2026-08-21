@@ -14,10 +14,16 @@ interface StudyRailProps {
   year: string;
   sections: RailSection[];
   liveUrl?: string;
+  /**
+   * Darken the glass. The rail scrolls from over the hero onto the page, so a
+   * study with a light hero needs a stronger scrim for the text to hold on
+   * both.
+   */
+  scrim?: boolean;
 }
 
 const buttonClass =
-  "flex items-center justify-center rounded-[6px] border border-card-border bg-button-primary px-4 py-2 backdrop-blur-[15px] transition-colors duration-300 hover:bg-text/[0.05]";
+  "flex items-center justify-center rounded-[6px] border px-4 py-2 backdrop-blur-[15px] transition-colors duration-300 hover:bg-text/[0.05]";
 
 /**
  * The sticky index that rides alongside a case study — project name, year, and
@@ -32,7 +38,14 @@ export default function StudyRail({
   year,
   sections,
   liveUrl,
+  scrim = false,
 }: StudyRailProps) {
+  const surface = scrim
+    ? "border-white/15 bg-black/60"
+    : "border-card-border bg-surface-highlight-card";
+  // The scrim panel is lighter than the page behind it, so the resting link
+  // colour needs lifting to keep the same separation from the active one.
+  const resting = scrim ? "text-white/50" : "text-text-highlight";
   const [activeId, setActiveId] = useState(sections[0]?.id);
   // Depend on the ids rather than the array, so an inline `sections` literal
   // does not tear down and rebuild the listener on every render.
@@ -74,12 +87,16 @@ export default function StudyRail({
   return (
     <div className="pointer-events-none absolute inset-y-0 left-9 z-40 hidden xl:block">
       <div className="pointer-events-auto sticky top-0 flex flex-col items-start pt-9">
-        <nav className="flex flex-col gap-6 rounded-[8px] border border-card-border bg-surface-highlight-card p-6 backdrop-blur-[15px]">
+        <nav
+          className={`flex flex-col gap-6 rounded-[8px] border p-6 backdrop-blur-[15px] ${surface}`}
+        >
           <div className="flex flex-col uppercase">
             <span className="font-serif text-study-body leading-study-meta tracking-[0.02em] text-text-muted">
               {title}
             </span>
-            <span className="text-study-label leading-study-label tracking-[0.06em] text-text-highlight">
+            <span
+              className={`text-study-label leading-study-label tracking-[0.06em] ${resting}`}
+            >
               {year}
             </span>
           </div>
@@ -89,10 +106,8 @@ export default function StudyRail({
                 <a
                   href={`#${id}`}
                   aria-current={activeId === id ? "true" : undefined}
-                  className={`block text-study-label leading-study-label no-underline transition-colors duration-300 ${
-                    activeId === id
-                      ? "text-text-muted"
-                      : "text-text-highlight hover:text-text-muted"
+                  className={`block text-study-label leading-study-label no-underline transition-colors duration-300 hover:text-text-muted ${
+                    activeId === id ? "text-text-muted" : resting
                   }`}
                 >
                   {label}
@@ -107,14 +122,18 @@ export default function StudyRail({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={buttonClass}
+              className={`${buttonClass} ${surface}`}
               aria-label="Visit live site"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon-web.svg" alt="" className="size-4" />
             </a>
           )}
-          <Link href="/" className={buttonClass} aria-label="Back to home">
+          <Link
+            href="/"
+            className={`${buttonClass} ${surface}`}
+            aria-label="Back to home"
+          >
             <svg
               viewBox="0 0 13 13"
               aria-hidden

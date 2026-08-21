@@ -5,7 +5,8 @@ export interface SpecChip {
 }
 
 interface SpecsCardProps {
-  role: string;
+  /** Omitted by studies that already carry a Role card of their own. */
+  role?: string;
   work: SpecChip[];
   stack: SpecChip[];
   readTime: string;
@@ -54,11 +55,13 @@ export default function SpecsCard({
   return (
     <div className="flex w-full flex-wrap items-start justify-between gap-x-12 gap-y-6 rounded-[8px] border border-card-border bg-surface-highlight-card p-4 backdrop-blur-[15px]">
       <div className="flex flex-wrap items-start gap-x-12 gap-y-6">
-        <Field label="Role">
-          <span className="text-study-meta leading-study-meta tracking-[0.01em] text-text-muted">
-            {role}
-          </span>
-        </Field>
+        {role && (
+          <Field label="Role">
+            <span className="text-study-meta leading-study-meta tracking-[0.01em] text-text-muted">
+              {role}
+            </span>
+          </Field>
+        )}
         <Field label="Work">
           <div className="flex flex-wrap items-start gap-3">
             {work.map((chip) => (

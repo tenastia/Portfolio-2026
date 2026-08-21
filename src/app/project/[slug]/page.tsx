@@ -1,7 +1,5 @@
 import { projects } from "@/data/projects";
 import ContentBlock from "@/components/case-study/ContentBlock";
-import CaseStudyNav from "@/components/case-study/CaseStudyNav";
-import CaseStudyMeta from "@/components/case-study/CaseStudyMeta";
 import StudyFigure from "@/components/case-study/StudyFigure";
 import StudyHero from "@/components/case-study/StudyHero";
 import AffinityWall from "@/components/case-study/AffinityWall";
@@ -68,33 +66,59 @@ function ImagePlaceholder({
   );
 }
 
+function getLiveUrl(slug: string): string | undefined {
+  return projects.find((p) => p.slug === slug)?.liveUrl;
+}
+
 function getNextProjectSlug(currentSlug: string): string {
   const caseStudies = projects.filter((p) => !p.externalUrl);
   const idx = caseStudies.findIndex((p) => p.slug === currentSlug);
   return caseStudies[(idx + 1) % caseStudies.length].slug;
 }
 
+const CENTURY_GROUP_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "context", label: "Context" },
+  { id: "system", label: "The System" },
+  { id: "colour", label: "Colour" },
+  { id: "tokens", label: "Tokens" },
+  { id: "reflections", label: "Reflections" },
+];
+
 function CenturyGroupStudy() {
   const nextSlug = getNextProjectSlug("century-group");
 
   return (
-    <>
+    <StudyLayout
+      title="Century Group"
+      year="2025"
+      sections={CENTURY_GROUP_SECTIONS}
+      liveUrl={getLiveUrl("century-group")}
+    >
       {/* Hero */}
-      <StudyHero src="/cg-hero-image.png" alt="Century Group" aspect="2880 / 2048">
-        <CaseStudyMeta
-          title="century group"
-          year="2025"
-          categories={["Design System", "Interface Design", "Responsive Design"]}
-          tools={["Figma", "Adobe Suite", "Claude"]}
-          readTime="~ 5 mins read"
-        />
-      </StudyHero>
+      <StudyHero src="/cg-hero-image.png" alt="Century Group" aspect="2880 / 2048" />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
         <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
+        <SpecsCard
+          work={[
+            { label: "Design System" },
+            { label: "Interface Design" },
+            { label: "Responsive Design" },
+          ]}
+          stack={[
+            { label: "Figma" },
+            { label: "Adobe Suite" },
+            { label: "Claude" },
+          ]}
+          readTime="~ 5 mins read"
+        />
       </section>
 
       {/* Role + Outcome */}
@@ -126,7 +150,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* The Context */}
-      <ContentBlock heading="The Context">
+      <ContentBlock id="context" heading="The Context">
         <p>
           Century Group is a multidivisional real estate developer. The portfolio
           was growing across businesses and projects, but the digital foundation
@@ -151,7 +175,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Building a Scalable System */}
-      <ContentBlock heading="Building a Scalable System">
+      <ContentBlock id="system" heading="Building a Scalable System">
         <p className="font-medium text-text-highlight">
           Less is more. Bringing structure and hierarchy to the website.
         </p>
@@ -279,7 +303,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Colour wayfinding */}
-      <ContentBlock heading="Colour as the wayfinding system">
+      <ContentBlock id="colour" heading="Colour as the wayfinding system">
         <p>
           The real challenge arrived with the brand handoff. It came with a large,
           highly vibrant colour palette that had to stand in as the new Century
@@ -329,7 +353,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Token cascade */}
-      <ContentBlock heading="The engine: tokens that cascade">
+      <ContentBlock id="tokens" heading="The engine: tokens that cascade">
         <p>
           The wayfinding logic could only scale if it was wired to tokens.
           Hard-coded values would have become a nightmare in the shipping phase, so
@@ -422,7 +446,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Reflections */}
-      <ContentBlock heading="Reflections">
+      <ContentBlock id="reflections" heading="Reflections">
         <p>
           Next time I&apos;d validate the wayfinding idea with users. The logic
           held up on paper and had clear design reasoning behind it, but a quick
@@ -456,31 +480,44 @@ function CenturyGroupStudy() {
           </Link>
         </div>
       </section>
-    </>
+    </StudyLayout>
   );
 }
+
+const AVIARY_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "context", label: "Context" },
+  { id: "constraint", label: "The Constraint" },
+  { id: "process", label: "Process" },
+  { id: "final-product", label: "Final Product" },
+  { id: "reflections", label: "Reflections" },
+];
 
 function AviaryStudy() {
   const nextSlug = getNextProjectSlug("aviary");
 
   return (
-    <>
+    <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS}>
       {/* Hero */}
-      <StudyHero src="/aviary-hero-image.png" alt="Aviary" aspect="2880 / 2048">
-        <CaseStudyMeta
-          title="aviary"
-          year="2024"
-          categories={["Interactive Kiosk", "Interface Design", "Responsive Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 3 mins read"
-        />
-      </StudyHero>
+      <StudyHero src="/aviary-hero-image.png" alt="Aviary" aspect="2880 / 2048" />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
         <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
+        <SpecsCard
+          work={[
+            { label: "Interactive Kiosk" },
+            { label: "Interface Design" },
+            { label: "Responsive Design" },
+          ]}
+          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          readTime="~ 3 mins read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -512,7 +549,7 @@ function AviaryStudy() {
       </section>
 
       {/* The Context */}
-      <ContentBlock heading="The Context">
+      <ContentBlock id="context" heading="The Context">
         <p>Aviary needed two digital products at once, and they could not behave the same way.</p>
         <p>
           The web app was something people would meet on their own devices,
@@ -535,7 +572,7 @@ function AviaryStudy() {
       </section>
 
       {/* The Constraint */}
-      <ContentBlock heading="The Constraint that Shaped the Approach">
+      <ContentBlock id="constraint" heading="The Constraint that Shaped the Approach">
         <p>
           I designed the touchscreen without ever touching the hardware. The unit
           was not available during the design phase, so there was no way to stand
@@ -557,7 +594,7 @@ function AviaryStudy() {
       />
 
       {/* The Process */}
-      <ContentBlock heading="The Process">
+      <ContentBlock id="process" heading="The Process">
         <p className="font-medium text-text-highlight">Reading the room before the screen</p>
         <p>
           Before laying out a single frame, I gathered the physical
@@ -650,7 +687,7 @@ function AviaryStudy() {
       />
 
       {/* Final Product */}
-      <ContentBlock heading="Final Product">
+      <ContentBlock id="final-product" heading="Final Product">
         <p>
           The real test came at launch, the first time anyone stood in front of
           the finished unit. The design held. Every call I had made from a taped
@@ -662,7 +699,7 @@ function AviaryStudy() {
       </ContentBlock>
 
       {/* Reflections */}
-      <ContentBlock heading="Reflections">
+      <ContentBlock id="reflections" heading="Reflections">
         <p>
           If I designed Aviary again, I would treat the touchscreen as an
           extension of the whole presentation centre rather than a single place
@@ -704,7 +741,7 @@ function AviaryStudy() {
           </Link>
         </div>
       </section>
-    </>
+    </StudyLayout>
   );
 }
 
@@ -760,7 +797,12 @@ function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
   return (
-    <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
+    <StudyLayout
+      title="Performory"
+      year="2022"
+      sections={PERFORMORY_SECTIONS}
+      inset
+    >
       <StudyHeroCard
         src="/projects/performory/performory-hero-img.png"
         alt="Performory home screen on a phone"
@@ -993,34 +1035,50 @@ function PerformoryStudy() {
   );
 }
 
+const LANDMARK_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "problem", label: "The Problem" },
+  { id: "outcome", label: "The Outcome" },
+  { id: "approach", label: "Approach" },
+  { id: "process", label: "Process" },
+  { id: "final-thoughts", label: "Final Thoughts" },
+];
+
 function LandmarkDistrictStudy() {
   const nextSlug = getNextProjectSlug("landmark-district");
 
   return (
-    <>
+    <StudyLayout
+      title="Landmark District"
+      year="2024-2026"
+      sections={LANDMARK_SECTIONS}
+    >
       {/* Hero */}
       <StudyHero
         src="/projects/landmark-district/landmark-project-cover.png"
         alt="Landmark District"
         aspect="1440 / 972"
-      >
-        <CaseStudyMeta
-          title="landmark district"
-          year="2024-2026"
-          categories={["UX Research", "Interface Design", "Brand"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 5 mins read"
-          theme="muted"
-        />
-      </StudyHero>
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
         <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           The central digital touchpoint for a creative hub and business centre
           in downtown Kelowna with over one million square feet of retail, dining
           and office space.
         </h1>
+        <SpecsCard
+          work={[
+            { label: "UX Research" },
+            { label: "Interface Design" },
+            { label: "Brand" },
+          ]}
+          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          readTime="~ 5 mins read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1052,7 +1110,7 @@ function LandmarkDistrictStudy() {
       </section>
 
       {/* The Problem */}
-      <ContentBlock heading="The Problem">
+      <ContentBlock id="problem" heading="The Problem">
         <p>
           Landmark District was rebranding from the Kelowna Business Centre into a
           home for creative and progressive professionals. The website had to
@@ -1088,7 +1146,7 @@ function LandmarkDistrictStudy() {
       />
 
       {/* The Outcome */}
-      <ContentBlock heading="The Outcome">
+      <ContentBlock id="outcome" heading="The Outcome">
         <p>
           Flattening the navigation, restructuring the content and building on a
           flexible design system gave the district a site that matched how people
@@ -1101,7 +1159,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       {/* Approach */}
-      <ContentBlock heading="Approach" subheading="Designing within the timeline">
+      <ContentBlock id="approach" heading="Approach" subheading="Designing within the timeline">
         <p>
           The timeline was tight, so I planned the product in phases rather than
           trying to ship everything at once. The sorting rule was the brief
@@ -1155,6 +1213,7 @@ function LandmarkDistrictStudy() {
 
       {/* Process */}
       <ContentBlock
+        id="process"
         heading="Process"
         subheading="Flattening the structure so the menu did the work"
       >
@@ -1251,7 +1310,7 @@ function LandmarkDistrictStudy() {
       />
 
       {/* Final Thoughts */}
-      <ContentBlock heading="Final Thoughts">
+      <ContentBlock id="final-thoughts" heading="Final Thoughts">
         <p>
           A brief like boost conversion and visibility is most useful as a sorting
           function. Treating it that way gave me a clear test for every scope
@@ -1276,15 +1335,26 @@ function LandmarkDistrictStudy() {
           </Link>
         </div>
       </section>
-    </>
+    </StudyLayout>
   );
 }
+
+const TERA_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "about", label: "About" },
+];
 
 function TeraDevelopmentStudy() {
   const nextSlug = getNextProjectSlug("tera");
 
   return (
-    <>
+    <StudyLayout
+      title="Tera Development"
+      year="2024"
+      sections={TERA_SECTIONS}
+      liveUrl={getLiveUrl("tera")}
+      scrim
+    >
       {/* Hero — light brand site preview */}
       <StudyHero
         src="/projects/other/tera-thumb.mp4"
@@ -1292,22 +1362,21 @@ function TeraDevelopmentStudy() {
         aspect="1440 / 881"
         bg="#e7e1da"
         video
-      >
-        <CaseStudyMeta
-          title="tera development"
-          year="2024"
-          categories={["Web Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 1 min read"
-          theme="light"
-        />
-      </StudyHero>
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
         <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Web presence for a boutique real-estate developer
         </h1>
+        <SpecsCard
+          work={[{ label: "Web Design" }]}
+          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          readTime="~ 1 min read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1339,7 +1408,7 @@ function TeraDevelopmentStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock subheading="About the Project">
+      <ContentBlock id="about" subheading="About the Project">
         <p>
           Tera is the brand site for a small boutique developer that shapes
           communities in Vancouver through design-driven properties, so the
@@ -1369,15 +1438,26 @@ function TeraDevelopmentStudy() {
           </Link>
         </div>
       </section>
-    </>
+    </StudyLayout>
   );
 }
+
+const EMERA_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "about", label: "About" },
+];
 
 function EmeraStudy() {
   const nextSlug = getNextProjectSlug("emera");
 
   return (
-    <>
+    <StudyLayout
+      title="Emera"
+      year="2025"
+      sections={EMERA_SECTIONS}
+      liveUrl={getLiveUrl("emera")}
+      scrim
+    >
       {/* Hero */}
       <StudyHero
         src="/projects/other/emera-thumb.mp4"
@@ -1385,22 +1465,21 @@ function EmeraStudy() {
         aspect="1440 / 881"
         bg="#4a4d3a"
         video
-      >
-        <CaseStudyMeta
-          title="emera"
-          year="2025"
-          categories={["Web Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 1 min read"
-          theme="muted"
-        />
-      </StudyHero>
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
         <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
           Storytelling as the conversion engine.
         </h1>
+        <SpecsCard
+          work={[{ label: "Web Design" }]}
+          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          readTime="~ 1 min read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1432,7 +1511,7 @@ function EmeraStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock subheading="About the Project">
+      <ContentBlock id="about" subheading="About the Project">
         <p>
           Emera is a boutique collection of 26 townhomes in Vancouver West, so
           the product job here was turning interest into presale registrations
@@ -1456,7 +1535,7 @@ function EmeraStudy() {
           </Link>
         </div>
       </section>
-    </>
+    </StudyLayout>
   );
 }
 
@@ -1495,8 +1574,6 @@ export default async function ProjectPage({
           <p className="text-body-md text-text-muted">Coming soon</p>
         </div>
       )}
-      {/* Studies on the 2026 structure carry their own rail + buttons. */}
-      {slug !== "performory" && <CaseStudyNav liveUrl={project.liveUrl} />}
     </main>
   );
 }
