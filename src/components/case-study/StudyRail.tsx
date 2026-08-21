@@ -23,7 +23,7 @@ interface StudyRailProps {
 }
 
 const buttonClass =
-  "flex items-center justify-center rounded-[6px] border px-4 py-2 backdrop-blur-[15px] transition-colors duration-300 hover:bg-text/[0.05]";
+  "flex size-[42px] items-center justify-center rounded-[6px] border backdrop-blur-[15px] transition-colors duration-300 hover:bg-text/[0.05]";
 
 /**
  * The sticky index that rides alongside a case study — project name, year, and

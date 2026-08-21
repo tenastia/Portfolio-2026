@@ -1,8 +1,32 @@
 export interface SpecChip {
   label: string;
-  /** Optional icon exported alongside the case study assets. */
+  /** Overrides the icon `SPEC_ICONS` would resolve from the label. */
   icon?: string;
 }
+
+/**
+ * Chip label → icon. Two families live here: monochrome discipline marks for
+ * the Work column, and full-colour tool logos for Stack. Keyed by label so a
+ * study only names its disciplines and tools and the icon follows; a label with
+ * no entry renders as text, which is the right fallback for an umbrella term
+ * like "Adobe Suite" that has no single mark.
+ */
+const SPEC_ICONS: Record<string, string> = {
+  // Disciplines
+  "Research & Strategy": "/icon-research.svg",
+  "UX Research": "/icon-research.svg",
+  "UX | UI": "/icon-ux-ui.svg",
+  "Interface Design": "/icon-ux-ui.svg",
+  Brand: "/icon-brand.svg",
+  "Design System": "/icon-design-system.svg",
+  CMS: "/icon-cms.svg",
+  // Tools
+  Figma: "/icon-figma.svg",
+  Illustrator: "/icon-illustrator.svg",
+  Photoshop: "/icon-photoshop.svg",
+  Sketch: "/icon-sketch.svg",
+  Claude: "/icon-claude.svg",
+};
 
 interface SpecsCardProps {
   /** Omitted by studies that already carry a Role card of their own. */
@@ -13,11 +37,15 @@ interface SpecsCardProps {
 }
 
 function Chip({ label, icon }: SpecChip) {
+  const src = icon ?? SPEC_ICONS[label];
+
   return (
     <span className="flex items-center gap-1.5 rounded-[4px] px-1 py-0.5 text-study-meta leading-study-meta tracking-[0.01em] text-text-muted">
-      {icon && (
+      {src && (
+        // Height-locked with the width left to follow: the marks are square but
+        // the Figma logo is portrait, and a shared square would squash it.
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={icon} alt="" className="size-3 shrink-0" />
+        <img src={src} alt="" className="h-3 w-auto shrink-0" />
       )}
       {label}
     </span>
