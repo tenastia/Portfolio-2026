@@ -1,17 +1,35 @@
 import { projects } from "@/data/projects";
 import ContentBlock from "@/components/case-study/ContentBlock";
-import CalloutCard from "@/components/case-study/CalloutCard";
 import CaseStudyNav from "@/components/case-study/CaseStudyNav";
 import CaseStudyMeta from "@/components/case-study/CaseStudyMeta";
 import StudyFigure from "@/components/case-study/StudyFigure";
 import StudyHero from "@/components/case-study/StudyHero";
+import AffinityWall from "@/components/case-study/AffinityWall";
+import AnnotatedPanel from "@/components/case-study/AnnotatedPanel";
+import InsightBand from "@/components/case-study/InsightBand";
+import NextProjectButton from "@/components/case-study/NextProjectButton";
+import Reveal from "@/components/case-study/Reveal";
+import ScreenMarquee from "@/components/case-study/ScreenMarquee";
+import SectionDivider from "@/components/case-study/SectionDivider";
+import SpecsCard from "@/components/case-study/SpecsCard";
+import StatCluster from "@/components/case-study/StatCluster";
+import StudyHeroCard from "@/components/case-study/StudyHeroCard";
+import StudyImage from "@/components/case-study/StudyImage";
+import StudyLayout from "@/components/case-study/StudyLayout";
+import StudySection, {
+  Em,
+  StudyProse,
+} from "@/components/case-study/StudySection";
+import Takeaways from "@/components/case-study/Takeaways";
+import { researchNotes } from "@/data/performory";
 import Link from "next/link";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-function StudyImage({
+/** Legacy case study figure: a centred image in its own padded section. */
+function CenteredFigure({
   src,
   alt,
   className,
@@ -360,7 +378,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Token cascade image */}
-      <StudyImage
+      <CenteredFigure
         src="/projects/century-group/token-cascade-img.png"
         alt="Token cascade diagram"
       />
@@ -532,7 +550,7 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-2.png"
         alt="Taped screen outline on wall"
         className="max-w-[53.75rem]"
@@ -568,7 +586,7 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-3.png"
         alt="First and second navigation iterations"
         className="max-w-[53.75rem]"
@@ -585,7 +603,7 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-4.png"
         alt="Final navigation design"
         className="max-w-[53.75rem]"
@@ -619,13 +637,13 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-5.png"
         alt="Interactive siteplan"
         className="max-w-[53.75rem]"
       />
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-6.png"
         alt="Community map"
         className="max-w-[53.75rem]"
@@ -690,329 +708,288 @@ function AviaryStudy() {
   );
 }
 
+const PERFORMORY_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "challenge", label: "Challenge" },
+  { id: "strategy", label: "Strategy" },
+  { id: "design", label: "Design" },
+  { id: "takeaways", label: "Takeaways" },
+];
+
+const PERFORMORY_STATS = [
+  { value: 72, label: "Use drugs to ease anxiety" },
+  { value: 64, label: "Experience stage fright" },
+  { value: 12, label: "Develop depression from it" },
+];
+
+const PERFORMORY_FINAL_SCREENS = [
+  { src: "/projects/performory/final-screen-1.png", alt: "Home screen" },
+  { src: "/projects/performory/final-screen-2.png", alt: "Events and reading" },
+  { src: "/projects/performory/final-screen-3.png", alt: "New piece" },
+  { src: "/projects/performory/final-screen-4.png", alt: "Practice schedule" },
+  { src: "/projects/performory/final-screen-5.png", alt: "Library" },
+  { src: "/projects/performory/final-screen-6.png", alt: "Practice overview" },
+  { src: "/projects/performory/final-screen-7.png", alt: "Memorization prompt" },
+  { src: "/projects/performory/final-screen-8.png", alt: "Session summary" },
+];
+
+const PERFORMORY_TAKEAWAYS = [
+  {
+    title: "Growing the audience by introducing more techniques",
+    body: [
+      "From my research I learned that different musicians rely on different memorization techniques. Even though the technique picked for this stage was universal, the necessity to broaden the variety of techniques that would accommodate the specific needs of different kind of musicians would be a key step in growing the audience of the platform.",
+    ],
+  },
+  {
+    title: "Differentiate the musician segment further",
+    body: [
+      "“Musicians” is already a much stronger focus than “all performers that experience stage fright,” but it’s still quite broad to use the same technique for all.",
+      "The next level would be narrowing the audience further — for example, instrumentalists, vocalists, or advanced students preparing for recitals. A tighter segment would make the product more specific, and stronger.",
+    ],
+  },
+  {
+    title: "Test whether the platform feels comprehensive in practice",
+    body: [
+      "The overall strategy is to support stage fright indirectly through preparation, structure, and memory work.",
+      "That logic makes sense, but I’d want to validate whether users actually experience the product as one coherent support system in practice, rather than as a set of useful features living next to each other.",
+    ],
+  },
+];
+
 function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
   return (
-    <>
-      {/* Hero */}
-      <StudyHero
-        src="/performory-hero-image.png"
-        alt="Performory"
-        aspect="2880 / 2048"
-      >
-        <CaseStudyMeta
-          title="performory"
-          year="2025"
-          categories={["UX Research", "Interface Design", "Brand"]}
-          tools={["Figma", "Adobe Suite", "Chat GPT", "Midjourney"]}
-          readTime="~ 5 mins read"
-        />
-      </StudyHero>
-
-      {/* Tagline */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] pb-content-block-y">
-        <p className="font-sans font-normal text-case-title leading-case-title text-text-muted">
-          A practice platform for musicians who struggle with memory lapses and
-          confidence under pressure.
-        </p>
-      </section>
-
-      {/* Section 1 */}
-      <ContentBlock heading="The Overture: How It Began">
-        <p>
-          This project started with the question: why do musicians lose
-          confidence on stage when they need it most?
-        </p>
-        <p>
-          Coming from a music background, this matter felt personal to me.
-          I&apos;ve seen how someone can be highly disciplined, well-prepared,
-          and technically strong, and yet still face stage fright and have their
-          confidence collapse at the most important moments.
-        </p>
-        <p>
-          That pushed me to look deeper into the problem and study stage fright
-          not only as an emotional response, but as a system of multiple
-          triggers.
-        </p>
-      </ContentBlock>
-
-      {/* Image: Overview screens */}
-      <StudyImage
-        src="/projects/performory/overview-img.png"
-        alt="Performory overview and events screens"
-        className="max-w-[34rem]"
+    <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
+      <StudyHeroCard
+        src="/projects/performory/performory-hero-img.png"
+        alt="Performory home screen on a phone"
       />
 
-      {/* Section 2 */}
-      <ContentBlock heading="Diving Deeper Into the Problem">
-        <p>
-          To ground the project, I interviewed five musicians and used affinity
-          mapping to understand what actually sits underneath stage fright.
-        </p>
-        <p>
-          The strongest pattern was that performance anxiety was rarely just
-          about fear on its own. More often, it was tied to a loss of trust in
-          preparation—especially when musicians felt unsure about memory, recall,
-          and readiness under pressure. Themes like perfectionism, memorization,
-          support, self-awareness, responsibility, and performance frequency kept
-          showing up across interviews, which made the problem feel both
-          emotional and behavioural at the same time.
-        </p>
-        <p>
-          That shifted how I framed the opportunity. Instead of designing for a
-          broad topic like performance anxiety among musicians, I pivoted to
-          something more tangible: musicians lacked a structured way to prepare
-          material and build confidence before a performance.
-        </p>
-        <a
-          href="https://www.figma.com/design/gOhnoapbSw89M3rbU44Ov1/Performory_UX_Research?node-id=108-137"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="self-start mt-6 inline-flex items-center justify-center rounded-[6px] border border-[#2a2a2a] bg-text/[0.02] backdrop-blur-[8px] px-4 py-2 text-body-md leading-body-md text-text-muted no-underline transition-colors duration-300 hover:bg-text/[0.05]"
+      <div className="flex w-full flex-col items-center gap-study-block pt-study-intro">
+        {/* Overview — title and credits */}
+        <StudySection id="overview">
+          <Reveal className="flex flex-col gap-12">
+            <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
+              A practice platform for musicians who struggle with memory lapses
+              and confidence under pressure.
+            </h1>
+            <SpecsCard
+              role="Product Designer"
+              work={[
+                { label: "Research & Strategy" },
+                { label: "UX | UI" },
+                { label: "Brand" },
+              ]}
+              stack={[
+                { label: "Figma" },
+                { label: "Illustrator" },
+                { label: "Photoshop" },
+              ]}
+              readTime="~5 mins. read"
+            />
+          </Reveal>
+        </StudySection>
+
+        {/* Challenge — the opening question, against what the research found */}
+        <StudySection id="challenge">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+            <StudyProse
+              heading="The Overture: Discovering the Problem."
+              className="lg:max-w-[22.75rem]"
+            >
+              <p>
+                This project started with the question:{" "}
+                <Em>why do musicians lose confidence on stage</Em> when they need
+                it most and <Em>how might we help them build it?</Em>
+              </p>
+            </StudyProse>
+            <StatCluster stats={PERFORMORY_STATS} />
+          </div>
+        </StudySection>
+
+        {/* The affinity wall, against what it added up to */}
+        <StudySection>
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:justify-between lg:gap-16">
+            <AffinityWall columns={researchNotes} />
+            <StudyProse
+              heading="Diving Deeper. Research."
+              className="lg:max-w-[22.75rem]"
+            >
+              <p>
+                To ground the project, I ran{" "}
+                <Em>primary and secondary research.</Em> I discovered that
+                performance anxiety was rarely just about fear on its own. More
+                often, it was tied to a loss of trust in preparation —
+                especially when artists felt unsure about{" "}
+                <Em>memory, recall, and readiness under pressure.</Em>
+              </p>
+            </StudyProse>
+          </div>
+        </StudySection>
+
+        <InsightBand>
+          Playing from memory converts a performance into a recall task under
+          scrutiny. That single change accounts for much of the anxiety
+          performers report — anticipatory stress beforehand, narrowed attention
+          and working-memory disruption on stage, and a lasting drop in
+          self-efficacy afterward.
+        </InsightBand>
+
+        {/* Strategy — the behaviour the exercise is built on */}
+        <StudySection id="strategy">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-10">
+            <StudyProse heading="The Game Plan" className="flex-1">
+              <p>
+                During research, I noticed a recurring pattern in how musicians
+                responded to memory slips: when they forgot, they usually went
+                back to the beginning of the piece or restarted from a familiar
+                section. Such behaviour keeps reinforcing the parts they already
+                know best, while weaker transitions and less stable passages stay
+                relatively untouched.
+              </p>
+            </StudyProse>
+            <Reveal className="w-full max-w-[30.125rem] shrink-0">
+              <StudyImage
+                src="/projects/performory/sketch-sonata-img.png"
+                alt="Sketch of a piece broken into numbered bars"
+                className="h-auto w-full"
+              />
+            </Reveal>
+          </div>
+        </StudySection>
+
+        {/* The exercise itself */}
+        <section className="flex w-full flex-col items-center gap-12 bg-surface-panel px-page py-16">
+          <StudyProse heading="Product Proposition" align="center">
+            <p className="max-w-[43rem]">
+              The app shows a random bar from the piece and asks the musician to
+              continue from that point entirely from memory. The goal of the
+              exercise was to shift memorization away from passive repetition and
+              closer to the reality of performance, where recall rarely arrives
+              in a predictable order.
+            </p>
+          </StudyProse>
+          <Reveal className="w-full max-w-study">
+            <StudyImage
+              src="/projects/performory/sketch-proposition-img.png"
+              alt="Sketch of a piano and a thought cloud of scattered bars"
+              className="h-auto w-full"
+            />
+          </Reveal>
+        </section>
+
+        {/* Design */}
+        <SectionDivider id="design" label="Design" />
+
+        <section className="w-full px-page">
+          <Reveal className="relative mx-auto aspect-[880/882] w-full max-w-study">
+            <StudyImage
+              src="/projects/performory/design-screen-1.png"
+              alt="Practice screen with a single bar prompt"
+              className="absolute left-[10%] top-[1%] w-[40%] rounded-[18px]"
+            />
+            <StudyImage
+              src="/projects/performory/design-screen-2.png"
+              alt="Practice screen with the bar context expanded"
+              className="absolute left-[50%] top-[20%] w-[40%] rounded-[18px]"
+            />
+          </Reveal>
+        </section>
+
+        <AnnotatedPanel
+          heading="Giving Just Enough Help"
+          intro="I ran a few rounds of user testing to identify any failure points and struggles."
+          annotations={[
+            {
+              side: "left",
+              text: "If a musician couldn’t recognize a single random bar, they either had to skip multiple prompts in a row or abandon the session altogether. Very quickly, the experience started to feel like failure instead of practice.",
+            },
+            {
+              side: "right",
+              text: "Users can now expand the prompt from one bar to two or three bars, depending on how much context they need. Instead of turning a difficult moment into a dead end, it gave users a way back in.",
+            },
+          ]}
         >
-          see the research findings
-        </a>
-      </ContentBlock>
+          <StudyImage
+            src="/projects/performory/govong-help-img.png"
+            alt="The memorization prompt before and after the bar-context control"
+            className="h-auto w-full max-w-[43rem]"
+          />
+        </AnnotatedPanel>
 
-      {/* Callout */}
-      <CalloutCard>
-        Memorization emerged as the clearest product entry point at this stage.
-        Research suggested that what often breaks down on stage is not effort,
-        but reliable recall. That made memorization a functional problem, not
-        just a practice habit, and shaped the direction of the product.
-      </CalloutCard>
+        <AnnotatedPanel
+          heading="Taming the Monster: Making Long Pieces Manageable"
+          annotations={[
+            {
+              side: "left",
+              text: "For concertos, symphonies, and other multi-movement works that can take up to 100+ pages of music, this technique posed a challenge with the volume of practicing material. Practicing those pieces through fully random fragments started to feel overwhelming very quickly.",
+            },
+            {
+              side: "right",
+              text: "To solve that, I introduced sectioning and a section selector before each practice session. Instead of approaching a long piece as one giant block of work, users can choose which section or sections they want to focus on — or practice the whole piece.",
+            },
+          ]}
+        >
+          <StudyImage
+            src="/projects/performory/long-pieces-img.png"
+            alt="Practice screens before and after the section selector"
+            className="h-auto w-full max-w-[43rem]"
+          />
+        </AnnotatedPanel>
 
-      {/* All screens — full bleed */}
-      <section className="w-full pb-content-block-y">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/projects/performory/all-screens-img.png"
-          alt="Performory app screens"
-          className="w-full h-auto"
-        />
-      </section>
+        <div className="flex w-full flex-col items-center gap-study-gap">
+          <StudySection>
+            <StudyProse
+              heading="It’s easier when it’s built up gradually"
+              align="center"
+            >
+              <p>
+                In interviews, musicians didn’t describe stage fright as
+                something that suddenly appears out of nowhere. More often, it
+                built up during preparation. A recurring trigger was the
+                combination of time pressure and uncertainty — not knowing if
+                they were on track, how much work was left, or whether they have
+                enough time for the piece to sink in the memory.
+              </p>
+            </StudyProse>
+          </StudySection>
 
-      {/* Section 3 */}
-      <ContentBlock heading="The Game Plan">
-        <p>
-          During research, I noticed a recurring pattern in how musicians
-          responded to memory slips: when they forgot a part, they usually went
-          back to the beginning of the piece or restarted from a familiar
-          section. While this pattern seems to be a natural instinct, this
-          behaviour keeps reinforcing the parts they already know best, while
-          weaker transitions and less stable passages stay relatively untouched.
-        </p>
-        <p>
-          That became the thinking behind Performory&apos;s core memorization
-          exercise. If the real challenge in performance is being able to recover
-          when memory breaks, then practice should train that skill directly. So,
-          the app shows a random bar from the piece and asks the musician to
-          continue from that point entirely from memory.
-        </p>
-        <p>
-          The goal of the exercise was to shift memorization away from passive
-          repetition and closer to the reality of performance, where recall
-          rarely arrives in a neat, predictable order.
-        </p>
-      </ContentBlock>
-
-      {/* Library / Overview / Practice screens */}
-      <StudyImage
-        src="/projects/performory/the-game-plan-img.png"
-        alt="Library, Overview and Practice screens"
-      />
-
-      {/* Section 4 */}
-      <ContentBlock heading="Giving Just Enough Help">
-        <p>Early testing revealed a predictable failure point.</p>
-        <p>
-          If a musician couldn&apos;t recognize a single random bar, they either
-          had to skip multiple prompts in a row or abandon the session
-          altogether. Very quickly, the experience started to feel like failure
-          instead of practice.
-        </p>
-        <p>
-          To make that interaction more usable, I introduced a controlled support
-          mechanism: users can now expand the prompt from one bar to two or three
-          bars, depending on how much context they need. This kept the recall
-          exercise intact but made it less punishing. Instead of turning a
-          difficult moment into a dead end, it gave users a way back in.
-        </p>
-        <p>
-          That small adjustment changed the tone of the interaction quite a bit.
-          The challenge stayed there, but the experience became more supportive
-          and flexible, which encouraged more people in the testing group to
-          finish the exercise.
-        </p>
-      </ContentBlock>
-
-      {/* Context expansion screens */}
-      <StudyImage
-        src="/projects/performory/govong-help-img.png"
-        alt="Memorization prompt with adjustable bar context"
-      />
-
-      {/* Section 5 */}
-      <ContentBlock heading="Taming the Monster: Making Long Pieces Manageable">
-        <p>
-          For more advanced musicians working with long-form
-          repertoire—concertos, symphonies, and other multi-movement works that
-          can take up to 100+ pages of music—this technique posed a challenge
-          with the volume of practice material. Practicing those pieces through
-          fully random fragments started to feel overwhelming very quickly.
-          Sessions became scattered, and the work felt endless instead of
-          directional.
-        </p>
-        <p>
-          To solve that, I introduced sectioning and a section selector before
-          each practice session. Instead of approaching a long piece as one giant
-          block of work, users can choose which section or sections they want to
-          focus on—or practice the whole piece. This added structure without
-          making the flow rigid.
-        </p>
-        <p>
-          In later testing, sectioning even small pieces helped to make practice
-          more intentional and structured. It gave musicians a more systematic
-          and strategic way of working, while still keeping the overall
-          experience flexible.
-        </p>
-      </ContentBlock>
-
-      {/* Section selector for long pieces */}
-      <StudyImage
-        src="/projects/performory/long-pieces-img.png"
-        alt="Section selector for long pieces"
-      />
-
-      {/* Section 6 */}
-      <ContentBlock heading="Setting the Tempo: Pacing the Preparation">
-        <p>
-          In interviews, musicians didn&apos;t describe stage fright as
-          something that suddenly appears out of nowhere. More often, it built up
-          during preparation. A recurring trigger was the combination of time
-          pressure and uncertainty—not knowing if they were on track, how much
-          work was left, or whether they had enough time for the piece to sink
-          into memory.
-        </p>
-        <p>
-          To help musicians stay on track with their preparations, I introduced a
-          goal-setting flow where users could assign a piece to a specific event.
-          Although, in testing, that worked only when someone already had a
-          concrete event to prepare for. Otherwise, it felt too limiting, so I
-          shifted the flow.
-        </p>
-      </ContentBlock>
-
-      {/* Goal-setting flow iterations */}
-      <StudyImage
-        src="/projects/performory/gradual-skill-builder.png"
-        alt="First and second iterations of the goal-setting flow"
-      />
-
-      {/* Section 7 — body only (no heading) */}
-      <ContentBlock>
-        <p>
-          Instead of making events the center of the system, I moved toward a
-          more flexible setup: users can choose to set a date for memorizing a
-          piece, and then turn that deadline into a practice schedule with days,
-          times, and optional notifications. The app also uses the timeline and
-          piece size to recommend a realistic frequency, so scheduling becomes
-          part of the preparation system rather than just a calendar add-on.
-        </p>
-        <p>
-          This made progress feel more measurable, lowered uncertainty, and
-          helped users build confidence through consistency.
-        </p>
-      </ContentBlock>
-
-      {/* Scheduling flow */}
-      <StudyImage
-        src="/projects/performory/calendar-img.png"
-        alt="Date selection and practice scheduling screens"
-      />
-
-      {/* Section 8 — bullet list */}
-      <ContentBlock heading="The Next Movement: What I'd Improve">
-        <ul className="list-disc ml-[1.3125rem] flex flex-col gap-paragraph">
-          <li>
-            <span>
-              Growing the Audience by Introducing More Techniques
-              <br />
-              From my research, I learned that different musicians rely on
-              different memorization techniques. Even though the technique picked
-              for this stage was universal, broadening the variety of techniques
-              to accommodate the specific needs of different kinds of musicians
-              would be a key step in growing the platform&apos;s audience.
-            </span>
-          </li>
-          <li>
-            <span>
-              Differentiating the Musician Segment Further
-              <br />
-              &ldquo;Musicians&rdquo; is already a much stronger focus than
-              &ldquo;all performers that experience stage fright,&rdquo; but
-              it&apos;s still quite broad to use the same technique for all.
-              <br />
-              The next level would be narrowing the audience further—for example,
-              instrumentalists, vocalists, or advanced students preparing for
-              recitals. A tighter segment would make the product more specific
-              and stronger.
-            </span>
-          </li>
-          <li>
-            <span>
-              Testing Whether the Platform Feels Comprehensive in Practice
-              <br />
-              The overall strategy is to manage stage fright indirectly through
-              preparation, structure, and memory work.
-              <br />
-              That logic makes sense, but I&apos;d want to validate whether
-              users actually experience the product as one coherent support
-              system in practice, rather than as a set of useful features living
-              next to each other.
-            </span>
-          </li>
-        </ul>
-      </ContentBlock>
-
-      {/* Section 9 */}
-      <ContentBlock heading="Coda: Final Thoughts">
-        <p>
-          There were many possible directions this concept could have taken—
-          mental health support, habit formation, or educational content that
-          would predictably lead me to create another meditation platform curated
-          exclusively for musicians. Researching the problem from different
-          angles allowed me to look deeper below the surface issues and uncover
-          the stronger problem I chose to focus on.
-        </p>
-        <p>
-          What I still think works best in this project is the framing. It takes
-          an emotional problem and translates it into something design can
-          actually affect in a meaningful way.
-        </p>
-        <p>
-          Performory is a concept project, but it reflects the kind of product
-          thinking I care about most: starting with a real human tension, finding
-          the behavioural layer underneath it, and designing a system that
-          creates emotional value by being genuinely useful.
-        </p>
-      </ContentBlock>
-
-      {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+          <AnnotatedPanel
+            annotations={[
+              {
+                side: "left",
+                text: "To help musicians to stay on track with their preparations, I introduced a goal-setting flow where users could assign a piece to a specific event. In testing, that worked only when someone already had a concrete event to prepare for. Otherwise, it felt too limiting.",
+              },
+              {
+                side: "right",
+                text: "I moved toward a more flexible setup: users can choose to set a date for memorizing a piece, and then turn that deadline into a practice schedule with days, times, and optional notifications. The app also uses the timeline and piece size to recommend a realistic frequency, so scheduling becomes part of the preparation system rather than just a calendar add-on.",
+              },
+            ]}
           >
-            next project
-          </Link>
+            <StudyImage
+              src="/projects/performory/gradual-skill-builder.png"
+              alt="First and second iterations of the goal-setting flow"
+              className="h-auto w-full max-w-[43rem]"
+            />
+          </AnnotatedPanel>
         </div>
-      </section>
-    </>
+
+        {/* Final screens */}
+        <div className="flex w-full flex-col items-center gap-study-gap">
+          <SectionDivider label="final screens" />
+          <ScreenMarquee screens={PERFORMORY_FINAL_SCREENS} />
+        </div>
+
+        <Takeaways
+          id="takeaways"
+          heading="The Next Movement: What I’d Improve Next"
+          items={PERFORMORY_TAKEAWAYS}
+        />
+
+        <NextProjectButton slug={nextSlug} />
+      </div>
+    </StudyLayout>
   );
 }
 
@@ -1518,7 +1495,8 @@ export default async function ProjectPage({
           <p className="text-body-md text-text-muted">Coming soon</p>
         </div>
       )}
-      <CaseStudyNav liveUrl={project.liveUrl} />
+      {/* Studies on the 2026 structure carry their own rail + buttons. */}
+      {slug !== "performory" && <CaseStudyNav liveUrl={project.liveUrl} />}
     </main>
   );
 }
