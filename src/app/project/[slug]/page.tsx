@@ -91,7 +91,6 @@ function CenturyGroupStudy() {
       title="Century Group"
       year="2025"
       sections={CENTURY_GROUP_SECTIONS}
-      liveUrl={getLiveUrl("century-group")}
     >
       {/* Hero */}
       <StudyHeroCard
@@ -116,7 +115,8 @@ function CenturyGroupStudy() {
           ]}
           stack={[
             { label: "Figma" },
-            { label: "Adobe Suite" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
             { label: "Claude" },
           ]}
           readTime="~ 5 mins read"
@@ -504,7 +504,11 @@ function AviaryStudy() {
             { label: "Interface Design" },
             { label: "Responsive Design" },
           ]}
-          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
           readTime="~ 3 mins read"
         />
       </section>
@@ -1052,7 +1056,11 @@ function LandmarkDistrictStudy() {
             { label: "Interface Design" },
             { label: "Brand" },
           ]}
-          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
           readTime="~ 5 mins read"
         />
       </section>
@@ -1339,7 +1347,11 @@ function TeraDevelopmentStudy() {
         </h1>
         <SpecsCard
           work={[{ label: "Web Design" }]}
-          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
           readTime="~ 1 min read"
         />
       </section>
@@ -1431,7 +1443,11 @@ function EmeraStudy() {
         </h1>
         <SpecsCard
           work={[{ label: "Web Design" }]}
-          stack={[{ label: "Figma" }, { label: "Adobe Suite" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
           readTime="~ 1 min read"
         />
       </section>

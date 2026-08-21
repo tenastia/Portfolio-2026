@@ -36,6 +36,7 @@ interface SpecsCardProps {
   readTime: string;
 }
 
+/** A discipline: its mark beside its name. */
 function Chip({ label, icon }: SpecChip) {
   const src = icon ?? SPEC_ICONS[label];
 
@@ -43,11 +44,35 @@ function Chip({ label, icon }: SpecChip) {
     <span className="flex items-center gap-1.5 rounded-[4px] px-1 py-0.5 text-study-meta leading-study-meta tracking-[0.01em] text-text-muted">
       {src && (
         // Height-locked with the width left to follow: the marks are square but
-        // the Figma logo is portrait, and a shared square would squash it.
+        // some logos are portrait, and a shared square box would squash them.
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt="" className="h-3 w-auto shrink-0" />
       )}
       {label}
+    </span>
+  );
+}
+
+/**
+ * A tool: its logo alone in a disc, per the Figma. Each logo renders at its own
+ * intrinsic size rather than a shared box — they are drawn to different
+ * proportions (Figma is portrait, the Adobe marks are square) and forcing one
+ * size would distort them. The name is still exposed to assistive technology
+ * and on hover, since the mark is the only thing shown.
+ */
+function ToolToken({ label, icon }: SpecChip) {
+  const src = icon ?? SPEC_ICONS[label];
+
+  if (!src) return <Chip label={label} />;
+
+  return (
+    <span
+      title={label}
+      className="flex size-9 shrink-0 items-center justify-center rounded-full bg-text/5"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt="" />
+      <span className="sr-only">{label}</span>
     </span>
   );
 }
@@ -98,9 +123,9 @@ export default function SpecsCard({
           </div>
         </Field>
         <Field label="Stack">
-          <div className="flex flex-wrap items-start gap-3">
+          <div className="flex flex-wrap items-center gap-1.5">
             {stack.map((chip) => (
-              <Chip key={chip.label} {...chip} />
+              <ToolToken key={chip.label} {...chip} />
             ))}
           </div>
         </Field>
