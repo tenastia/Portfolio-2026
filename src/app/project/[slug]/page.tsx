@@ -1,7 +1,6 @@
 import { projects } from "@/data/projects";
 import ContentBlock from "@/components/case-study/ContentBlock";
 import StudyFigure from "@/components/case-study/StudyFigure";
-import StudyHero from "@/components/case-study/StudyHero";
 import AffinityWall from "@/components/case-study/AffinityWall";
 import AnnotatedPanel from "@/components/case-study/AnnotatedPanel";
 import InsightBand from "@/components/case-study/InsightBand";
@@ -20,7 +19,6 @@ import StudySection, {
 } from "@/components/case-study/StudySection";
 import Takeaways from "@/components/case-study/Takeaways";
 import { researchNotes } from "@/data/performory";
-import Link from "next/link";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -96,14 +94,18 @@ function CenturyGroupStudy() {
       liveUrl={getLiveUrl("century-group")}
     >
       {/* Hero */}
-      <StudyHero src="/cg-hero-image.png" alt="Century Group" aspect="2880 / 2048" />
+      <StudyHeroCard
+        src="/cg-hero-image.png"
+        alt="Century Group"
+        aspect="2880 / 2048"
+      />
 
       {/* Title */}
       <section
         id="overview"
         className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
       >
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
         <SpecsCard
@@ -138,10 +140,10 @@ function CenturyGroupStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -422,9 +424,9 @@ function CenturyGroupStudy() {
 
       {/* Results */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <h3 className="font-sans font-normal text-case-heading leading-case-heading tracking-[0.03em] text-text-muted mb-heading-body">
+        <h2 className="font-serif text-study-h3 leading-study-h3 text-text-muted mb-subheading-copy">
           What we achieved in this redesign session
-        </h3>
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             "Built a scalable design system that the Century Group team can now adapt for their growing portfolio.",
@@ -437,7 +439,7 @@ function CenturyGroupStudy() {
               key={i}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8"
             >
-              <p className="font-sans text-body-md leading-body-md text-text">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {text}
               </p>
             </div>
@@ -468,18 +470,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
+      <NextProjectButton slug={nextSlug} />
     </StudyLayout>
   );
 }
@@ -499,14 +490,18 @@ function AviaryStudy() {
   return (
     <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS}>
       {/* Hero */}
-      <StudyHero src="/aviary-hero-image.png" alt="Aviary" aspect="2880 / 2048" />
+      <StudyHeroCard
+        src="/aviary-hero-image.png"
+        alt="Aviary"
+        aspect="2880 / 2048"
+      />
 
       {/* Title */}
       <section
         id="overview"
         className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
       >
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
         <SpecsCard
@@ -537,10 +532,10 @@ function AviaryStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -729,18 +724,7 @@ function AviaryStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
+      <NextProjectButton slug={nextSlug} />
     </StudyLayout>
   );
 }
@@ -797,15 +781,13 @@ function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
   return (
-    <StudyLayout
-      title="Performory"
-      year="2022"
-      sections={PERFORMORY_SECTIONS}
-      inset
-    >
+    <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
       <StudyHeroCard
         src="/projects/performory/performory-hero-img.png"
         alt="Performory home screen on a phone"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
       />
 
       <div className="flex w-full flex-col items-center gap-study-block pt-study-intro">
@@ -1054,7 +1036,7 @@ function LandmarkDistrictStudy() {
       sections={LANDMARK_SECTIONS}
     >
       {/* Hero */}
-      <StudyHero
+      <StudyHeroCard
         src="/projects/landmark-district/landmark-project-cover.png"
         alt="Landmark District"
         aspect="1440 / 972"
@@ -1065,7 +1047,7 @@ function LandmarkDistrictStudy() {
         id="overview"
         className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
       >
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           The central digital touchpoint for a creative hub and business centre
           in downtown Kelowna with over one million square feet of retail, dining
           and office space.
@@ -1098,10 +1080,10 @@ function LandmarkDistrictStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1194,10 +1176,10 @@ function LandmarkDistrictStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1323,18 +1305,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
+      <NextProjectButton slug={nextSlug} />
     </StudyLayout>
   );
 }
@@ -1356,7 +1327,7 @@ function TeraDevelopmentStudy() {
       scrim
     >
       {/* Hero — light brand site preview */}
-      <StudyHero
+      <StudyHeroCard
         src="/projects/other/tera-thumb.mp4"
         alt="Tera Development"
         aspect="1440 / 881"
@@ -1369,7 +1340,7 @@ function TeraDevelopmentStudy() {
         id="overview"
         className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
       >
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Web presence for a boutique real-estate developer
         </h1>
         <SpecsCard
@@ -1396,10 +1367,10 @@ function TeraDevelopmentStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1408,7 +1379,7 @@ function TeraDevelopmentStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock id="about" subheading="About the Project">
+      <ContentBlock id="about" heading="About the Project">
         <p>
           Tera is the brand site for a small boutique developer that shapes
           communities in Vancouver through design-driven properties, so the
@@ -1426,18 +1397,7 @@ function TeraDevelopmentStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
+      <NextProjectButton slug={nextSlug} />
     </StudyLayout>
   );
 }
@@ -1459,7 +1419,7 @@ function EmeraStudy() {
       scrim
     >
       {/* Hero */}
-      <StudyHero
+      <StudyHeroCard
         src="/projects/other/emera-thumb.mp4"
         alt="Emera"
         aspect="1440 / 881"
@@ -1472,7 +1432,7 @@ function EmeraStudy() {
         id="overview"
         className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
       >
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Storytelling as the conversion engine.
         </h1>
         <SpecsCard
@@ -1499,10 +1459,10 @@ function EmeraStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1511,7 +1471,7 @@ function EmeraStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock id="about" subheading="About the Project">
+      <ContentBlock id="about" heading="About the Project">
         <p>
           Emera is a boutique collection of 26 townhomes in Vancouver West, so
           the product job here was turning interest into presale registrations
@@ -1523,18 +1483,7 @@ function EmeraStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
+      <NextProjectButton slug={nextSlug} />
     </StudyLayout>
   );
 }

@@ -6,12 +6,6 @@ interface StudyLayoutProps {
   year: string;
   sections: RailSection[];
   liveUrl?: string;
-  /**
-   * Inset the whole study from the viewport edges. Studies that open on a
-   * `StudyHeroCard` need the breathing room; those still opening on a
-   * full-bleed `StudyHero` must sit flush to the top.
-   */
-  inset?: boolean;
   /** Pass through to the rail when the hero behind it is light. */
   scrim?: boolean;
   children: React.ReactNode;
@@ -29,16 +23,11 @@ export default function StudyLayout({
   year,
   sections,
   liveUrl,
-  inset = false,
   scrim = false,
   children,
 }: StudyLayoutProps) {
   return (
-    <div
-      className={`relative flex w-full flex-col items-center ${
-        inset ? "pb-32 pt-4" : ""
-      }`}
-    >
+    <div className="relative flex w-full flex-col items-center pb-32 pt-4">
       <div className="xl:hidden">
         <CaseStudyNav liveUrl={liveUrl} />
       </div>
