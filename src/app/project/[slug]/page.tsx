@@ -7,7 +7,7 @@ import InsightBand from "@/components/case-study/InsightBand";
 import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
 import ScreenMarquee from "@/components/case-study/ScreenMarquee";
-import ScreenSequence from "@/components/case-study/ScreenSequence";
+import PracticeBarsScreen from "@/components/case-study/PracticeBarsScreen";
 import SectionDivider from "@/components/case-study/SectionDivider";
 import SpecsCard from "@/components/case-study/SpecsCard";
 import StatCluster from "@/components/case-study/StatCluster";
@@ -954,15 +954,15 @@ function PerformoryStudy() {
               alt="The prompt with a single bar and no way to ask for more"
               className="h-auto w-full"
             />
-            <ScreenSequence
+            <PracticeBarsScreen
               className="w-full"
-              aspect="1050 / 1635"
-              frames={[
-                { src: "/projects/performory/practice-screen-after-motion-1.png" },
-                { src: "/projects/performory/practice-screen-after-motion-2.png" },
-                { src: "/projects/performory/practice-screen-after-motion-3.png" },
+              screen="/projects/performory/practice-screen-empty.png"
+              notation={[
+                "/projects/performory/practice-element-1-bar.png",
+                "/projects/performory/practice-element-2-bars.png",
+                "/projects/performory/practice-element-3-bars.png",
               ]}
-              label="The same prompt with a Show Bars control, cycling through one, two and three bars as the notation widens to match"
+              label="The same prompt with a Show Bars control, moving through one, two and three bars as the notation redraws to match"
             />
           </div>
         </AnnotatedPanel>
