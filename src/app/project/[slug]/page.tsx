@@ -7,6 +7,7 @@ import InsightBand from "@/components/case-study/InsightBand";
 import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
 import ScreenMarquee from "@/components/case-study/ScreenMarquee";
+import ScreenSequence from "@/components/case-study/ScreenSequence";
 import SectionDivider from "@/components/case-study/SectionDivider";
 import SpecsCard from "@/components/case-study/SpecsCard";
 import StatCluster from "@/components/case-study/StatCluster";
@@ -943,11 +944,27 @@ function PerformoryStudy() {
             },
           ]}
         >
-          <StudyImage
-            src="/projects/performory/govong-help-img.png"
-            alt="The memorization prompt before and after the bar-context control"
-            className="h-auto w-full max-w-[43rem]"
-          />
+          {/* Left holds the failure state; right plays through the fix, the
+              selector and the notation widening together. */}
+          {/* Grid, not flex: the screens are 1050px wide intrinsically, and a
+              flex item's automatic minimum size would stop them shrinking. */}
+          <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+            <StudyImage
+              src="/projects/performory/practice-screen-before-static.png"
+              alt="The prompt with a single bar and no way to ask for more"
+              className="h-auto w-full"
+            />
+            <ScreenSequence
+              className="w-full"
+              aspect="1050 / 1635"
+              frames={[
+                { src: "/projects/performory/practice-screen-after-motion-1.png" },
+                { src: "/projects/performory/practice-screen-after-motion-2.png" },
+                { src: "/projects/performory/practice-screen-after-motion-3.png" },
+              ]}
+              label="The same prompt with a Show Bars control, cycling through one, two and three bars as the notation widens to match"
+            />
+          </div>
         </AnnotatedPanel>
 
         <AnnotatedPanel
