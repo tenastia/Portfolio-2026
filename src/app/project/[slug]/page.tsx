@@ -743,14 +743,38 @@ const PERFORMORY_STATS = [
 ];
 
 const PERFORMORY_FINAL_SCREENS = [
-  { src: "/projects/performory/final-screen-1.png", alt: "Home screen" },
-  { src: "/projects/performory/final-screen-2.png", alt: "Events and reading" },
-  { src: "/projects/performory/final-screen-3.png", alt: "New piece" },
-  { src: "/projects/performory/final-screen-4.png", alt: "Practice schedule" },
-  { src: "/projects/performory/final-screen-5.png", alt: "Library" },
-  { src: "/projects/performory/final-screen-6.png", alt: "Practice overview" },
-  { src: "/projects/performory/final-screen-7.png", alt: "Memorization prompt" },
-  { src: "/projects/performory/final-screen-8.png", alt: "Session summary" },
+  {
+    src: "/projects/performory/final-design-01.png",
+    alt: "Session summary after finishing a practice",
+  },
+  {
+    src: "/projects/performory/final-design-02.png",
+    alt: "Memorization prompt with the bar-context control",
+  },
+  {
+    src: "/projects/performory/final-design-03.png",
+    alt: "Practice overview with the weekly progress graph",
+  },
+  {
+    src: "/projects/performory/final-design-04.png",
+    alt: "Library, most recently practiced first",
+  },
+  {
+    src: "/projects/performory/final-design-05.png",
+    alt: "Practice schedule with days, times and notifications",
+  },
+  {
+    src: "/projects/performory/final-design-06.png",
+    alt: "New piece with its sections identified and a date to memorize by",
+  },
+  {
+    src: "/projects/performory/final-design-07.png",
+    alt: "Upcoming events and stage-fright reading",
+  },
+  {
+    src: "/projects/performory/final-design-08.png",
+    alt: "Home screen with the recently practiced piece and quote of the day",
+  },
 ];
 
 const PERFORMORY_TAKEAWAYS = [
