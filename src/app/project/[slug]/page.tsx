@@ -94,14 +94,14 @@ function CenturyGroupStudy() {
       sections={CENTURY_GROUP_SECTIONS}
     >
       {/* Hero */}
-      {/* The shared hero background cannot be used here yet: cg-hero-image.png
-          is fully opaque, so it covers the field rather than sitting on it.
-          Needs a foreground export with a transparent background, the way
-          performory-hero-screen.png is cut. */}
       <StudyHeroCard
-        src="/cg-hero-image.png"
-        alt="Century Group"
-        aspect="2880 / 2048"
+        src="/projects/century-group/cg-hero-screens.png"
+        alt="The Century Group site on desktop and mobile"
+        background="/projects/performory/performory-hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="90%"
       />
 
       {/* Title */}

@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "performory",
     year: "2022",
     chips: ["memory training app for musicians"],
-    cover: "/projects/performory/performory-hero-img.png",
+    cover: "/projects/performory/performory-thumbnail-image.png",
   },
   {
     slug: "landmark-district",
