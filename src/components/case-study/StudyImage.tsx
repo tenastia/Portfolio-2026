@@ -6,6 +6,7 @@ interface StudyImageProps {
   src: string;
   alt?: string;
   className?: string;
+  style?: React.CSSProperties;
   /** Rendered in place of the image while the asset is missing. */
   fallback?: React.ReactNode;
 }
@@ -21,6 +22,7 @@ export default function StudyImage({
   src,
   alt = "",
   className,
+  style,
   fallback = null,
 }: StudyImageProps) {
   const [failed, setFailed] = useState(false);
@@ -41,6 +43,7 @@ export default function StudyImage({
       alt={alt}
       onError={() => setFailed(true)}
       className={className}
+      style={style}
     />
   );
 }

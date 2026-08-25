@@ -94,6 +94,10 @@ function CenturyGroupStudy() {
       sections={CENTURY_GROUP_SECTIONS}
     >
       {/* Hero */}
+      {/* The shared hero background cannot be used here yet: cg-hero-image.png
+          is fully opaque, so it covers the field rather than sitting on it.
+          Needs a foreground export with a transparent background, the way
+          performory-hero-screen.png is cut. */}
       <StudyHeroCard
         src="/cg-hero-image.png"
         alt="Century Group"
@@ -806,11 +810,13 @@ function PerformoryStudy() {
   return (
     <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
       <StudyHeroCard
-        src="/projects/performory/performory-hero-img.png"
+        src="/projects/performory/performory-hero-screen.png"
         alt="Performory home screen on a phone"
+        background="/projects/performory/performory-hero-bg.png"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
+        containHeight="74%"
       />
 
       <div className="flex w-full flex-col items-center gap-study-block pt-study-intro">
