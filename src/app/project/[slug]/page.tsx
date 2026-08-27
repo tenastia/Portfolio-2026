@@ -116,8 +116,8 @@ function CenturyGroupStudy() {
         <SpecsCard
           work={[
             { label: "Design System" },
-            { label: "Interface Design" },
-            { label: "Responsive Design" },
+            { label: "UX | UI" },
+            { label: "CMS" },
           ]}
           stack={[
             { label: "Figma" },
@@ -1525,7 +1525,7 @@ function EmeraStudy() {
       >
         <BrowserFrame
           frame="/projects/emera-browser-frame.png"
-          video="/projects/emera-thumb.mp4"
+          video="/projects/emera-hero.mp4"
           screen={EMERA_FRAME_SCREEN}
           alt="The Emera site playing in a browser window"
         />
