@@ -20,6 +20,9 @@ const SPEC_ICONS: Record<string, string> = {
   Brand: "/icon-brand.svg",
   "Design System": "/icon-design-system.svg",
   CMS: "/icon-cms.svg",
+  "Touchscreen App": "/projects/icons-touch.svg",
+  "Web Design": "/projects/icons-web.svg",
+  "Motion Design": "/projects/icons-motion.svg",
   // Tools
   Figma: "/icon-figma.svg",
   Illustrator: "/icon-illustrator.svg",

@@ -509,13 +509,10 @@ function AviaryStudy() {
           Designing a multi-platform digital experience for Aviary Living
         </h1>
         <SpecsCard
-          work={[
-            { label: "Interactive Kiosk" },
-            { label: "Interface Design" },
-            { label: "Responsive Design" },
-          ]}
+          work={[{ label: "Touchscreen App" }, { label: "UX | UI" }]}
           stack={[
             { label: "Figma" },
+            { label: "Sketch" },
             { label: "Illustrator" },
             { label: "Photoshop" },
           ]}
@@ -1118,9 +1115,9 @@ function LandmarkDistrictStudy() {
         </h1>
         <SpecsCard
           work={[
-            { label: "UX Research" },
-            { label: "Interface Design" },
-            { label: "Brand" },
+            { label: "Design System" },
+            { label: "UX | UI" },
+            { label: "CMS" },
           ]}
           stack={[
             { label: "Figma" },
