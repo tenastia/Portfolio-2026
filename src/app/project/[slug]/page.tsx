@@ -488,12 +488,12 @@ function AviaryStudy() {
   const nextSlug = getNextProjectSlug("aviary");
 
   return (
-    <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS}>
+    <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS} scrim>
       {/* Hero */}
       <StudyHeroCard
         src="/projects/aviary/aviary-screens.png"
         alt="The Aviary kiosk and companion screens"
-        background="/projects/hero-bg.png"
+        background="/projects/aviary/aviary-hero-image.png"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain

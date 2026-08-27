@@ -4,6 +4,12 @@ export type Project = {
   year: string;
   chips: string[];
   cover?: string;
+  /**
+   * Subject to sit on `cover` rather than letting the cover fill the card —
+   * for a project whose hero is a background and a cut-out rather than one
+   * composed image.
+   */
+  coverForeground?: string;
   video?: string;
   externalUrl?: string;
   liveUrl?: string;
@@ -38,6 +44,7 @@ export const projects: Project[] = [
     year: "2022",
     chips: ["design for large screens", "interactive kiosk"],
     cover: "/projects/aviary/aviary-hero-image.png",
+    coverForeground: "/projects/aviary/aviary-screens.png",
   },
   {
     slug: "tera",
