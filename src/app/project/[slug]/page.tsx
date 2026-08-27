@@ -3,6 +3,7 @@ import ContentBlock from "@/components/case-study/ContentBlock";
 import StudyFigure from "@/components/case-study/StudyFigure";
 import AffinityWall from "@/components/case-study/AffinityWall";
 import AnnotatedPanel from "@/components/case-study/AnnotatedPanel";
+import BrowserFrame from "@/components/case-study/BrowserFrame";
 import InsightBand from "@/components/case-study/InsightBand";
 import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
@@ -97,7 +98,7 @@ function CenturyGroupStudy() {
       <StudyHeroCard
         src="/projects/century-group/cg-hero-screens.png"
         alt="The Century Group site on desktop and mobile"
-        background="/projects/performory/performory-hero-bg.png"
+        background="/projects/hero-bg.png"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -490,9 +491,13 @@ function AviaryStudy() {
     <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS}>
       {/* Hero */}
       <StudyHeroCard
-        src="/aviary-hero-image.png"
-        alt="Aviary"
-        aspect="2880 / 2048"
+        src="/projects/aviary/aviary-screens.png"
+        alt="The Aviary kiosk and companion screens"
+        background="/projects/hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="86%"
       />
 
       {/* Title */}
@@ -812,7 +817,7 @@ function PerformoryStudy() {
       <StudyHeroCard
         src="/projects/performory/performory-hero-screen.png"
         alt="Performory home screen on a phone"
-        background="/projects/performory/performory-hero-bg.png"
+        background="/projects/hero-bg.png"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -1092,9 +1097,13 @@ function LandmarkDistrictStudy() {
     >
       {/* Hero */}
       <StudyHeroCard
-        src="/projects/landmark-district/landmark-project-cover.png"
-        alt="Landmark District"
-        aspect="1440 / 972"
+        src="/projects/landmark-district/landmark-screens.png"
+        alt="The Landmark District site on desktop and mobile"
+        background="/projects/landmark-district/landmark-hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="90%"
       />
 
       {/* Title */}
@@ -1369,6 +1378,18 @@ function LandmarkDistrictStudy() {
   );
 }
 
+/**
+ * The viewport inside each browser chrome, measured off the export. Both share
+ * the same window width; only the page area's height differs.
+ */
+const TERA_FRAME_SCREEN = {
+  aspect: "1648 / 1142",
+  left: "6.978%",
+  top: "9.457%",
+  width: "85.983%",
+  height: "75.919%",
+};
+
 const TERA_SECTIONS = [
   { id: "overview", label: "Overview" },
   { id: "about", label: "About" },
@@ -1387,12 +1408,18 @@ function TeraDevelopmentStudy() {
     >
       {/* Hero — light brand site preview */}
       <StudyHeroCard
-        src="/projects/other/tera-thumb.mp4"
-        alt="Tera Development"
-        aspect="1440 / 881"
-        bg="#e7e1da"
-        video
-      />
+        bg="#CCC5BC"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        containHeight="88%"
+      >
+        <BrowserFrame
+          frame="/projects/tera-browser-frame.png"
+          video="/projects/tera-thumb.mp4"
+          screen={TERA_FRAME_SCREEN}
+          alt="The Tera Development site playing in a browser window"
+        />
+      </StudyHeroCard>
 
       {/* Title */}
       <section
@@ -1465,6 +1492,14 @@ function TeraDevelopmentStudy() {
   );
 }
 
+const EMERA_FRAME_SCREEN = {
+  aspect: "1648 / 1050",
+  left: "6.978%",
+  top: "10.286%",
+  width: "85.983%",
+  height: "74.000%",
+};
+
 const EMERA_SECTIONS = [
   { id: "overview", label: "Overview" },
   { id: "about", label: "About" },
@@ -1483,12 +1518,18 @@ function EmeraStudy() {
     >
       {/* Hero */}
       <StudyHeroCard
-        src="/projects/other/emera-thumb.mp4"
-        alt="Emera"
-        aspect="1440 / 881"
-        bg="#4a4d3a"
-        video
-      />
+        bg="#464D36"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        containHeight="88%"
+      >
+        <BrowserFrame
+          frame="/projects/emera-browser-frame.png"
+          video="/projects/emera-thumb.mp4"
+          screen={EMERA_FRAME_SCREEN}
+          alt="The Emera site playing in a browser window"
+        />
+      </StudyHeroCard>
 
       {/* Title */}
       <section

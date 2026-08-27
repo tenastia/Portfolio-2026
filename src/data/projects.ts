@@ -44,7 +44,7 @@ export const projects: Project[] = [
     title: "tera development",
     year: "2024",
     chips: ["web presence for a boutique real-estate developer"],
-    video: "/projects/other/tera-thumb.mp4",
+    video: "/projects/tera-thumb.mp4",
     liveUrl: "https://www.teradevelopment.com/",
   },
   {
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     title: "emera",
     year: "2025",
     chips: ["motion design", "Storytelling as the conversion engine"],
-    video: "/projects/other/emera-thumb.mp4",
+    video: "/projects/emera-thumb.mp4",
     liveUrl: "https://emeraliving.com/",
   },
 ];

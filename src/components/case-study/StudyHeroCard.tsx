@@ -2,8 +2,9 @@ import AmbientField from "./AmbientField";
 import StudyImage from "./StudyImage";
 
 interface StudyHeroCardProps {
-  src: string;
-  alt: string;
+  /** Omitted when `children` provide the foreground instead. */
+  src?: string;
+  alt?: string;
   /** CSS aspect-ratio for the card, e.g. "1408 / 574". */
   aspect: string;
   /** Aspect on phones, where a wide letterbox leaves the art too small. */
@@ -23,6 +24,11 @@ interface StudyHeroCardProps {
   contain?: boolean;
   /** Height of contained artwork as a share of the card. */
   containHeight?: string;
+  /**
+   * Foreground to sit on the card instead of `src` — for a subject that is more
+   * than one image, such as a video inside a browser frame.
+   */
+  children?: React.ReactNode;
 }
 
 /**
@@ -42,8 +48,16 @@ export default function StudyHeroCard({
   video = false,
   contain = false,
   containHeight = "74%",
+  children,
 }: StudyHeroCardProps) {
-  const media = video ? (
+  const media = children ? (
+    <div
+      className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 justify-center"
+      style={{ height: containHeight, maxWidth: "92%" }}
+    >
+      {children}
+    </div>
+  ) : video ? (
     <video
       src={src}
       autoPlay
@@ -55,7 +69,7 @@ export default function StudyHeroCard({
     />
   ) : (
     <StudyImage
-      src={src}
+      src={src as string}
       alt={alt}
       className={
         contain
