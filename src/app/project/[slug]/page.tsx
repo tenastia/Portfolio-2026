@@ -1537,11 +1537,12 @@ function EmeraStudy() {
           Storytelling as the conversion engine.
         </h1>
         <SpecsCard
-          work={[{ label: "Web Design" }]}
+          work={[{ label: "Motion" }, { label: "UX | UI" }]}
           stack={[
             { label: "Figma" },
             { label: "Illustrator" },
             { label: "Photoshop" },
+            { label: "Jitter" },
           ]}
           readTime="~ 1 min read"
         />

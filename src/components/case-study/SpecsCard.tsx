@@ -22,13 +22,14 @@ const SPEC_ICONS: Record<string, string> = {
   CMS: "/icon-cms.svg",
   "Touchscreen App": "/projects/icons-touch.svg",
   "Web Design": "/projects/icons-web.svg",
-  "Motion Design": "/projects/icons-motion.svg",
+  Motion: "/projects/icons-motion.svg",
   // Tools
   Figma: "/icon-figma.svg",
   Illustrator: "/icon-illustrator.svg",
   Photoshop: "/icon-photoshop.svg",
   Sketch: "/icon-sketch.svg",
   Claude: "/icon-claude.svg",
+  Jitter: "/projects/jitter.svg",
 };
 
 interface SpecsCardProps {

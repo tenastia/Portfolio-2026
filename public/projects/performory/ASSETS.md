@@ -73,12 +73,21 @@ Two more panels are candidates: **"Taming the Monster"** (the `Sections 2, 4, 5`
 chip appearing, the progress bar filling) and **"It's easier when it's built up
 gradually"** (Yes / Not Yet selecting).
 
-## Icons (optional)
+## Icons
 
-`SpecsCard` resolves icons from chip labels via `SPEC_ICONS`. Three Work labels
-have no mark yet: **Responsive Design**, **Interactive Kiosk**, **Web Design**.
-`icon-cms.svg` and `icon-sketch.svg` are wired up but unused — no chip is
-currently labelled "CMS" or "Sketch".
+`SpecsCard` resolves icons from chip labels via `SPEC_ICONS`, so a study names a
+discipline or a tool and the mark follows. Every label the six studies use has
+one — the marks live in two places, `public/icon-*.svg` (the original set) and
+`public/projects/icons-*.svg` plus `public/projects/jitter.svg` (the later
+uploads); worth consolidating one day, but nothing is missing.
+
+`UX Research` and `Interface Design` are wired up as aliases of the research and
+UX | UI marks and no chip currently uses them.
+
+Work chips are icon + label; Stack is icon-only 36px discs, per the design. The
+marks render at their intrinsic size rather than a fixed box, because they are
+not one shape: Figma is 11×16 portrait, the Adobe marks are 20×20, and Jitter is
+a 24×8 wordmark.
 
 The back-to-home cross in the sticky rail is drawn inline as SVG rather than
 exported — swap it for `icon-close.svg` if you'd rather ship the Figma glyph.
