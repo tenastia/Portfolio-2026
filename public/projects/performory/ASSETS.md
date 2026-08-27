@@ -25,20 +25,32 @@ All exports go in this folder (`public/projects/performory/`).
   notation slot and the control row left empty
 - `practice-element-1-bar/2-bars/3-bars.png` — the notation cards that drop into
   that slot, one per option
-- `long-pieces-img.png` — "Taming the Monster" pair
+- `practice-screen-no-sections.png` — "Taming the Monster", left screen: the
+  same practice screen with no sections row at all
+- `practice-screen.png` — the right screen of that pair, with the **sections
+  chip left out of its row**; the chip is drawn in markup over it
+- `sections-selector-modal.png` — the selector sheet with its **carousel left
+  empty**; the cards, their names and the selectors are drawn over it
+- `section-card-all.png`, `section-card-01.png` … `section-card-05.png` — the
+  carousel thumbnails, in that order (`PERFORMORY_SECTION_CARDS` in
+  `src/app/project/[slug]/page.tsx`). "All" comes first, then each section
 - `gradual-skill-builder.png` — first/second iteration pair
 - `final-design-01.png` … `final-design-08.png` — the closing marquee, in that
   order. Alt text per screen is in `PERFORMORY_FINAL_SCREENS`
   (`src/app/project/[slug]/page.tsx`) — worth a read to check each line matches
   the screen in that slot.
 
-`long-pieces-img.png` and `gradual-skill-builder.png` are cropped tighter than
-the Figma, which shows full phone frames. Fuller exports can replace them in
-place.
+`gradual-skill-builder.png` is cropped tighter than the Figma, which shows full
+phone frames. A fuller export can replace it in place.
 
-`overview-img.png`, `calendar-img.png` and `the-game-plan-img.png` are left over
-from the previous structure and are no longer referenced. Safe to delete when
-you're sure nothing else wants them.
+`overview-img.png`, `calendar-img.png`, `the-game-plan-img.png` and
+`long-pieces-img.png` are left over from earlier versions of the layout and are
+no longer referenced — `long-pieces-img.png` was the combined "Taming the
+Monster" pair, now replaced by the two screens above. Safe to delete when you're
+sure nothing else wants them.
+
+`practice-screen-after-motion-1.png` was byte-identical to
+`practice-screen-empty.png`, which is already in use, so it isn't carried here.
 
 ## The shared hero background
 
@@ -52,16 +64,33 @@ and softening or rounding that edge does not hide it. A cut-out export of the
 two device mockups is all it needs — then it takes the same `background` and
 `contain` props Performory's hero uses.
 
-## Adding another animated screen
+## The animated screens
 
-`PracticeBarsScreen` is the pattern: a static screen export with the moving
-control rebuilt as real markup over it, so the control animates properly rather
-than one screenshot dissolving into another. Only the content it drives — here
-the notation card — swaps underneath.
+Two panels play their interaction rather than showing it. Both work the same
+way: a static export with the moving part **left out**, and that part rebuilt as
+real markup over it, so the control animates properly instead of one screenshot
+dissolving into another. Only the content it drives swaps underneath.
 
-Its geometry constants are measured off the export and written as percentages,
-so the overlay stays registered at any width, and the control's type is sized in
-`cqw` against the screen's container. To build another one:
+- **"Giving Just Enough Help"** — `PracticeBarsScreen`. The Show Bars control is
+  markup over `practice-screen-empty.png`; the notation card behind it swaps per
+  option.
+- **"Taming the Monster"** — `SectionSelectorScreen`. The sections chip is
+  markup over `practice-screen.png`, and the whole selector sheet plays on top:
+  the chip is tapped, the modal comes up over a dimmed screen, Section 1 is
+  chosen from the carousel, and the chip comes back reading `2, 4, 5, 1`. The
+  new section lands **last** because the chip lists the order sections were
+  picked, not their order in the score — which is the point the annotation
+  beside it makes.
+
+Geometry constants are measured off the exports and written as percentages, so
+the overlay stays registered at any width; type and padding are sized in `cqw`
+against the nearest container, so they scale with the screen. The Performory
+frames export at exactly 2× their Figma frames (the screen is 350 × 562 design
+units, the modal 300 × 397.687 inside it), which is what those percentages are
+derived from — worth re-checking if a screen is ever re-exported at a different
+size.
+
+To build another one:
 
 1. Export the screen with the moving control **left out**, plus the content
    states as separate elements on a shared canvas.
@@ -69,9 +98,8 @@ so the overlay stays registered at any width, and the control's type is sized in
    write them as percentages of the screen.
 3. Give the stage a `role="img"` and one `label` — the parts are decorative.
 
-Two more panels are candidates: **"Taming the Monster"** (the `Sections 2, 4, 5`
-chip appearing, the progress bar filling) and **"It's easier when it's built up
-gradually"** (Yes / Not Yet selecting).
+One more panel is a candidate: **"It's easier when it's built up gradually"**
+(Yes / Not Yet selecting).
 
 ## Icons
 
@@ -89,5 +117,8 @@ marks render at their intrinsic size rather than a fixed box, because they are
 not one shape: Figma is 11×16 portrait, the Adobe marks are 20×20, and Jitter is
 a 24×8 wordmark.
 
-The back-to-home cross in the sticky rail is drawn inline as SVG rather than
-exported — swap it for `icon-close.svg` if you'd rather ship the Figma glyph.
+Two glyphs are drawn inline as SVG rather than exported: the back-to-home cross
+in the sticky rail, and the pencil inside the sections chip
+(`SectionSelectorScreen`). Both are built to the Figma vector's box, so an
+export can replace them in place — `icon-close.svg` for the first, and the
+chip's `Vector` node for the second — if you'd rather ship the real glyphs.

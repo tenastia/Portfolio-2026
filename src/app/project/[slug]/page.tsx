@@ -9,6 +9,7 @@ import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
 import ScreenMarquee from "@/components/case-study/ScreenMarquee";
 import PracticeBarsScreen from "@/components/case-study/PracticeBarsScreen";
+import SectionSelectorScreen from "@/components/case-study/SectionSelectorScreen";
 import SectionDivider from "@/components/case-study/SectionDivider";
 import SpecsCard from "@/components/case-study/SpecsCard";
 import StatCluster from "@/components/case-study/StatCluster";
@@ -748,6 +749,20 @@ const PERFORMORY_STATS = [
   { value: 12, label: "Develop depression from it" },
 ];
 
+/**
+ * The section selector's carousel, in the order it scrolls: the whole piece
+ * first, then each section. `SectionSelectorScreen` pairs these with its own
+ * labels, so the order here has to match the one it lists.
+ */
+const PERFORMORY_SECTION_CARDS = [
+  "/projects/performory/section-card-all.png",
+  "/projects/performory/section-card-01.png",
+  "/projects/performory/section-card-02.png",
+  "/projects/performory/section-card-03.png",
+  "/projects/performory/section-card-04.png",
+  "/projects/performory/section-card-05.png",
+];
+
 const PERFORMORY_FINAL_SCREENS = [
   {
     src: "/projects/performory/final-design-01.png",
@@ -1012,11 +1027,23 @@ function PerformoryStudy() {
             },
           ]}
         >
-          <StudyImage
-            src="/projects/performory/long-pieces-img.png"
-            alt="Practice screens before and after the section selector"
-            className="h-auto w-full max-w-[43rem]"
-          />
+          {/* Left is the problem state — one long piece, no way to narrow it.
+              Right plays the fix: the selector opens, a section goes in, and
+              the chip comes back carrying it. */}
+          <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+            <StudyImage
+              src="/projects/performory/practice-screen-no-sections.png"
+              alt="The practice screen with no way to narrow a long piece down"
+              className="h-auto w-full"
+            />
+            <SectionSelectorScreen
+              className="w-full"
+              screen="/projects/performory/practice-screen.png"
+              modal="/projects/performory/sections-selector-modal.png"
+              cards={PERFORMORY_SECTION_CARDS}
+              label="The same screen opening its section selector: a fourth section is chosen from the carousel and the Sections chip returns reading 2, 4, 5, 1"
+            />
+          </div>
         </AnnotatedPanel>
 
         <div className="flex w-full flex-col items-center gap-study-gap">
