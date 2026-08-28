@@ -9,6 +9,7 @@ import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
 import ScreenMarquee from "@/components/case-study/ScreenMarquee";
 import PracticeBarsScreen from "@/components/case-study/PracticeBarsScreen";
+import PracticeRoutineScreen from "@/components/case-study/PracticeRoutineScreen";
 import SectionSelectorScreen from "@/components/case-study/SectionSelectorScreen";
 import SectionDivider from "@/components/case-study/SectionDivider";
 import SpecsCard from "@/components/case-study/SpecsCard";
@@ -1075,11 +1076,21 @@ function PerformoryStudy() {
               },
             ]}
           >
-            <StudyImage
-              src="/projects/performory/gradual-skill-builder.png"
-              alt="First and second iterations of the goal-setting flow"
-              className="h-auto w-full max-w-[43rem]"
-            />
+            {/* Left is the first iteration — it only worked if you already had
+                an event. Right plays the second: a date, the days, a practice
+                time and notifications, set inside one phone. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-routine-initial-iteration.png"
+                alt="The first iteration, which asked for an event before anything else"
+                className="h-auto w-full"
+              />
+              <PracticeRoutineScreen
+                className="w-full"
+                screen="/projects/performory/practice-routine-set-up.png"
+                label="The second iteration setting up a routine: a memorising date is chosen from the calendar, then the practice days, then a 16:00 slot added through a time picker, and notifications turned on"
+              />
+            </div>
           </AnnotatedPanel>
         </div>
 

@@ -37,14 +37,20 @@ All exports go in this folder (`public/projects/performory/`).
 - `section-card-all.png`, `section-card-01.png` … `section-card-05.png` — the
   carousel thumbnails, in that order (`PERFORMORY_SECTION_CARDS` in
   `src/app/project/[slug]/page.tsx`). "All" comes first, then each section
-- `gradual-skill-builder.png` — first/second iteration pair
+- `practice-routine-initial-iteration.png` — "It's easier when it's built up
+  gradually", left screen: the first iteration, which asked which event the
+  piece was for
+- `practice-routine-set-up.png` — the right screen of that pair, with
+  **everything below the piece card left out**; the whole set-up flow is drawn
+  over it, and its status bar and tab bar are re-used as the fixed chrome the
+  content scrolls under
 - `final-design-01.png` … `final-design-08.png` — the closing marquee, in that
   order. Alt text per screen is in `PERFORMORY_FINAL_SCREENS`
   (`src/app/project/[slug]/page.tsx`) — worth a read to check each line matches
   the screen in that slot.
 
-`gradual-skill-builder.png` is cropped tighter than the Figma, which shows full
-phone frames. A fuller export can replace it in place.
+`gradual-skill-builder.png` is left over from the previous version of that
+panel and is no longer referenced.
 
 `overview-img.png`, `calendar-img.png`, `the-game-plan-img.png` and
 `long-pieces-img.png` are left over from earlier versions of the layout and are
@@ -69,7 +75,7 @@ two device mockups is all it needs — then it takes the same `background` and
 
 ## The animated screens
 
-Two panels play their interaction rather than showing it. Both work the same
+Three panels play their interaction rather than showing it. Both work the same
 way: a static export with the moving part **left out**, and that part rebuilt as
 real markup over it, so the control animates properly instead of one screenshot
 dissolving into another. Only the content it drives swaps underneath.
@@ -106,8 +112,27 @@ To build another one:
    write them as percentages of the screen.
 3. Give the stage a `role="img"` and one `label` — the parts are decorative.
 
-One more panel is a candidate: **"It's easier when it's built up gradually"**
-(Yes / Not Yet selecting).
+- **"It's easier when it's built up gradually"** — `PracticeRoutineScreen`, and
+  the largest of the three: the whole goal-setting flow, played inside one
+  phone. A memorising date is chosen from the calendar, then the practice days,
+  then a 16:00 slot added through a time picker, then notifications turned on.
+
+  This one treats the frame as a device. The status bar and tab bar are slices
+  of the export held at the top and bottom, and everything between them scrolls
+  under them — so the screen never moves, only its content does. Each beat's
+  scroll position is set so that whatever the next beat touches is on screen
+  when it happens; `Continue` and `Start Memorizing` both sat below the fold
+  until that was checked, which is worth re-checking if the flow ever changes.
+
+  The whole cycle runs about 13.5 seconds. That is long for a loop — it is
+  four separate decisions — so say if you would rather it were tightened; the
+  per-beat timings are the `FLOW` array at the top of the component.
+
+  **The time picker is not in the Figma.** The flow needs one to add 16:00, so
+  it is built from this screen's own materials: the selector sheet's border and
+  radius, a `#292929` band for the selected row, and the primary button. If you
+  design a real one, it replaces `TimePicker` in that file and nothing else
+  moves.
 
 ## Icons
 
@@ -125,8 +150,19 @@ marks render at their intrinsic size rather than a fixed box, because they are
 not one shape: Figma is 11×16 portrait, the Adobe marks are 20×20, and Jitter is
 a 24×8 wordmark.
 
-Two glyphs are drawn inline as SVG rather than exported: the back-to-home cross
-in the sticky rail, and the pencil inside the sections chip
-(`SectionSelectorScreen`). Both are built to the Figma vector's box, so an
-export can replace them in place — `icon-close.svg` for the first, and the
-chip's `Vector` node for the second — if you'd rather ship the real glyphs.
+A few glyphs are drawn inline as SVG rather than exported: the back-to-home
+cross in the sticky rail, the pencil inside the sections chip
+(`SectionSelectorScreen`), and the calendar's month caret and month pager
+(`PracticeRoutineScreen`). All are built to their Figma vector's box, so an
+export can replace any of them in place if you'd rather ship the real glyphs —
+`icon-close.svg` covers the first.
+
+One type note: the in-markup labels are set in the project's `--font-sans`,
+which is PP Neue Montreal, while the exports are set in PP Radio Grotesk. The
+two are close enough at these sizes, but PP Neue Montreal is wider, so a long
+label such as "Select the days when you would like to practice the piece."
+wraps to two lines where the Figma keeps it on one. It also has no ultralight,
+so those labels sit a little heavier than designed. Both go away if PP Radio
+Grotesk is added to `public/fonts/` and given a `@font-face` — and note that
+PP Neue Montreal's own webfonts are still missing from that folder, so every
+sans-serif on the site currently falls back to Helvetica.
