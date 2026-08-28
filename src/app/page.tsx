@@ -83,11 +83,13 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-5 shrink-0">
+            {/* No hover fade here: the avatar answers a hover by turning over,
+                and dimming it only darkened the drawn face on its dark ground. */}
             <button
               type="button"
               onClick={scrollToTop}
               aria-label="Back to top"
-              className="rounded-[36px] cursor-pointer transition-opacity duration-300 hover:opacity-80"
+              className="cursor-pointer rounded-full"
             >
               <Headshot className="size-16" />
             </button>
