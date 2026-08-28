@@ -26,9 +26,12 @@ All exports go in this folder (`public/projects/performory/`).
 - `practice-element-1-bar/2-bars/3-bars.png` — the notation cards that drop into
   that slot, one per option
 - `practice-screen-no-sections.png` — "Taming the Monster", left screen: the
-  same practice screen with no sections row at all
+  same practice screen with no sections row at all. **Still exported without the
+  light border** the right screen now carries, so the pair reads mismatched —
+  a re-export with the border would settle it
 - `practice-screen.png` — the right screen of that pair, with the **sections
-  chip left out of its row**; the chip is drawn in markup over it
+  chip left out of its row**; the chip is drawn in markup over it. Carries a
+  light hairline border around the phone
 - `sections-selector-modal.png` — the selector sheet with its **carousel left
   empty**; the cards, their names and the selectors are drawn over it
 - `section-card-all.png`, `section-card-01.png` … `section-card-05.png` — the
