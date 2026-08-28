@@ -221,7 +221,16 @@ export default function SectionSelectorScreen({
           <motion.div
             key="scrim"
             className="absolute inset-0 bg-black/60"
-            style={{ backdropFilter: "blur(0.7cqw)" }}
+            // Rounded to the phone's own corner, or the dim would square off
+            // the device it is dimming. The radius is a circular fit to the
+            // export's alpha, which is drawn as a squircle — 0.9px rms across
+            // the arc, well under a pixel at any size this renders at. A mask
+            // would trace the squircle exactly, but Chromium does not clip
+            // `backdrop-filter` to one, so the blur would still paint square.
+            style={{
+              backdropFilter: "blur(0.7cqw)",
+              borderRadius: onScreen(17.3),
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             // The scrim outlasts the modal on the way out, so the sheet has
