@@ -1,6 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 /**
@@ -13,8 +18,14 @@ const PHONE_W = 320;
 const PHONE_H = 697;
 const u = (n: number) => `${((n * 100) / PHONE_W).toFixed(4)}cqw`;
 
-/** The phone's own corner, fitted to the export's alpha. */
+/**
+ * The device itself, measured off the export: a uniform `#b3b4b4` hairline
+ * around a `#191919` body, on a corner fitted to the export's alpha.
+ */
 const CORNER = 17.3;
+const BORDER_W = 0.82;
+const BORDER = "#b3b4b4";
+const BODY = "#191919";
 
 /** Chrome that stays put while the content scrolls under it. */
 const STATUS_H = 49.353;
@@ -43,7 +54,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const SCROLL_TIMING = { duration: 0.62, ease: EASE };
 
 /** A press, the way a tap reads on a device: down, and straight back up. */
-const tap = (active: boolean) => (active ? { scale: [1, 0.96, 1] } : { scale: 1 });
+const tap = (active: boolean) =>
+  active ? { scale: [1, 0.96, 1] } : { scale: 1 };
 const TAP_TIMING = { duration: 0.26, ease: "easeOut" as const };
 
 /* ------------------------------------------------------------------ beats */
@@ -304,7 +316,10 @@ function Calendar({ picked }: { picked: boolean }) {
                     className="absolute rounded-full bg-white"
                     style={{ width: u(29.84), height: u(29.84) }}
                     initial={false}
-                    animate={{ scale: picked ? 1 : 0.4, opacity: picked ? 1 : 0 }}
+                    animate={{
+                      scale: picked ? 1 : 0.4,
+                      opacity: picked ? 1 : 0,
+                    }}
                     transition={{ duration: 0.26, ease: EASE }}
                   />
                 )}
@@ -378,9 +393,7 @@ function Wheel({
         initial={{ y: u(wheelY(from ?? index)) }}
         animate={{ y: u(wheelY(index)) }}
         transition={
-          animate
-            ? { duration: 0.85, delay: 0.3, ease: EASE }
-            : { duration: 0 }
+          animate ? { duration: 0.85, delay: 0.3, ease: EASE } : { duration: 0 }
         }
       >
         {values.map((v) => (
@@ -397,7 +410,13 @@ function Wheel({
   );
 }
 
-function TimePicker({ dialled, pressed }: { dialled: boolean; pressed: boolean }) {
+function TimePicker({
+  dialled,
+  pressed,
+}: {
+  dialled: boolean;
+  pressed: boolean;
+}) {
   return (
     <motion.div
       className="absolute left-1/2 flex flex-col items-center"
@@ -534,90 +553,121 @@ export default function PracticeRoutineScreen({
       className={`relative @container ${className || ""}`}
       style={{ aspectRatio: `${PHONE_W} / ${PHONE_H}` }}
     >
-      {/* The scroll port: everything between the fixed chrome. */}
+      {/*
+        The device's body and its shape. This has to be a child rather than the
+        stage itself: a `cqw` in the container element's own style resolves
+        against its *ancestor* container, not itself — an element cannot size
+        itself from its own size — so a radius set up there came out at the
+        viewport's scale instead of the phone's. Everything below the band
+        depends on this layer, since there is no export down there to carry
+        either the fill or the corner.
+      */}
       <div
-        className="absolute inset-x-0 overflow-hidden"
-        style={{ top: u(PORT_TOP), height: u(PORT_H) }}
+        className="absolute inset-0 overflow-hidden"
+        style={{ background: BODY, borderRadius: u(CORNER) }}
       >
-        {/* Keyed by phase, so moving to the next screen lands at its own scroll
-            position instead of animating there from the previous one. */}
-        <motion.div
-          key={scheduling ? "schedule" : "date"}
-          className="absolute inset-x-0 top-0"
-          initial={{ y: u(-FLOW[at].scroll) }}
-          animate={{ y: u(-FLOW[at].scroll) }}
-          transition={SCROLL_TIMING}
+        {/* The scroll port: everything between the fixed chrome. */}
+        <div
+          className="absolute inset-x-0 overflow-hidden"
+          style={{ top: u(PORT_TOP), height: u(PORT_H) }}
         >
-          <Slice src={screen} {...BAND} />
-
-          {!scheduling && <Slice src={screen} {...QUESTION} />}
-
+          {/* Keyed by phase, so moving to the next screen lands at its own scroll
+            position instead of animating there from the previous one. */}
           <motion.div
-            className="flex flex-col"
-            style={{ marginLeft: u(COL_X), width: u(COL_W) }}
-            initial={{ opacity: 0, y: u(8) }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.34, ease: EASE }}
+            key={scheduling ? "schedule" : "date"}
+            className="absolute inset-x-0 top-0"
+            initial={{ y: u(-FLOW[at].scroll) }}
+            animate={{ y: u(-FLOW[at].scroll) }}
+            transition={SCROLL_TIMING}
           >
-            {scheduling ? (
-              <Schedule
-                at={at}
-                daysPicked={at >= PICK_DAYS}
-                timeAdded={at >= TIME_IN}
-                notifOn={at >= TAP_TOGGLE}
-              />
-            ) : (
-              <DateStep at={at} />
-            )}
+            <Slice src={screen} {...BAND} />
+
+            {!scheduling && <Slice src={screen} {...QUESTION} />}
+
+            <motion.div
+              className="flex flex-col"
+              style={{ marginLeft: u(COL_X), width: u(COL_W) }}
+              initial={{ opacity: 0, y: u(8) }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.34, ease: EASE }}
+            >
+              {scheduling ? (
+                <Schedule
+                  at={at}
+                  daysPicked={at >= PICK_DAYS}
+                  timeAdded={at >= TIME_IN}
+                  notifOn={at >= TAP_TOGGLE}
+                />
+              ) : (
+                <DateStep at={at} />
+              )}
+            </motion.div>
+
+            <div style={{ height: u(28) }} />
           </motion.div>
+        </div>
 
-          <div style={{ height: u(28) }} />
-        </motion.div>
-      </div>
-
-      {/* Fixed chrome, cut from the same export. */}
-      <Slice
-        src={screen}
-        top={0}
-        height={STATUS_H}
-        className="absolute inset-x-0 top-0"
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 overflow-hidden"
-        style={{ height: u(NAV_H) }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        {/* Fixed chrome, cut from the same export. */}
+        <Slice
           src={screen}
-          alt=""
-          className="absolute bottom-0 left-0 w-full max-w-none"
+          top={0}
+          height={STATUS_H}
+          className="absolute inset-x-0 top-0"
         />
+        <div
+          className="absolute inset-x-0 bottom-0 overflow-hidden"
+          style={{ height: u(NAV_H) }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={screen}
+            alt=""
+            className="absolute bottom-0 left-0 w-full max-w-none"
+          />
+        </div>
+
+        <AnimatePresence>
+          {modalOpen && (
+            <motion.div
+              key="scrim"
+              className="absolute inset-0 bg-black/60"
+              // Rounded to the phone's own corner, or the dim squares off the
+              // device it is dimming.
+              style={{
+                backdropFilter: "blur(0.7cqw)",
+                borderRadius: u(CORNER),
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.34, ease: "easeOut" },
+              }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+            />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {modalOpen && (
+            <TimePicker key="picker" dialled pressed={at === CONFIRM} />
+          )}
+        </AnimatePresence>
       </div>
 
-      <AnimatePresence>
-        {modalOpen && (
-          <motion.div
-            key="scrim"
-            className="absolute inset-0 bg-black/60"
-            // Rounded to the phone's own corner, or the dim squares off the
-            // device it is dimming.
-            style={{
-              backdropFilter: "blur(0.7cqw)",
-              borderRadius: u(CORNER),
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.34, ease: "easeOut" } }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-          />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {modalOpen && (
-          <TimePicker key="picker" dialled pressed={at === CONFIRM} />
-        )}
-      </AnimatePresence>
+      {/* The frame's own edge, last and over everything — including the dimmed
+          sheet — so the phone reads as an object the content is inside of
+          rather than a picture the content is drawn on. The export carries this
+          line too, at exactly these pixels, so where a slice shows it the two
+          coincide. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          border: `${u(BORDER_W)} solid ${BORDER}`,
+          borderRadius: u(CORNER),
+        }}
+      />
     </div>
   );
 }
@@ -740,15 +790,13 @@ function Schedule({
       >
         <TimeSlot label="11:00" />
         {timeAdded && <TimeSlot label="16:00" arriving />}
-        <motion.div layout transition={{ duration: 0.34, ease: EASE }}>
-          <PrimaryButton
-            label="Add"
-            filled={false}
-            width={136.915}
-            height={54.129}
-            pressed={at === TAP_ADD}
-          />
-        </motion.div>
+        <PrimaryButton
+          label="Add"
+          filled={false}
+          width={136.915}
+          height={54.129}
+          pressed={at === TAP_ADD}
+        />
       </div>
 
       <div style={{ height: u(23.881) }} />
@@ -771,10 +819,17 @@ function Schedule({
   );
 }
 
+/**
+ * A chosen practice time. Deliberately not a `layout` animation: these sit
+ * inside the track whose `y` is animating for the scroll, and Framer's layout
+ * animations re-measure absolute box positions every frame — against a moving
+ * ancestor transform they never settle, which reads as the row twitching. The
+ * new slot fades up instead, and `Add` wraps to the next line the way it would
+ * in a real reflow.
+ */
 function TimeSlot({ label, arriving }: { label: string; arriving?: boolean }) {
   return (
     <motion.div
-      layout
       className="flex shrink-0 items-center justify-center font-sans text-white"
       style={{
         width: u(136.915),
