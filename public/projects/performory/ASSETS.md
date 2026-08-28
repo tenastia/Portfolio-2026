@@ -76,11 +76,16 @@ dissolving into another. Only the content it drives swaps underneath.
   option.
 - **"Taming the Monster"** — `SectionSelectorScreen`. The sections chip is
   markup over `practice-screen.png`, and the whole selector sheet plays on top:
-  the chip is tapped, the modal comes up over a dimmed screen, Section 1 is
-  chosen from the carousel, and the chip comes back reading `2, 4, 5, 1`. The
-  new section lands **last** because the chip lists the order sections were
-  picked, not their order in the score — which is the point the annotation
-  beside it makes.
+  a piece already being practised in sections 1 and 2 has its selector opened,
+  the carousel scrolls out to the far end, sections 4 and 5 go in, and the chip
+  comes back reading `1, 2, 4, 5`. Each card's selector carries the same running
+  number the chip spells out, so a section picked third reads "3" in the
+  carousel and lands third in the chip — the list is the order they were
+  chosen, which is the point the annotation beside it makes.
+
+  The sequence is `PICKED` (what is already selected) plus `ADDED` (what it
+  picks, in order) at the top of the component; the chip text and every
+  selector number derive from those two, so they cannot drift apart.
 
 Geometry constants are measured off the exports and written as percentages, so
 the overlay stays registered at any width; type and padding are sized in `cqw`

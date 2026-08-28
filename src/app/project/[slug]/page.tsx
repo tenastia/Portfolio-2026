@@ -1041,7 +1041,7 @@ function PerformoryStudy() {
               screen="/projects/performory/practice-screen.png"
               modal="/projects/performory/sections-selector-modal.png"
               cards={PERFORMORY_SECTION_CARDS}
-              label="The same screen opening its section selector: a fourth section is chosen from the carousel and the Sections chip returns reading 2, 4, 5, 1"
+              label="The same screen opening its section selector: the carousel scrolls out to sections 4 and 5, both are chosen, and the Sections chip returns reading 1, 2, 4, 5"
             />
           </div>
         </AnnotatedPanel>

@@ -50,22 +50,40 @@ const SECTIONS = [
   { n: 5, label: "Section 5" },
 ];
 
-/** Sections already chosen, in the order they were picked. */
-const PICKED = [2, 4, 5];
+/** Sections already chosen before the sequence starts, in pick order. */
+const PICKED = [1, 2];
 /**
- * The one this sequence adds. It is the first section in the carousel, but it
- * is picked last — so it joins the end of the list rather than sorting itself
- * into numeric order, which is the whole point of the selector.
+ * The ones this sequence adds, in the order it picks them. They sit at the far
+ * end of the carousel, so reaching them is part of what the panel shows.
  */
-const ADDED = 1;
+const ADDED = [4, 5];
+
+/** The carousel's own metrics, in design units. */
+const COLUMN = 111.453;
+const GAP = 8.38;
+const CARD_W = 110.615;
+const CARD_H = 152.514;
+/** The window the row scrolls inside — `CARDS.width` as an absolute. */
+const WINDOW_W = 273.184;
+const ROW_W = SECTIONS.length * COLUMN + (SECTIONS.length - 1) * GAP;
+
+/**
+ * How far the row travels to bring the last sections into the window.
+ * Container-relative rather than a percentage: a percentage `x` resolves
+ * against the row's own box, which the overflow container has already clamped
+ * to the window's width, so it would stop short of the end.
+ */
+const SCROLL_TO_END = inModal(-(ROW_W - WINDOW_W));
 
 /** How long each beat holds, in milliseconds. */
-const BEATS = [1500, 320, 900, 1400, 420, 2600];
+const BEATS = [1300, 320, 800, 850, 850, 1000, 400, 2400];
 const TAP_CHIP = 1;
 const OPEN = 2;
-const TAP_CARD = 3;
-const TAP_START = 4;
-const SETTLED = 5;
+const SCROLL = 3;
+/** One beat per section added, from here on. */
+const TAP_FIRST = 4;
+const TAP_START = TAP_FIRST + ADDED.length;
+const SETTLED = TAP_START + 1;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -73,19 +91,29 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const tap = (active: boolean) => (active ? { scale: [1, 0.94, 1] } : { scale: 1 });
 const TAP_TIMING = { duration: 0.26, ease: "easeOut" as const };
 
+/**
+ * The chip's edit glyph, drawn to the Figma vector's 10.27 × 9.77 box: a pencil
+ * lying at 46°, its ferrule marked off near the top, over a short rule at the
+ * lower right. Inline rather than exported because the asset host is
+ * unreachable from here — see ASSETS.md.
+ */
 function Pencil() {
   return (
     <svg
-      viewBox="0 0 10 10"
+      viewBox="0 0 10.27 9.77"
       fill="none"
       stroke="currentColor"
-      strokeWidth={0.9}
+      strokeWidth={0.85}
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ width: onScreen(9.577), height: onScreen(9.11) }}
+      style={{ width: onScreen(10.27), height: onScreen(9.77) }}
     >
-      <path d="M7.1 0.9 9.1 2.9 3.4 8.6 0.9 9.1 1.4 6.6Z" />
-      <path d="M5.8 2.2 7.8 4.2" />
+      <g transform="translate(4.6 4.88) rotate(-48)">
+        {/* Squared at the ferrule, tapering to the point — a pencil, not a bar. */}
+        <path d="M4.4-1.28H-3.6L-4.7 0l1.1 1.28H4.4Z" />
+        <path d="M2.4-1.28V1.28" />
+      </g>
+      <path d="M5.2 9.3H9.85" />
     </svg>
   );
 }
@@ -108,9 +136,10 @@ interface SectionSelectorScreenProps {
  * screenshots dissolving into each other.
  *
  * It runs the case the copy beside it makes. A long piece is already being
- * practised in sections 2, 4 and 5; the reader watches a fourth go in, and the
- * chip comes back reading `2, 4, 5, 1` — the new section last, because the
- * list is the order they were chosen, not the order they appear in the score.
+ * practised in sections 1 and 2; the carousel runs out to the far end of the
+ * piece, two more sections go in, and the chip comes back reading
+ * `1, 2, 4, 5` — the list is the order they were chosen, and each selector
+ * carries the same running number the chip spells out.
  *
  * The cycle runs only while the screen is in view and restarts when the reader
  * comes back to it; under a reduced-motion preference it holds the settled
@@ -142,7 +171,10 @@ export default function SectionSelectorScreen({
   }, [inView, reduceMotion, step]);
 
   const at = reduceMotion ? SETTLED : step;
-  const picks = at >= TAP_CARD ? [...PICKED, ADDED] : PICKED;
+  // One section goes in per beat from TAP_FIRST, so the count of added ones is
+  // just how far past that beat we are.
+  const taken = Math.min(Math.max(at - TAP_FIRST + 1, 0), ADDED.length);
+  const picks = [...PICKED, ...ADDED.slice(0, taken)];
   const modalOpen = at >= OPEN && at < SETTLED;
 
   return (
@@ -224,12 +256,17 @@ export default function SectionSelectorScreen({
               className="absolute inset-0 h-full w-full object-fill"
             />
 
-            {/* The row overflows its window on the right, the way a carousel
-                sits mid-scroll — the next card is cut, not hidden. */}
+            {/* The row is wider than its window, so the far sections have to be
+                scrolled to — reaching them is part of what the panel shows. A
+                card is cut at the edge rather than hidden, the way a carousel
+                mid-scroll says there is more either side. */}
             <div className="absolute overflow-hidden" style={CARDS}>
-              <div
+              <motion.div
                 className="flex h-full items-start"
-                style={{ gap: inModal(8.38) }}
+                style={{ gap: inModal(GAP) }}
+                initial={{ x: 0 }}
+                animate={{ x: at >= SCROLL ? SCROLL_TO_END : 0 }}
+                transition={{ duration: 0.62, ease: EASE }}
               >
                 {SECTIONS.map((section, i) => (
                   <SectionCard
@@ -239,10 +276,10 @@ export default function SectionSelectorScreen({
                     order={
                       section.n === null ? 0 : picks.indexOf(section.n) + 1
                     }
-                    tapping={at === TAP_CARD && section.n === ADDED}
+                    tapping={ADDED[at - TAP_FIRST] === section.n}
                   />
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             <motion.div
@@ -278,13 +315,13 @@ function SectionCard({ card, label, order, tapping }: SectionCardProps) {
   return (
     <div
       className="flex shrink-0 flex-col items-center"
-      style={{ width: inModal(111.453), gap: inModal(10.056) }}
+      style={{ width: inModal(COLUMN), gap: inModal(10.056) }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={card}
         alt=""
-        style={{ width: inModal(110.615), height: inModal(152.514) }}
+        style={{ width: inModal(CARD_W), height: inModal(CARD_H) }}
       />
       <div
         className="flex flex-col items-center font-sans"
