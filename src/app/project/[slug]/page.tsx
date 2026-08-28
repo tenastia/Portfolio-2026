@@ -978,74 +978,80 @@ function PerformoryStudy() {
           </div>
         </section>
 
-        <AnnotatedPanel
-          heading="Giving Just Enough Help"
-          intro="I ran a few rounds of user testing to identify any failure points and struggles."
-          annotations={[
-            {
-              side: "left",
-              text: "If a musician couldn’t recognize a single random bar, they either had to skip multiple prompts in a row or abandon the session altogether. Very quickly, the experience started to feel like failure instead of practice.",
-            },
-            {
-              side: "right",
-              text: "Users can now expand the prompt from one bar to two or three bars, depending on how much context they need. Instead of turning a difficult moment into a dead end, it gave users a way back in.",
-            },
-          ]}
-        >
-          {/* Left holds the failure state; right plays through the fix, the
-              selector and the notation widening together. */}
-          {/* Grid, not flex: the screens are 1050px wide intrinsically, and a
-              flex item's automatic minimum size would stop them shrinking. */}
-          <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
-            <StudyImage
-              src="/projects/performory/practice-screen-before-static.png"
-              alt="The prompt with a single bar and no way to ask for more"
-              className="h-auto w-full"
-            />
-            <PracticeBarsScreen
-              className="w-full"
-              screen="/projects/performory/practice-screen-empty.png"
-              notation={[
-                "/projects/performory/practice-element-1-bar.png",
-                "/projects/performory/practice-element-2-bars.png",
-                "/projects/performory/practice-element-3-bars.png",
-              ]}
-              label="The same prompt with a Show Bars control, moving through one, two and three bars as the notation redraws to match"
-            />
-          </div>
-        </AnnotatedPanel>
+        {/* Two halves of the same argument — a prompt that can widen, and a
+            piece that can be narrowed — so they sit as one stack rather than
+            two sections. 16px, the same inset the cards already keep from the
+            page edge. */}
+        <div className="flex w-full flex-col items-center gap-4">
+          <AnnotatedPanel
+            heading="Giving Just Enough Help"
+            intro="I ran a few rounds of user testing to identify any failure points and struggles."
+            annotations={[
+              {
+                side: "left",
+                text: "If a musician couldn’t recognize a single random bar, they either had to skip multiple prompts in a row or abandon the session altogether. Very quickly, the experience started to feel like failure instead of practice.",
+              },
+              {
+                side: "right",
+                text: "Users can now expand the prompt from one bar to two or three bars, depending on how much context they need. Instead of turning a difficult moment into a dead end, it gave users a way back in.",
+              },
+            ]}
+          >
+            {/* Left holds the failure state; right plays through the fix, the
+                selector and the notation widening together. */}
+            {/* Grid, not flex: the screens are 1050px wide intrinsically, and a
+                flex item's automatic minimum size would stop them shrinking. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-screen-before-static.png"
+                alt="The prompt with a single bar and no way to ask for more"
+                className="h-auto w-full"
+              />
+              <PracticeBarsScreen
+                className="w-full"
+                screen="/projects/performory/practice-screen-empty.png"
+                notation={[
+                  "/projects/performory/practice-element-1-bar.png",
+                  "/projects/performory/practice-element-2-bars.png",
+                  "/projects/performory/practice-element-3-bars.png",
+                ]}
+                label="The same prompt with a Show Bars control, moving through one, two and three bars as the notation redraws to match"
+              />
+            </div>
+          </AnnotatedPanel>
 
-        <AnnotatedPanel
-          heading="Taming the Monster: Making Long Pieces Manageable"
-          annotations={[
-            {
-              side: "left",
-              text: "For concertos, symphonies, and other multi-movement works that can take up to 100+ pages of music, this technique posed a challenge with the volume of practicing material. Practicing those pieces through fully random fragments started to feel overwhelming very quickly.",
-            },
-            {
-              side: "right",
-              text: "To solve that, I introduced sectioning and a section selector before each practice session. Instead of approaching a long piece as one giant block of work, users can choose which section or sections they want to focus on — or practice the whole piece.",
-            },
-          ]}
-        >
-          {/* Left is the problem state — one long piece, no way to narrow it.
-              Right plays the fix: the selector opens, a section goes in, and
-              the chip comes back carrying it. */}
-          <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
-            <StudyImage
-              src="/projects/performory/practice-screen-no-sections.png"
-              alt="The practice screen with no way to narrow a long piece down"
-              className="h-auto w-full"
-            />
-            <SectionSelectorScreen
-              className="w-full"
-              screen="/projects/performory/practice-screen.png"
-              modal="/projects/performory/sections-selector-modal.png"
-              cards={PERFORMORY_SECTION_CARDS}
-              label="The same screen opening its section selector: the carousel scrolls out to sections 4 and 5, both are chosen, and the Sections chip returns reading 1, 2, 4, 5"
-            />
-          </div>
-        </AnnotatedPanel>
+          <AnnotatedPanel
+            heading="Taming the Monster: Making Long Pieces Manageable"
+            annotations={[
+              {
+                side: "left",
+                text: "For concertos, symphonies, and other multi-movement works that can take up to 100+ pages of music, this technique posed a challenge with the volume of practicing material. Practicing those pieces through fully random fragments started to feel overwhelming very quickly.",
+              },
+              {
+                side: "right",
+                text: "To solve that, I introduced sectioning and a section selector before each practice session. Instead of approaching a long piece as one giant block of work, users can choose which section or sections they want to focus on — or practice the whole piece.",
+              },
+            ]}
+          >
+            {/* Left is the problem state — one long piece, no way to narrow it.
+                Right plays the fix: the selector opens, a section goes in, and
+                the chip comes back carrying it. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-screen-no-sections.png"
+                alt="The practice screen with no way to narrow a long piece down"
+                className="h-auto w-full"
+              />
+              <SectionSelectorScreen
+                className="w-full"
+                screen="/projects/performory/practice-screen.png"
+                modal="/projects/performory/sections-selector-modal.png"
+                cards={PERFORMORY_SECTION_CARDS}
+                label="The same screen opening its section selector: the carousel scrolls out to sections 4 and 5, both are chosen, and the Sections chip returns reading 1, 2, 4, 5"
+              />
+            </div>
+          </AnnotatedPanel>
+        </div>
 
         <div className="flex w-full flex-col items-center gap-study-gap">
           <StudySection>
