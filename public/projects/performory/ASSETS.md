@@ -6,11 +6,9 @@ file in with the exact name and it appears.
 
 All exports go in this folder (`public/projects/performory/`).
 
-## Still to export
-
-| Filename | What it is | Figma node | Notes |
-| --- | --- | --- | --- |
-| `sketch-proposition-img.png` | Hand-drawn piano + thought-cloud sketch, under "Product Proposition" | `IMG_6189 1` | 880×410 |
+Nothing is outstanding: both hand-drawn sketches that used to sit here were
+replaced by the animated scene and the video band below, and are no longer
+wanted.
 
 ## In use
 
@@ -36,6 +34,9 @@ All exports go in this folder (`public/projects/performory/`).
 - `section-card-all.png`, `section-card-01.png` … `section-card-05.png` — the
   carousel thumbnails, in that order (`PERFORMORY_SECTION_CARDS` in
   `src/app/project/[slug]/page.tsx`). "All" comes first, then each section
+- `product-proposition.mp4` — the footage behind "Product Proposition",
+  1280×720, 10s. **11.9MB**, which is heavy for a background loop; a shorter or
+  more compressed cut would drop it a long way without anyone noticing
 - `cube-I.png`, `cube-II.png`, `cube-III.png` — the three sonata sections
   beside "The Game Plan", 312×312 each
 - `character-original.png`, `character-surprised.png` — the two faces the
@@ -109,6 +110,15 @@ dissolving into another. Only the content it drives swaps underneath.
 
   It replaces `sketch-sonata-img.png`, which was never exported and is no longer
   wanted.
+
+- **"Product Proposition"** — `VideoBand`. Not an interaction, just footage
+  behind the copy, with 80% black between them so the type reads. The dim is a
+  real layer rather than an opacity on the video, so the panel colour stays
+  underneath as the ground while the video loads. At 80%, even a pure-white
+  frame leaves the body copy at 6.1:1 against it, and the pink footage at
+  7.8:1 — so there is room to lighten it if the video ever looks too buried.
+
+  It replaces `sketch-proposition-img.png`, which was never exported.
 
 Geometry constants are measured off the exports and written as percentages, so
 the overlay stays registered at any width; type and padding are sized in `cqw`

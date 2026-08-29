@@ -9,6 +9,7 @@ import InsightBand from "@/components/case-study/InsightBand";
 import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
 import ScreenMarquee from "@/components/case-study/ScreenMarquee";
+import VideoBand from "@/components/case-study/VideoBand";
 import PracticeBarsScreen from "@/components/case-study/PracticeBarsScreen";
 import PracticeRoutineScreen from "@/components/case-study/PracticeRoutineScreen";
 import SectionSelectorScreen from "@/components/case-study/SectionSelectorScreen";
@@ -927,8 +928,11 @@ function PerformoryStudy() {
           </div>
         </StudySection>
 
-        {/* The exercise itself */}
-        <section className="flex w-full flex-col items-center gap-12 bg-surface-panel px-page py-16">
+        {/* The exercise itself, over the piece turning behind it. */}
+        <VideoBand
+          src="/projects/performory/product-proposition.mp4"
+          className="min-h-[24rem] md:min-h-[38rem]"
+        >
           <StudyProse heading="Product Proposition" align="center">
             <p className="max-w-[43rem]">
               The app shows a random bar from the piece and asks the musician to
@@ -938,14 +942,7 @@ function PerformoryStudy() {
               in a predictable order.
             </p>
           </StudyProse>
-          <Reveal className="w-full max-w-study">
-            <StudyImage
-              src="/projects/performory/sketch-proposition-img.png"
-              alt="Sketch of a piano and a thought cloud of scattered bars"
-              className="h-auto w-full"
-            />
-          </Reveal>
-        </section>
+        </VideoBand>
 
         {/* Design */}
         <SectionDivider id="design" label="Design" />
