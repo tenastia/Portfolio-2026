@@ -25,27 +25,34 @@ const SECTIONS = [
   { src: "/projects/performory/cube-III.png", label: "Recapitulation" },
 ];
 
+/** Working through the piece: slow, and settling as it arrives. */
+const FORWARD = { duration: 1.7, ease: [0.4, 0, 0.2, 1] } as const;
+/** Giving up: eased away from the mistake and eased down at the start again. */
+const BACK = { duration: 0.65, ease: [0.65, 0, 0.35, 1] } as const;
+
 /**
  * The run-through, one beat at a time. `at` is the cube the character is over,
- * `lost` whether it has forgotten where it was going, and `travel` how long it
- * takes to get there — the way back is quicker than the way forward, because
- * giving up and restarting is the fast part.
+ * `lost` whether it has forgotten where it was going, and `move` how it gets
+ * there — only meaningful on the two beats that change `at`, since the rest
+ * stay put.
  *
- * It only ever reaches the second cube. That is the finding the copy beside it
+ * A beat has to outlast its own arrival, or the next thing happens before the
+ * character is there: at 1.7s forward, the second beat has to hold longer than
+ * that for him to reach the development before losing his place.
+ *
+ * He only ever reaches the second cube. That is the finding the copy beside it
  * describes: a slip sends you back to the beginning, so the last section of the
  * piece stays untouched — which is why the third cube is never visited.
  */
 const RUN = [
-  { at: 0, lost: false, ms: 1400, travel: 0.85 },
-  { at: 1, lost: false, ms: 1600, travel: 0.85 },
-  { at: 1, lost: true, ms: 1700, travel: 0.85 },
-  { at: 0, lost: true, ms: 900, travel: 0.65 },
-  { at: 0, lost: false, ms: 1100, travel: 0.65 },
+  { at: 0, lost: false, ms: 1400, move: BACK },
+  { at: 1, lost: false, ms: 2400, move: FORWARD },
+  { at: 1, lost: true, ms: 1700, move: FORWARD },
+  { at: 0, lost: true, ms: 900, move: BACK },
+  { at: 0, lost: false, ms: 1100, move: BACK },
 ];
 /** The beat the scene holds when motion is not wanted: the moment it describes. */
 const STILL = 2;
-
-const EASE = [0.4, 0, 0.2, 1] as const;
 
 interface GamePlanSceneProps {
   className?: string;
@@ -140,7 +147,7 @@ export default function GamePlanScene({ className = "" }: GamePlanSceneProps) {
         style={{ left: 0, top: `${HEAD_TOP}cqw`, width: `${HEAD}cqw` }}
         initial={{ x: `${COL[beat.at]}cqw` }}
         animate={{ x: `${COL[beat.at]}cqw` }}
-        transition={{ duration: beat.travel, ease: EASE }}
+        transition={beat.move}
       >
         <div className="-translate-x-1/2">
           <motion.div
