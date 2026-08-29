@@ -4,6 +4,7 @@ import StudyFigure from "@/components/case-study/StudyFigure";
 import AffinityWall from "@/components/case-study/AffinityWall";
 import AnnotatedPanel from "@/components/case-study/AnnotatedPanel";
 import BrowserFrame from "@/components/case-study/BrowserFrame";
+import GamePlanScene from "@/components/case-study/GamePlanScene";
 import InsightBand from "@/components/case-study/InsightBand";
 import NextProjectButton from "@/components/case-study/NextProjectButton";
 import Reveal from "@/components/case-study/Reveal";
@@ -921,11 +922,7 @@ function PerformoryStudy() {
               </p>
             </StudyProse>
             <Reveal className="w-full max-w-[30.125rem] shrink-0">
-              <StudyImage
-                src="/projects/performory/sketch-sonata-img.png"
-                alt="Sketch of a piece broken into numbered bars"
-                className="h-auto w-full"
-              />
+              <GamePlanScene />
             </Reveal>
           </div>
         </StudySection>

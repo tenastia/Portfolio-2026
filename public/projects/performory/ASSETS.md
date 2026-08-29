@@ -10,7 +10,6 @@ All exports go in this folder (`public/projects/performory/`).
 
 | Filename | What it is | Figma node | Notes |
 | --- | --- | --- | --- |
-| `sketch-sonata-img.png` | Hand-drawn sonata-blocks sketch, beside "The Game Plan" | `IMG_6188 1` | Export **landscape** (the Figma frame rotates it −90°); renders ~482×230 |
 | `sketch-proposition-img.png` | Hand-drawn piano + thought-cloud sketch, under "Product Proposition" | `IMG_6189 1` | 880×410 |
 
 ## In use
@@ -37,6 +36,10 @@ All exports go in this folder (`public/projects/performory/`).
 - `section-card-all.png`, `section-card-01.png` … `section-card-05.png` — the
   carousel thumbnails, in that order (`PERFORMORY_SECTION_CARDS` in
   `src/app/project/[slug]/page.tsx`). "All" comes first, then each section
+- `cube-I.png`, `cube-II.png`, `cube-III.png` — the three sonata sections
+  beside "The Game Plan", 312×312 each
+- `character-original.png`, `character-surprised.png` — the two faces the
+  player wears in that scene, 158×158
 - `practice-routine-initial-iteration.png` — "It's easier when it's built up
   gradually", left screen: the first iteration, which asked which event the
   piece was for
@@ -95,6 +98,17 @@ dissolving into another. Only the content it drives swaps underneath.
   The sequence is `PICKED` (what is already selected) plus `ADDED` (what it
   picks, in order) at the top of the component; the chip text and every
   selector number derive from those two, so they cannot drift apart.
+
+- **"The Game Plan"** — `GamePlanScene`. Not a screen: the three cubes and the
+  player, composed and animated from their own exports rather than shipped as
+  one picture. The cubes breathe on staggered timers; the player drifts to the
+  development, loses his place, and goes back to the start. **He never reaches
+  the third cube** — that is the finding the copy makes, so if the run ever
+  changes, the recapitulation staying untouched is the part to keep. The "?" is
+  set as type rather than exported.
+
+  It replaces `sketch-sonata-img.png`, which was never exported and is no longer
+  wanted.
 
 Geometry constants are measured off the exports and written as percentages, so
 the overlay stays registered at any width; type and padding are sized in `cqw`
