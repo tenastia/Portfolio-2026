@@ -18,6 +18,16 @@
   --color-button-secondary-active: #575758;
   --color-btn-glow: #B3B4B4;
 
+  /* Case study surfaces (2026 structure) */
+  --color-surface-hero: #202020;
+  --color-surface-panel: #212121;
+  --color-surface-deep: #080808;
+  --color-surface-screen: #191919;
+  --color-surface-note: #dedede;
+  --color-card-border: rgba(248, 249, 250, 0.05);
+  --color-button-primary: rgba(248, 249, 250, 0.02);
+  --color-border-hover: #b3b4b4;
+
   /* Typography — rem (scales via root font-size) */
   --font-sans: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: "PP Right Didone", ui-serif, Georgia, "Times New Roman", serif;
@@ -36,12 +46,6 @@
   --text-body-lg: 1.375rem;
   --text-call-out: 1.625rem;
 
-  /* Case study typography (Figma desktop @16px base) */
-  --text-case-title: 2.75rem;       /* 44px */
-  --text-case-heading: 2.25rem;     /* 36px */
-  --text-case-body: 1.125rem;       /* 18px */
-  --text-case-caption: 1.5rem;      /* 24px */
-
   /* Line heights — rem */
   --leading-body-md: 1.4875rem;
   --leading-body-sm: 1.5rem;
@@ -50,11 +54,20 @@
   --leading-call-out: 2.375rem;
   --leading-button: 1.25rem;
 
-  /* Case study line heights */
-  --leading-case-title: 4rem;        /* 64px */
-  --leading-case-heading: 3.125rem;  /* 50px */
-  --leading-case-body: 1.625rem;     /* 26px */
-  --leading-case-caption: 2rem;      /* 32px */
+  /* Case study typography (Figma desktop @16px base) */
+  --text-study-title: 3.375rem;     /* 54px */
+  --text-study-h3: 1.875rem;        /* 30px */
+  --text-study-h4: 1.375rem;        /* 22px */
+  --text-study-body: 1rem;          /* 16px */
+  --text-study-meta: 0.875rem;      /* 14px */
+  --text-study-label: 0.75rem;      /* 12px */
+
+  --leading-study-title: 3.75rem;   /* 60px */
+  --leading-study-h3: 2.5rem;       /* 40px */
+  --leading-study-h4: 2rem;         /* 32px */
+  --leading-study-body: 1.75rem;    /* 28px */
+  --leading-study-meta: 1.5rem;     /* 24px */
+  --leading-study-label: 1.25rem;   /* 20px */
 
   /* Letter spacing */
   --tracking-h1: 0.3px;
@@ -68,6 +81,14 @@
   --spacing-button-y: 0.5rem;
   --spacing-content-block-y: 64px;
   --spacing-heading-body: 2.5rem;
+
+  /* Case study rhythm — 2026 structure */
+  --spacing-study: 55rem;           /* 880px content column */
+  --spacing-study-intro: 8rem;      /* 128px hero → title */
+  --spacing-study-block: 10rem;     /* 160px between major sections */
+  --spacing-study-gap: 4rem;        /* 64px within a section */
+  --spacing-title-body: 2.5rem;     /* 40px title → body */
+  --spacing-subheading-copy: 1rem;  /* 16px subheading → copy */
 }
 
 [data-scheme="light"] {
@@ -231,3 +252,27 @@ body {
   will-change: transform;
 }
 
+
+/* Affinity wall — columns of research notes drifting past a clipped panel.
+   Each column holds its notes twice, so translating by half the track height
+   loops seamlessly. Odd columns run in reverse for a slow counter-drift. */
+@keyframes note-drift {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-note-drift {
+  animation: note-drift var(--drift-dur, 60s) linear infinite;
+  will-change: transform;
+}
+
+.animate-note-drift--reverse {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-note-drift {
+    animation: none;
+  }
+}

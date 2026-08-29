@@ -1,17 +1,37 @@
 import { projects } from "@/data/projects";
 import ContentBlock from "@/components/case-study/ContentBlock";
-import CalloutCard from "@/components/case-study/CalloutCard";
-import CaseStudyNav from "@/components/case-study/CaseStudyNav";
-import CaseStudyMeta from "@/components/case-study/CaseStudyMeta";
 import StudyFigure from "@/components/case-study/StudyFigure";
-import StudyHero from "@/components/case-study/StudyHero";
-import Link from "next/link";
+import AffinityWall from "@/components/case-study/AffinityWall";
+import AnnotatedPanel from "@/components/case-study/AnnotatedPanel";
+import BrowserFrame from "@/components/case-study/BrowserFrame";
+import GamePlanScene from "@/components/case-study/GamePlanScene";
+import InsightBand from "@/components/case-study/InsightBand";
+import NextProjectButton from "@/components/case-study/NextProjectButton";
+import Reveal from "@/components/case-study/Reveal";
+import ScreenMarquee from "@/components/case-study/ScreenMarquee";
+import VideoBand from "@/components/case-study/VideoBand";
+import PracticeBarsScreen from "@/components/case-study/PracticeBarsScreen";
+import PracticeRoutineScreen from "@/components/case-study/PracticeRoutineScreen";
+import SectionSelectorScreen from "@/components/case-study/SectionSelectorScreen";
+import SectionDivider from "@/components/case-study/SectionDivider";
+import SpecsCard from "@/components/case-study/SpecsCard";
+import StatCluster from "@/components/case-study/StatCluster";
+import StudyHeroCard from "@/components/case-study/StudyHeroCard";
+import StudyImage from "@/components/case-study/StudyImage";
+import StudyLayout from "@/components/case-study/StudyLayout";
+import StudySection, {
+  Em,
+  StudyProse,
+} from "@/components/case-study/StudySection";
+import Takeaways from "@/components/case-study/Takeaways";
+import { researchNotes } from "@/data/performory";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-function StudyImage({
+/** Legacy case study figure: a centred image in its own padded section. */
+function CenteredFigure({
   src,
   alt,
   className,
@@ -50,33 +70,67 @@ function ImagePlaceholder({
   );
 }
 
+function getLiveUrl(slug: string): string | undefined {
+  return projects.find((p) => p.slug === slug)?.liveUrl;
+}
+
 function getNextProjectSlug(currentSlug: string): string {
   const caseStudies = projects.filter((p) => !p.externalUrl);
   const idx = caseStudies.findIndex((p) => p.slug === currentSlug);
   return caseStudies[(idx + 1) % caseStudies.length].slug;
 }
 
+const CENTURY_GROUP_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "context", label: "Context" },
+  { id: "system", label: "The System" },
+  { id: "colour", label: "Colour" },
+  { id: "tokens", label: "Tokens" },
+  { id: "reflections", label: "Reflections" },
+];
+
 function CenturyGroupStudy() {
   const nextSlug = getNextProjectSlug("century-group");
 
   return (
-    <>
+    <StudyLayout
+      title="Century Group"
+      year="2025"
+      sections={CENTURY_GROUP_SECTIONS}
+    >
       {/* Hero */}
-      <StudyHero src="/cg-hero-image.png" alt="Century Group" aspect="2880 / 2048">
-        <CaseStudyMeta
-          title="century group"
-          year="2025"
-          categories={["Design System", "Interface Design", "Responsive Design"]}
-          tools={["Figma", "Adobe Suite", "Claude"]}
-          readTime="~ 5 mins read"
-        />
-      </StudyHero>
+      <StudyHeroCard
+        src="/projects/century-group/cg-hero-screens.png"
+        alt="The Century Group site on desktop and mobile"
+        background="/projects/hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="90%"
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Building a scalable design system for a multidivisional real-estate developer
         </h1>
+        <SpecsCard
+          work={[
+            { label: "Design System" },
+            { label: "UX | UI" },
+            { label: "CMS" },
+          ]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+            { label: "Claude" },
+          ]}
+          readTime="~ 5 mins read"
+        />
       </section>
 
       {/* Role + Outcome */}
@@ -96,10 +150,10 @@ function CenturyGroupStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -108,7 +162,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* The Context */}
-      <ContentBlock heading="The Context">
+      <ContentBlock id="context" heading="The Context">
         <p>
           Century Group is a multidivisional real estate developer. The portfolio
           was growing across businesses and projects, but the digital foundation
@@ -133,7 +187,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Building a Scalable System */}
-      <ContentBlock heading="Building a Scalable System">
+      <ContentBlock id="system" heading="Building a Scalable System">
         <p className="font-medium text-text-highlight">
           Less is more. Bringing structure and hierarchy to the website.
         </p>
@@ -261,7 +315,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Colour wayfinding */}
-      <ContentBlock heading="Colour as the wayfinding system">
+      <ContentBlock id="colour" heading="Colour as the wayfinding system">
         <p>
           The real challenge arrived with the brand handoff. It came with a large,
           highly vibrant colour palette that had to stand in as the new Century
@@ -311,7 +365,7 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Token cascade */}
-      <ContentBlock heading="The engine: tokens that cascade">
+      <ContentBlock id="tokens" heading="The engine: tokens that cascade">
         <p>
           The wayfinding logic could only scale if it was wired to tokens.
           Hard-coded values would have become a nightmare in the shipping phase, so
@@ -359,12 +413,6 @@ function CenturyGroupStudy() {
         </div>
       </section>
 
-      {/* Token cascade image */}
-      <StudyImage
-        src="/projects/century-group/token-cascade-img.png"
-        alt="Token cascade diagram"
-      />
-
       <ContentBlock>
         <p>
           For the dev handoff, the Mapped and Responsive collections were set to
@@ -380,9 +428,9 @@ function CenturyGroupStudy() {
 
       {/* Results */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <h3 className="font-sans font-normal text-case-heading leading-case-heading tracking-[0.03em] text-text-muted mb-heading-body">
+        <h2 className="font-serif text-study-h3 leading-study-h3 text-text-muted mb-subheading-copy">
           What we achieved in this redesign session
-        </h3>
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             "Built a scalable design system that the Century Group team can now adapt for their growing portfolio.",
@@ -395,7 +443,7 @@ function CenturyGroupStudy() {
               key={i}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8"
             >
-              <p className="font-sans text-body-md leading-body-md text-text">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {text}
               </p>
             </div>
@@ -404,7 +452,7 @@ function CenturyGroupStudy() {
       </section>
 
       {/* Reflections */}
-      <ContentBlock heading="Reflections">
+      <ContentBlock id="reflections" heading="Reflections">
         <p>
           Next time I&apos;d validate the wayfinding idea with users. The logic
           held up on paper and had clear design reasoning behind it, but a quick
@@ -426,43 +474,54 @@ function CenturyGroupStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
-    </>
+      <NextProjectButton slug={nextSlug} />
+    </StudyLayout>
   );
 }
+
+const AVIARY_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "context", label: "Context" },
+  { id: "constraint", label: "The Constraint" },
+  { id: "process", label: "Process" },
+  { id: "final-product", label: "Final Product" },
+  { id: "reflections", label: "Reflections" },
+];
 
 function AviaryStudy() {
   const nextSlug = getNextProjectSlug("aviary");
 
   return (
-    <>
+    <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS} scrim>
       {/* Hero */}
-      <StudyHero src="/aviary-hero-image.png" alt="Aviary" aspect="2880 / 2048">
-        <CaseStudyMeta
-          title="aviary"
-          year="2024"
-          categories={["Interactive Kiosk", "Interface Design", "Responsive Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 3 mins read"
-        />
-      </StudyHero>
+      <StudyHeroCard
+        src="/projects/aviary/aviary-screens.png"
+        alt="The Aviary kiosk and companion screens"
+        background="/projects/aviary/aviary-hero-image.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="86%"
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Designing a multi-platform digital experience for Aviary Living
         </h1>
+        <SpecsCard
+          work={[{ label: "Touchscreen App" }, { label: "UX | UI" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Sketch" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
+          readTime="~ 3 mins read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -482,10 +541,10 @@ function AviaryStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -494,7 +553,7 @@ function AviaryStudy() {
       </section>
 
       {/* The Context */}
-      <ContentBlock heading="The Context">
+      <ContentBlock id="context" heading="The Context">
         <p>Aviary needed two digital products at once, and they could not behave the same way.</p>
         <p>
           The web app was something people would meet on their own devices,
@@ -517,7 +576,7 @@ function AviaryStudy() {
       </section>
 
       {/* The Constraint */}
-      <ContentBlock heading="The Constraint that Shaped the Approach">
+      <ContentBlock id="constraint" heading="The Constraint that Shaped the Approach">
         <p>
           I designed the touchscreen without ever touching the hardware. The unit
           was not available during the design phase, so there was no way to stand
@@ -532,14 +591,14 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-2.png"
         alt="Taped screen outline on wall"
         className="max-w-[53.75rem]"
       />
 
       {/* The Process */}
-      <ContentBlock heading="The Process">
+      <ContentBlock id="process" heading="The Process">
         <p className="font-medium text-text-highlight">Reading the room before the screen</p>
         <p>
           Before laying out a single frame, I gathered the physical
@@ -568,7 +627,7 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-3.png"
         alt="First and second navigation iterations"
         className="max-w-[53.75rem]"
@@ -585,7 +644,7 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-4.png"
         alt="Final navigation design"
         className="max-w-[53.75rem]"
@@ -619,20 +678,20 @@ function AviaryStudy() {
         </p>
       </ContentBlock>
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-5.png"
         alt="Interactive siteplan"
         className="max-w-[53.75rem]"
       />
 
-      <StudyImage
+      <CenteredFigure
         src="/projects/aviary/aviary-image-6.png"
         alt="Community map"
         className="max-w-[53.75rem]"
       />
 
       {/* Final Product */}
-      <ContentBlock heading="Final Product">
+      <ContentBlock id="final-product" heading="Final Product">
         <p>
           The real test came at launch, the first time anyone stood in front of
           the finished unit. The design held. Every call I had made from a taped
@@ -644,7 +703,7 @@ function AviaryStudy() {
       </ContentBlock>
 
       {/* Reflections */}
-      <ContentBlock heading="Reflections">
+      <ContentBlock id="reflections" heading="Reflections">
         <p>
           If I designed Aviary again, I would treat the touchscreen as an
           extension of the whole presentation centre rather than a single place
@@ -674,376 +733,437 @@ function AviaryStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
-    </>
+      <NextProjectButton slug={nextSlug} />
+    </StudyLayout>
   );
 }
+
+const PERFORMORY_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "challenge", label: "Challenge" },
+  { id: "strategy", label: "Strategy" },
+  { id: "design", label: "Design" },
+  { id: "takeaways", label: "Takeaways" },
+];
+
+const PERFORMORY_STATS = [
+  { value: 72, label: "Use drugs to ease anxiety" },
+  { value: 64, label: "Experience stage fright" },
+  { value: 12, label: "Develop depression from it" },
+];
+
+/**
+ * The section selector's carousel, in the order it scrolls: the whole piece
+ * first, then each section. `SectionSelectorScreen` pairs these with its own
+ * labels, so the order here has to match the one it lists.
+ */
+const PERFORMORY_SECTION_CARDS = [
+  "/projects/performory/section-card-all.png",
+  "/projects/performory/section-card-01.png",
+  "/projects/performory/section-card-02.png",
+  "/projects/performory/section-card-03.png",
+  "/projects/performory/section-card-04.png",
+  "/projects/performory/section-card-05.png",
+];
+
+const PERFORMORY_FINAL_SCREENS = [
+  {
+    src: "/projects/performory/final-design-01.png",
+    alt: "Session summary after finishing a practice",
+  },
+  {
+    src: "/projects/performory/final-design-02.png",
+    alt: "Memorization prompt with the bar-context control",
+  },
+  {
+    src: "/projects/performory/final-design-03.png",
+    alt: "Practice overview with the weekly progress graph",
+  },
+  {
+    src: "/projects/performory/final-design-04.png",
+    alt: "Library, most recently practiced first",
+  },
+  {
+    src: "/projects/performory/final-design-05.png",
+    alt: "Practice schedule with days, times and notifications",
+  },
+  {
+    src: "/projects/performory/final-design-06.png",
+    alt: "New piece with its sections identified and a date to memorize by",
+  },
+  {
+    src: "/projects/performory/final-design-07.png",
+    alt: "Upcoming events and stage-fright reading",
+  },
+  {
+    src: "/projects/performory/final-design-08.png",
+    alt: "Home screen with the recently practiced piece and quote of the day",
+  },
+];
+
+const PERFORMORY_TAKEAWAYS = [
+  {
+    title: "Growing the audience by introducing more techniques",
+    body: [
+      "From my research I learned that different musicians rely on different memorization techniques. Even though the technique picked for this stage was universal, the necessity to broaden the variety of techniques that would accommodate the specific needs of different kind of musicians would be a key step in growing the audience of the platform.",
+    ],
+  },
+  {
+    title: "Differentiate the musician segment further",
+    body: [
+      "“Musicians” is already a much stronger focus than “all performers that experience stage fright,” but it’s still quite broad to use the same technique for all.",
+      "The next level would be narrowing the audience further — for example, instrumentalists, vocalists, or advanced students preparing for recitals. A tighter segment would make the product more specific, and stronger.",
+    ],
+  },
+  {
+    title: "Test whether the platform feels comprehensive in practice",
+    body: [
+      "The overall strategy is to support stage fright indirectly through preparation, structure, and memory work.",
+      "That logic makes sense, but I’d want to validate whether users actually experience the product as one coherent support system in practice, rather than as a set of useful features living next to each other.",
+    ],
+  },
+];
 
 function PerformoryStudy() {
   const nextSlug = getNextProjectSlug("performory");
 
   return (
-    <>
-      {/* Hero */}
-      <StudyHero
-        src="/performory-hero-image.png"
-        alt="Performory"
-        aspect="2880 / 2048"
-      >
-        <CaseStudyMeta
-          title="performory"
-          year="2025"
-          categories={["UX Research", "Interface Design", "Brand"]}
-          tools={["Figma", "Adobe Suite", "Chat GPT", "Midjourney"]}
-          readTime="~ 5 mins read"
-        />
-      </StudyHero>
-
-      {/* Tagline */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] pb-content-block-y">
-        <p className="font-sans font-normal text-case-title leading-case-title text-text-muted">
-          A practice platform for musicians who struggle with memory lapses and
-          confidence under pressure.
-        </p>
-      </section>
-
-      {/* Section 1 */}
-      <ContentBlock heading="The Overture: How It Began">
-        <p>
-          This project started with the question: why do musicians lose
-          confidence on stage when they need it most?
-        </p>
-        <p>
-          Coming from a music background, this matter felt personal to me.
-          I&apos;ve seen how someone can be highly disciplined, well-prepared,
-          and technically strong, and yet still face stage fright and have their
-          confidence collapse at the most important moments.
-        </p>
-        <p>
-          That pushed me to look deeper into the problem and study stage fright
-          not only as an emotional response, but as a system of multiple
-          triggers.
-        </p>
-      </ContentBlock>
-
-      {/* Image: Overview screens */}
-      <StudyImage
-        src="/projects/performory/overview-img.png"
-        alt="Performory overview and events screens"
-        className="max-w-[34rem]"
+    <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
+      <StudyHeroCard
+        src="/projects/performory/performory-hero-screen.png"
+        alt="Performory home screen on a phone"
+        background="/projects/hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="74%"
       />
 
-      {/* Section 2 */}
-      <ContentBlock heading="Diving Deeper Into the Problem">
-        <p>
-          To ground the project, I interviewed five musicians and used affinity
-          mapping to understand what actually sits underneath stage fright.
-        </p>
-        <p>
-          The strongest pattern was that performance anxiety was rarely just
-          about fear on its own. More often, it was tied to a loss of trust in
-          preparation—especially when musicians felt unsure about memory, recall,
-          and readiness under pressure. Themes like perfectionism, memorization,
-          support, self-awareness, responsibility, and performance frequency kept
-          showing up across interviews, which made the problem feel both
-          emotional and behavioural at the same time.
-        </p>
-        <p>
-          That shifted how I framed the opportunity. Instead of designing for a
-          broad topic like performance anxiety among musicians, I pivoted to
-          something more tangible: musicians lacked a structured way to prepare
-          material and build confidence before a performance.
-        </p>
-        <a
-          href="https://www.figma.com/design/gOhnoapbSw89M3rbU44Ov1/Performory_UX_Research?node-id=108-137"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="self-start mt-6 inline-flex items-center justify-center rounded-[6px] border border-[#2a2a2a] bg-text/[0.02] backdrop-blur-[8px] px-4 py-2 text-body-md leading-body-md text-text-muted no-underline transition-colors duration-300 hover:bg-text/[0.05]"
+      <div className="flex w-full flex-col items-center gap-study-block pt-study-intro">
+        {/* Overview — title and credits */}
+        <StudySection id="overview">
+          <Reveal className="flex flex-col gap-12">
+            <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
+              A practice platform for musicians who struggle with memory lapses
+              and confidence under pressure.
+            </h1>
+            <SpecsCard
+              role="Product Designer"
+              work={[
+                { label: "Research & Strategy" },
+                { label: "UX | UI" },
+                { label: "Brand" },
+              ]}
+              stack={[
+                { label: "Figma" },
+                { label: "Illustrator" },
+                { label: "Photoshop" },
+              ]}
+              readTime="~5 mins. read"
+            />
+          </Reveal>
+        </StudySection>
+
+        {/* Challenge — the opening question, against what the research found */}
+        <StudySection id="challenge">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+            <StudyProse
+              heading="The Overture: Discovering the Problem."
+              className="lg:max-w-[22.75rem]"
+            >
+              <p>
+                This project started with the question:{" "}
+                <Em>why do musicians lose confidence on stage</Em> when they need
+                it most and <Em>how might we help them build it?</Em>
+              </p>
+            </StudyProse>
+            <StatCluster stats={PERFORMORY_STATS} />
+          </div>
+        </StudySection>
+
+        {/* The affinity wall, against what it added up to */}
+        <StudySection>
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:justify-between lg:gap-16">
+            <AffinityWall columns={researchNotes} />
+            <StudyProse
+              heading="Diving Deeper. Research."
+              className="lg:max-w-[22.75rem]"
+            >
+              <p>
+                To ground the project, I ran{" "}
+                <Em>primary and secondary research.</Em> I discovered that
+                performance anxiety was rarely just about fear on its own. More
+                often, it was tied to a loss of trust in preparation —
+                especially when artists felt unsure about{" "}
+                <Em>memory, recall, and readiness under pressure.</Em>
+              </p>
+            </StudyProse>
+          </div>
+        </StudySection>
+
+        <InsightBand>
+          Playing from memory converts a performance into a recall task under
+          scrutiny. That single change accounts for much of the anxiety
+          performers report — anticipatory stress beforehand, narrowed attention
+          and working-memory disruption on stage, and a lasting drop in
+          self-efficacy afterward.
+        </InsightBand>
+
+        {/* Strategy — the behaviour the exercise is built on */}
+        <StudySection id="strategy">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-10">
+            <StudyProse heading="The Game Plan" className="flex-1">
+              <p>
+                During research, I noticed a recurring pattern in how musicians
+                responded to memory slips: when they forgot, they usually went
+                back to the beginning of the piece or restarted from a familiar
+                section. Such behaviour keeps reinforcing the parts they already
+                know best, while weaker transitions and less stable passages stay
+                relatively untouched.
+              </p>
+            </StudyProse>
+            <Reveal className="w-full max-w-[30.125rem] shrink-0">
+              <GamePlanScene />
+            </Reveal>
+          </div>
+        </StudySection>
+
+        {/* The exercise itself, over the piece turning behind it. */}
+        <VideoBand
+          src="/projects/performory/product-proposition.mp4"
+          className="min-h-[24rem] md:min-h-[38rem]"
         >
-          see the research findings
-        </a>
-      </ContentBlock>
+          <StudyProse heading="Product Proposition" align="center">
+            <p className="max-w-[43rem]">
+              The app shows a random bar from the piece and asks the musician to
+              continue from that point entirely from memory. The goal of the
+              exercise was to shift memorization away from passive repetition and
+              closer to the reality of performance, where recall rarely arrives
+              in a predictable order.
+            </p>
+          </StudyProse>
+        </VideoBand>
 
-      {/* Callout */}
-      <CalloutCard>
-        Memorization emerged as the clearest product entry point at this stage.
-        Research suggested that what often breaks down on stage is not effort,
-        but reliable recall. That made memorization a functional problem, not
-        just a practice habit, and shaped the direction of the product.
-      </CalloutCard>
+        {/* Design */}
+        <SectionDivider id="design" label="Design" />
 
-      {/* All screens — full bleed */}
-      <section className="w-full pb-content-block-y">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/projects/performory/all-screens-img.png"
-          alt="Performory app screens"
-          className="w-full h-auto"
-        />
-      </section>
+        {/* The two screens settle in from opposite directions — the higher one
+            down from the top, the lower one up from the bottom — so the pair
+            closes on its offset arrangement as you reach it. */}
+        <section className="w-full px-page">
+          <div className="relative mx-auto aspect-[880/882] w-full max-w-study">
+            <Reveal
+              y={-48}
+              className="absolute left-[10.23%] top-[1.02%] w-[39.77%]"
+            >
+              <StudyImage
+                src="/projects/performory/performory-design-left-img.png"
+                alt="Practice overview with the weekly progress graph"
+                className="w-full"
+              />
+            </Reveal>
+            <Reveal y={48} className="absolute left-[50%] top-[20.29%] w-[39.77%]">
+              <StudyImage
+                src="/projects/performory/performory-design-right-img.png"
+                alt="Home screen with upcoming events and reading"
+                className="w-full"
+              />
+            </Reveal>
+          </div>
+        </section>
 
-      {/* Section 3 */}
-      <ContentBlock heading="The Game Plan">
-        <p>
-          During research, I noticed a recurring pattern in how musicians
-          responded to memory slips: when they forgot a part, they usually went
-          back to the beginning of the piece or restarted from a familiar
-          section. While this pattern seems to be a natural instinct, this
-          behaviour keeps reinforcing the parts they already know best, while
-          weaker transitions and less stable passages stay relatively untouched.
-        </p>
-        <p>
-          That became the thinking behind Performory&apos;s core memorization
-          exercise. If the real challenge in performance is being able to recover
-          when memory breaks, then practice should train that skill directly. So,
-          the app shows a random bar from the piece and asks the musician to
-          continue from that point entirely from memory.
-        </p>
-        <p>
-          The goal of the exercise was to shift memorization away from passive
-          repetition and closer to the reality of performance, where recall
-          rarely arrives in a neat, predictable order.
-        </p>
-      </ContentBlock>
-
-      {/* Library / Overview / Practice screens */}
-      <StudyImage
-        src="/projects/performory/the-game-plan-img.png"
-        alt="Library, Overview and Practice screens"
-      />
-
-      {/* Section 4 */}
-      <ContentBlock heading="Giving Just Enough Help">
-        <p>Early testing revealed a predictable failure point.</p>
-        <p>
-          If a musician couldn&apos;t recognize a single random bar, they either
-          had to skip multiple prompts in a row or abandon the session
-          altogether. Very quickly, the experience started to feel like failure
-          instead of practice.
-        </p>
-        <p>
-          To make that interaction more usable, I introduced a controlled support
-          mechanism: users can now expand the prompt from one bar to two or three
-          bars, depending on how much context they need. This kept the recall
-          exercise intact but made it less punishing. Instead of turning a
-          difficult moment into a dead end, it gave users a way back in.
-        </p>
-        <p>
-          That small adjustment changed the tone of the interaction quite a bit.
-          The challenge stayed there, but the experience became more supportive
-          and flexible, which encouraged more people in the testing group to
-          finish the exercise.
-        </p>
-      </ContentBlock>
-
-      {/* Context expansion screens */}
-      <StudyImage
-        src="/projects/performory/govong-help-img.png"
-        alt="Memorization prompt with adjustable bar context"
-      />
-
-      {/* Section 5 */}
-      <ContentBlock heading="Taming the Monster: Making Long Pieces Manageable">
-        <p>
-          For more advanced musicians working with long-form
-          repertoire—concertos, symphonies, and other multi-movement works that
-          can take up to 100+ pages of music—this technique posed a challenge
-          with the volume of practice material. Practicing those pieces through
-          fully random fragments started to feel overwhelming very quickly.
-          Sessions became scattered, and the work felt endless instead of
-          directional.
-        </p>
-        <p>
-          To solve that, I introduced sectioning and a section selector before
-          each practice session. Instead of approaching a long piece as one giant
-          block of work, users can choose which section or sections they want to
-          focus on—or practice the whole piece. This added structure without
-          making the flow rigid.
-        </p>
-        <p>
-          In later testing, sectioning even small pieces helped to make practice
-          more intentional and structured. It gave musicians a more systematic
-          and strategic way of working, while still keeping the overall
-          experience flexible.
-        </p>
-      </ContentBlock>
-
-      {/* Section selector for long pieces */}
-      <StudyImage
-        src="/projects/performory/long-pieces-img.png"
-        alt="Section selector for long pieces"
-      />
-
-      {/* Section 6 */}
-      <ContentBlock heading="Setting the Tempo: Pacing the Preparation">
-        <p>
-          In interviews, musicians didn&apos;t describe stage fright as
-          something that suddenly appears out of nowhere. More often, it built up
-          during preparation. A recurring trigger was the combination of time
-          pressure and uncertainty—not knowing if they were on track, how much
-          work was left, or whether they had enough time for the piece to sink
-          into memory.
-        </p>
-        <p>
-          To help musicians stay on track with their preparations, I introduced a
-          goal-setting flow where users could assign a piece to a specific event.
-          Although, in testing, that worked only when someone already had a
-          concrete event to prepare for. Otherwise, it felt too limiting, so I
-          shifted the flow.
-        </p>
-      </ContentBlock>
-
-      {/* Goal-setting flow iterations */}
-      <StudyImage
-        src="/projects/performory/gradual-skill-builder.png"
-        alt="First and second iterations of the goal-setting flow"
-      />
-
-      {/* Section 7 — body only (no heading) */}
-      <ContentBlock>
-        <p>
-          Instead of making events the center of the system, I moved toward a
-          more flexible setup: users can choose to set a date for memorizing a
-          piece, and then turn that deadline into a practice schedule with days,
-          times, and optional notifications. The app also uses the timeline and
-          piece size to recommend a realistic frequency, so scheduling becomes
-          part of the preparation system rather than just a calendar add-on.
-        </p>
-        <p>
-          This made progress feel more measurable, lowered uncertainty, and
-          helped users build confidence through consistency.
-        </p>
-      </ContentBlock>
-
-      {/* Scheduling flow */}
-      <StudyImage
-        src="/projects/performory/calendar-img.png"
-        alt="Date selection and practice scheduling screens"
-      />
-
-      {/* Section 8 — bullet list */}
-      <ContentBlock heading="The Next Movement: What I'd Improve">
-        <ul className="list-disc ml-[1.3125rem] flex flex-col gap-paragraph">
-          <li>
-            <span>
-              Growing the Audience by Introducing More Techniques
-              <br />
-              From my research, I learned that different musicians rely on
-              different memorization techniques. Even though the technique picked
-              for this stage was universal, broadening the variety of techniques
-              to accommodate the specific needs of different kinds of musicians
-              would be a key step in growing the platform&apos;s audience.
-            </span>
-          </li>
-          <li>
-            <span>
-              Differentiating the Musician Segment Further
-              <br />
-              &ldquo;Musicians&rdquo; is already a much stronger focus than
-              &ldquo;all performers that experience stage fright,&rdquo; but
-              it&apos;s still quite broad to use the same technique for all.
-              <br />
-              The next level would be narrowing the audience further—for example,
-              instrumentalists, vocalists, or advanced students preparing for
-              recitals. A tighter segment would make the product more specific
-              and stronger.
-            </span>
-          </li>
-          <li>
-            <span>
-              Testing Whether the Platform Feels Comprehensive in Practice
-              <br />
-              The overall strategy is to manage stage fright indirectly through
-              preparation, structure, and memory work.
-              <br />
-              That logic makes sense, but I&apos;d want to validate whether
-              users actually experience the product as one coherent support
-              system in practice, rather than as a set of useful features living
-              next to each other.
-            </span>
-          </li>
-        </ul>
-      </ContentBlock>
-
-      {/* Section 9 */}
-      <ContentBlock heading="Coda: Final Thoughts">
-        <p>
-          There were many possible directions this concept could have taken—
-          mental health support, habit formation, or educational content that
-          would predictably lead me to create another meditation platform curated
-          exclusively for musicians. Researching the problem from different
-          angles allowed me to look deeper below the surface issues and uncover
-          the stronger problem I chose to focus on.
-        </p>
-        <p>
-          What I still think works best in this project is the framing. It takes
-          an emotional problem and translates it into something design can
-          actually affect in a meaningful way.
-        </p>
-        <p>
-          Performory is a concept project, but it reflects the kind of product
-          thinking I care about most: starting with a real human tension, finding
-          the behavioural layer underneath it, and designing a system that
-          creates emotional value by being genuinely useful.
-        </p>
-      </ContentBlock>
-
-      {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
+        {/* Two halves of the same argument — a prompt that can widen, and a
+            piece that can be narrowed — so they sit as one stack rather than
+            two sections. 16px, the same inset the cards already keep from the
+            page edge. */}
+        <div className="flex w-full flex-col items-center gap-4">
+          <AnnotatedPanel
+            heading="Giving Just Enough Help"
+            intro="I ran a few rounds of user testing to identify any failure points and struggles."
+            annotations={[
+              {
+                side: "left",
+                text: "If a musician couldn’t recognize a single random bar, they either had to skip multiple prompts in a row or abandon the session altogether. Very quickly, the experience started to feel like failure instead of practice.",
+              },
+              {
+                side: "right",
+                text: "Users can now expand the prompt from one bar to two or three bars, depending on how much context they need. Instead of turning a difficult moment into a dead end, it gave users a way back in.",
+              },
+            ]}
           >
-            next project
-          </Link>
+            {/* Left holds the failure state; right plays through the fix, the
+                selector and the notation widening together. */}
+            {/* Grid, not flex: the screens are 1050px wide intrinsically, and a
+                flex item's automatic minimum size would stop them shrinking. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-screen-before-static.png"
+                alt="The prompt with a single bar and no way to ask for more"
+                className="h-auto w-full"
+              />
+              <PracticeBarsScreen
+                className="w-full"
+                screen="/projects/performory/practice-screen-empty.png"
+                notation={[
+                  "/projects/performory/practice-element-1-bar.png",
+                  "/projects/performory/practice-element-2-bars.png",
+                  "/projects/performory/practice-element-3-bars.png",
+                ]}
+                label="The same prompt with a Show Bars control, moving through one, two and three bars as the notation redraws to match"
+              />
+            </div>
+          </AnnotatedPanel>
+
+          <AnnotatedPanel
+            heading="Taming the Monster: Making Long Pieces Manageable"
+            annotations={[
+              {
+                side: "left",
+                text: "For concertos, symphonies, and other multi-movement works that can take up to 100+ pages of music, this technique posed a challenge with the volume of practicing material. Practicing those pieces through fully random fragments started to feel overwhelming very quickly.",
+              },
+              {
+                side: "right",
+                text: "To solve that, I introduced sectioning and a section selector before each practice session. Instead of approaching a long piece as one giant block of work, users can choose which section or sections they want to focus on — or practice the whole piece.",
+              },
+            ]}
+          >
+            {/* Left is the problem state — one long piece, no way to narrow it.
+                Right plays the fix: the selector opens, a section goes in, and
+                the chip comes back carrying it. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-screen-no-sections.png"
+                alt="The practice screen with no way to narrow a long piece down"
+                className="h-auto w-full"
+              />
+              <SectionSelectorScreen
+                className="w-full"
+                screen="/projects/performory/practice-screen.png"
+                modal="/projects/performory/sections-selector-modal.png"
+                cards={PERFORMORY_SECTION_CARDS}
+                label="The same screen opening its section selector: the carousel scrolls out to sections 4 and 5, both are chosen, and the Sections chip returns reading 1, 2, 4, 5"
+              />
+            </div>
+          </AnnotatedPanel>
         </div>
-      </section>
-    </>
+
+        <div className="flex w-full flex-col items-center gap-study-gap">
+          <StudySection>
+            <StudyProse
+              heading="It’s easier when it’s built up gradually"
+              align="center"
+            >
+              <p>
+                In interviews, musicians didn’t describe stage fright as
+                something that suddenly appears out of nowhere. More often, it
+                built up during preparation. A recurring trigger was the
+                combination of time pressure and uncertainty — not knowing if
+                they were on track, how much work was left, or whether they have
+                enough time for the piece to sink in the memory.
+              </p>
+            </StudyProse>
+          </StudySection>
+
+          <AnnotatedPanel
+            annotations={[
+              {
+                side: "left",
+                text: "To help musicians to stay on track with their preparations, I introduced a goal-setting flow where users could assign a piece to a specific event. In testing, that worked only when someone already had a concrete event to prepare for. Otherwise, it felt too limiting.",
+              },
+              {
+                side: "right",
+                text: "I moved toward a more flexible setup: users can choose to set a date for memorizing a piece, and then turn that deadline into a practice schedule with days, times, and optional notifications. The app also uses the timeline and piece size to recommend a realistic frequency, so scheduling becomes part of the preparation system rather than just a calendar add-on.",
+              },
+            ]}
+          >
+            {/* Left is the first iteration — it only worked if you already had
+                an event. Right plays the second: a date, the days, a practice
+                time and notifications, set inside one phone. */}
+            <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
+              <StudyImage
+                src="/projects/performory/practice-routine-initial-iteration.png"
+                alt="The first iteration, which asked for an event before anything else"
+                className="h-auto w-full"
+              />
+              <PracticeRoutineScreen
+                className="w-full"
+                screen="/projects/performory/practice-routine-set-up.png"
+                label="The second iteration setting up a routine: a memorising date is chosen from the calendar, then the practice days, then a 16:00 slot added through a time picker, and notifications turned on"
+              />
+            </div>
+          </AnnotatedPanel>
+        </div>
+
+        {/* Final screens */}
+        <div className="flex w-full flex-col items-center gap-study-gap">
+          <SectionDivider label="final screens" />
+          <ScreenMarquee screens={PERFORMORY_FINAL_SCREENS} />
+        </div>
+
+        <Takeaways
+          id="takeaways"
+          heading="The Next Movement: What I’d Improve Next"
+          items={PERFORMORY_TAKEAWAYS}
+        />
+
+        <NextProjectButton slug={nextSlug} />
+      </div>
+    </StudyLayout>
   );
 }
+
+const LANDMARK_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "problem", label: "The Problem" },
+  { id: "outcome", label: "The Outcome" },
+  { id: "approach", label: "Approach" },
+  { id: "process", label: "Process" },
+  { id: "final-thoughts", label: "Final Thoughts" },
+];
 
 function LandmarkDistrictStudy() {
   const nextSlug = getNextProjectSlug("landmark-district");
 
   return (
-    <>
+    <StudyLayout
+      title="Landmark District"
+      year="2024-2026"
+      sections={LANDMARK_SECTIONS}
+    >
       {/* Hero */}
-      <StudyHero
-        src="/projects/landmark-district/landmark-project-cover.png"
-        alt="Landmark District"
-        aspect="1440 / 972"
-      >
-        <CaseStudyMeta
-          title="landmark district"
-          year="2024-2026"
-          categories={["UX Research", "Interface Design", "Brand"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 5 mins read"
-          theme="muted"
-        />
-      </StudyHero>
+      <StudyHeroCard
+        src="/projects/landmark-district/landmark-screens.png"
+        alt="The Landmark District site on desktop and mobile"
+        background="/projects/landmark-district/landmark-hero-bg.png"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        contain
+        containHeight="90%"
+      />
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           The central digital touchpoint for a creative hub and business centre
           in downtown Kelowna with over one million square feet of retail, dining
           and office space.
         </h1>
+        <SpecsCard
+          work={[
+            { label: "Design System" },
+            { label: "UX | UI" },
+            { label: "CMS" },
+          ]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
+          readTime="~ 5 mins read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1063,10 +1183,10 @@ function LandmarkDistrictStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1075,7 +1195,7 @@ function LandmarkDistrictStudy() {
       </section>
 
       {/* The Problem */}
-      <ContentBlock heading="The Problem">
+      <ContentBlock id="problem" heading="The Problem">
         <p>
           Landmark District was rebranding from the Kelowna Business Centre into a
           home for creative and progressive professionals. The website had to
@@ -1111,7 +1231,7 @@ function LandmarkDistrictStudy() {
       />
 
       {/* The Outcome */}
-      <ContentBlock heading="The Outcome">
+      <ContentBlock id="outcome" heading="The Outcome">
         <p>
           Flattening the navigation, restructuring the content and building on a
           flexible design system gave the district a site that matched how people
@@ -1124,7 +1244,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       {/* Approach */}
-      <ContentBlock heading="Approach" subheading="Designing within the timeline">
+      <ContentBlock id="approach" heading="Approach" subheading="Designing within the timeline">
         <p>
           The timeline was tight, so I planned the product in phases rather than
           trying to ship everything at once. The sorting rule was the brief
@@ -1159,10 +1279,10 @@ function LandmarkDistrictStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1178,6 +1298,7 @@ function LandmarkDistrictStudy() {
 
       {/* Process */}
       <ContentBlock
+        id="process"
         heading="Process"
         subheading="Flattening the structure so the menu did the work"
       >
@@ -1274,7 +1395,7 @@ function LandmarkDistrictStudy() {
       />
 
       {/* Final Thoughts */}
-      <ContentBlock heading="Final Thoughts">
+      <ContentBlock id="final-thoughts" heading="Final Thoughts">
         <p>
           A brief like boost conversion and visibility is most useful as a sorting
           function. Treating it that way gave me a clear test for every scope
@@ -1287,50 +1408,71 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
-    </>
+      <NextProjectButton slug={nextSlug} />
+    </StudyLayout>
   );
 }
+
+/**
+ * The viewport inside each browser chrome, measured off the export. Both share
+ * the same window width; only the page area's height differs.
+ */
+const TERA_FRAME_SCREEN = {
+  aspect: "1648 / 1142",
+  left: "6.978%",
+  top: "9.457%",
+  width: "85.983%",
+  height: "75.919%",
+};
+
+const TERA_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "about", label: "About" },
+];
 
 function TeraDevelopmentStudy() {
   const nextSlug = getNextProjectSlug("tera");
 
   return (
-    <>
+    <StudyLayout
+      title="Tera Development"
+      year="2024"
+      sections={TERA_SECTIONS}
+      liveUrl={getLiveUrl("tera")}
+      scrim
+    >
       {/* Hero — light brand site preview */}
-      <StudyHero
-        src="/projects/other/tera-thumb.mp4"
-        alt="Tera Development"
-        aspect="1440 / 881"
-        bg="#e7e1da"
-        video
+      <StudyHeroCard
+        bg="#CCC5BC"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        containHeight="88%"
       >
-        <CaseStudyMeta
-          title="tera development"
-          year="2024"
-          categories={["Web Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 1 min read"
-          theme="light"
+        <BrowserFrame
+          frame="/projects/tera-browser-frame.png"
+          video="/projects/tera-thumb.mp4"
+          screen={TERA_FRAME_SCREEN}
+          alt="The Tera Development site playing in a browser window"
         />
-      </StudyHero>
+      </StudyHeroCard>
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Web presence for a boutique real-estate developer
         </h1>
+        <SpecsCard
+          work={[{ label: "Web Design" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+          ]}
+          readTime="~ 1 min read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1350,10 +1492,10 @@ function TeraDevelopmentStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1362,7 +1504,7 @@ function TeraDevelopmentStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock subheading="About the Project">
+      <ContentBlock id="about" heading="About the Project">
         <p>
           Tera is the brand site for a small boutique developer that shapes
           communities in Vancouver through design-driven properties, so the
@@ -1380,50 +1522,68 @@ function TeraDevelopmentStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
-    </>
+      <NextProjectButton slug={nextSlug} />
+    </StudyLayout>
   );
 }
+
+const EMERA_FRAME_SCREEN = {
+  aspect: "1648 / 1050",
+  left: "6.978%",
+  top: "10.286%",
+  width: "85.983%",
+  height: "74.000%",
+};
+
+const EMERA_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "about", label: "About" },
+];
 
 function EmeraStudy() {
   const nextSlug = getNextProjectSlug("emera");
 
   return (
-    <>
+    <StudyLayout
+      title="Emera"
+      year="2025"
+      sections={EMERA_SECTIONS}
+      liveUrl={getLiveUrl("emera")}
+      scrim
+    >
       {/* Hero */}
-      <StudyHero
-        src="/projects/other/emera-thumb.mp4"
-        alt="Emera"
-        aspect="1440 / 881"
-        bg="#4a4d3a"
-        video
+      <StudyHeroCard
+        bg="#464D36"
+        aspect="1408 / 574"
+        mobileAspect="4 / 3"
+        containHeight="88%"
       >
-        <CaseStudyMeta
-          title="emera"
-          year="2025"
-          categories={["Web Design"]}
-          tools={["Figma", "Adobe Suite"]}
-          readTime="~ 1 min read"
-          theme="muted"
+        <BrowserFrame
+          frame="/projects/emera-browser-frame.png"
+          video="/projects/emera-hero.mp4"
+          screen={EMERA_FRAME_SCREEN}
+          alt="The Emera site playing in a browser window"
         />
-      </StudyHero>
+      </StudyHeroCard>
 
       {/* Title */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px]">
-        <h1 className="font-sans font-normal text-case-title leading-case-title text-text-muted">
+      <section
+        id="overview"
+        className="max-w-[53.75rem] mx-auto w-full px-page pt-[64px] md:pt-[128px] flex flex-col gap-8"
+      >
+        <h1 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           Storytelling as the conversion engine.
         </h1>
+        <SpecsCard
+          work={[{ label: "Motion" }, { label: "UX | UI" }]}
+          stack={[
+            { label: "Figma" },
+            { label: "Illustrator" },
+            { label: "Photoshop" },
+            { label: "Jitter" },
+          ]}
+          readTime="~ 1 min read"
+        />
       </section>
 
       {/* Role + Scope */}
@@ -1443,10 +1603,10 @@ function EmeraStudy() {
               key={label}
               className="bg-surface-highlight-card border border-[#4e4e4f] rounded-[16px] px-7 pt-7 pb-8 flex flex-col gap-4"
             >
-              <span className="font-sans text-body-md leading-body-md text-text-highlight">
+              <span className="font-sans text-study-label leading-study-label uppercase tracking-[0.06em] text-text-highlight">
                 {label}
               </span>
-              <p className="font-sans text-body-md leading-body-md text-text opacity-50">
+              <p className="font-sans text-study-body leading-study-body tracking-[0.01em] text-text-muted">
                 {body}
               </p>
             </div>
@@ -1455,7 +1615,7 @@ function EmeraStudy() {
       </section>
 
       {/* About the Project */}
-      <ContentBlock subheading="About the Project">
+      <ContentBlock id="about" heading="About the Project">
         <p>
           Emera is a boutique collection of 26 townhomes in Vancouver West, so
           the product job here was turning interest into presale registrations
@@ -1467,19 +1627,8 @@ function EmeraStudy() {
       </ContentBlock>
 
       {/* Next Project */}
-      <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <div className="nav-btn-wrapper relative inline-flex rounded-[6px] p-px overflow-hidden group/btn">
-          <span className="nav-btn-glow-ring opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" aria-hidden />
-          <span className="pointer-events-none absolute inset-0 rounded-[6px] border border-[#2a2a2a] group-hover/btn:opacity-0 transition-opacity duration-500" aria-hidden />
-          <Link
-            href={`/project/${nextSlug}`}
-            className="relative z-10 rounded-[5px] bg-bg px-6 py-[1.125rem] font-sans text-button leading-button text-text whitespace-nowrap no-underline"
-          >
-            next project
-          </Link>
-        </div>
-      </section>
-    </>
+      <NextProjectButton slug={nextSlug} />
+    </StudyLayout>
   );
 }
 
@@ -1518,7 +1667,6 @@ export default async function ProjectPage({
           <p className="text-body-md text-text-muted">Coming soon</p>
         </div>
       )}
-      <CaseStudyNav liveUrl={project.liveUrl} />
     </main>
   );
 }

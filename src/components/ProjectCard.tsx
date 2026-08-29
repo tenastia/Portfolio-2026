@@ -28,15 +28,30 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
         ) : project.cover ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={project.cover}
-            alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={project.cover}
+              alt={project.coverForeground ? "" : project.title}
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            {project.coverForeground && (
+              // Same layering as the study's hero: a field with the subject
+              // sitting on it, rather than one composed image.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={project.coverForeground}
+                alt={project.title}
+                className="absolute left-1/2 top-1/2 h-[78%] w-auto max-w-[88%] -translate-x-1/2 -translate-y-1/2 object-contain pointer-events-none"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            )}
+          </>
         ) : null}
       </div>
 

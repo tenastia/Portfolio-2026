@@ -4,6 +4,12 @@ export type Project = {
   year: string;
   chips: string[];
   cover?: string;
+  /**
+   * Subject to sit on `cover` rather than letting the cover fill the card —
+   * for a project whose hero is a background and a cut-out rather than one
+   * composed image.
+   */
+  coverForeground?: string;
   video?: string;
   externalUrl?: string;
   liveUrl?: string;
@@ -15,7 +21,7 @@ export const projects: Project[] = [
     title: "performory",
     year: "2022",
     chips: ["memory training app for musicians"],
-    cover: "/projects/performory/performory-hero-img.png",
+    cover: "/projects/performory/performory-thumbnail-image.png",
   },
   {
     slug: "landmark-district",
@@ -38,13 +44,14 @@ export const projects: Project[] = [
     year: "2022",
     chips: ["design for large screens", "interactive kiosk"],
     cover: "/projects/aviary/aviary-hero-image.png",
+    coverForeground: "/projects/aviary/aviary-screens.png",
   },
   {
     slug: "tera",
     title: "tera development",
     year: "2024",
     chips: ["web presence for a boutique real-estate developer"],
-    video: "/projects/other/tera-thumb.mp4",
+    video: "/projects/tera-thumb.mp4",
     liveUrl: "https://www.teradevelopment.com/",
   },
   {
@@ -52,7 +59,7 @@ export const projects: Project[] = [
     title: "emera",
     year: "2025",
     chips: ["motion design", "Storytelling as the conversion engine"],
-    video: "/projects/other/emera-thumb.mp4",
+    video: "/projects/emera-thumb.mp4",
     liveUrl: "https://emeraliving.com/",
   },
 ];
