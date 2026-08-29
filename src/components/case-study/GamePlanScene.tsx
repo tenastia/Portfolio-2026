@@ -26,7 +26,7 @@ const SECTIONS = [
 ];
 
 /** Working through the piece: slow, and settling as it arrives. */
-const FORWARD = { duration: 1.7, ease: [0.4, 0, 0.2, 1] } as const;
+const FORWARD = { duration: 3.4, ease: [0.4, 0, 0.2, 1] } as const;
 /** Giving up: eased away from the mistake and eased down at the start again. */
 const BACK = { duration: 0.65, ease: [0.65, 0, 0.35, 1] } as const;
 
@@ -37,7 +37,7 @@ const BACK = { duration: 0.65, ease: [0.65, 0, 0.35, 1] } as const;
  * stay put.
  *
  * A beat has to outlast its own arrival, or the next thing happens before the
- * character is there: at 1.7s forward, the second beat has to hold longer than
+ * character is there: at 3.4s forward, the second beat has to hold longer than
  * that for him to reach the development before losing his place.
  *
  * He only ever reaches the second cube. That is the finding the copy beside it
@@ -46,7 +46,7 @@ const BACK = { duration: 0.65, ease: [0.65, 0, 0.35, 1] } as const;
  */
 const RUN = [
   { at: 0, lost: false, ms: 1400, move: BACK },
-  { at: 1, lost: false, ms: 2400, move: FORWARD },
+  { at: 1, lost: false, ms: 4200, move: FORWARD },
   { at: 1, lost: true, ms: 1700, move: FORWARD },
   { at: 0, lost: true, ms: 900, move: BACK },
   { at: 0, lost: false, ms: 1100, move: BACK },
