@@ -1,3 +1,4 @@
+import AutoplayVideo from "../AutoplayVideo";
 import AmbientField from "./AmbientField";
 import StudyImage from "./StudyImage";
 
@@ -58,12 +59,9 @@ export default function StudyHeroCard({
       {children}
     </div>
   ) : video ? (
-    <video
-      src={src}
-      autoPlay
-      loop
-      muted
-      playsInline
+    <AutoplayVideo
+      src={src as string}
+      eager
       aria-label={alt}
       className="absolute inset-0 h-full w-full object-cover"
     />
@@ -71,6 +69,7 @@ export default function StudyHeroCard({
     <StudyImage
       src={src as string}
       alt={alt}
+      loading="eager"
       className={
         contain
           ? "absolute left-1/2 top-1/2 w-auto max-w-[92%] -translate-x-1/2 -translate-y-1/2 object-contain"
@@ -97,6 +96,7 @@ export default function StudyHeroCard({
           <StudyImage
             src={background}
             alt=""
+            loading="eager"
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (

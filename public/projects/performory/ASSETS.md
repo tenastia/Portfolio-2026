@@ -13,9 +13,9 @@ wanted.
 ## In use
 
 - `performory-hero-bg.png` — the hero card's ambient field, 1408×574
-- `performory-hero-screen.png` — the phone floating on it, at 74% of the card's
+- `performory-hero-screen.webp` — the phone floating on it, at 74% of the card's
   height
-- `performory-design-left-img.png`, `performory-design-right-img.png` — the two
+- `performory-design-left-img.webp`, `performory-design-right-img.webp` — the two
   screens under the Design divider, sliding in from top and bottom
 - `practice-screen-before-static.png` — "Giving Just Enough Help", left screen
 - `practice-screen-empty.png` — the right screen of that panel, with the
@@ -35,20 +35,20 @@ wanted.
   carousel thumbnails, in that order (`PERFORMORY_SECTION_CARDS` in
   `src/app/project/[slug]/page.tsx`). "All" comes first, then each section
 - `product-proposition.mp4` — the footage behind "Product Proposition",
-  1280×720, 10s. **11.9MB**, which is heavy for a background loop; a shorter or
-  more compressed cut would drop it a long way without anyone noticing
+  1280×720, 10s, re-encoded without audio to ~0.6MB (from 11.9MB) — it sits
+  behind 80% black, so the compression doesn't show
 - `cube-I.png`, `cube-II.png`, `cube-III.png` — the three sonata sections
   beside "The Game Plan", 312×312 each
 - `character-original.png`, `character-surprised.png` — the two faces the
   player wears in that scene, 158×158
-- `practice-routine-initial-iteration.png` — "It's easier when it's built up
+- `practice-routine-initial-iteration.webp` — "It's easier when it's built up
   gradually", left screen: the first iteration, which asked which event the
   piece was for
 - `practice-routine-set-up.png` — the right screen of that pair, with
   **everything below the piece card left out**; the whole set-up flow is drawn
   over it, and its status bar and tab bar are re-used as the fixed chrome the
   content scrolls under
-- `final-design-01.png` … `final-design-08.png` — the closing marquee, in that
+- `final-design-01.webp` … `final-design-08.webp` — the closing marquee, in that
   order. Alt text per screen is in `PERFORMORY_FINAL_SCREENS`
   (`src/app/project/[slug]/page.tsx`) — worth a read to check each line matches
   the screen in that slot.
@@ -69,7 +69,7 @@ sure nothing else wants them.
 
 `performory-hero-bg.png` is meant to carry other studies' heroes too, but a
 foreground needs a **transparent background** to sit on it —
-`performory-hero-screen.png` is cut that way, `cg-hero-image.png` is not.
+`performory-hero-screen.webp` is cut that way, `cg-hero-image.png` is not.
 
 Century Group is still on its own hero for that reason: dropped onto the shared
 field, its flat `#202020` backdrop reads as a lighter rectangle over the plume,

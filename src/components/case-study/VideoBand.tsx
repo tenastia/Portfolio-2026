@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import { useEffect, useRef } from "react";
+import AutoplayVideo from "../AutoplayVideo";
 
 interface VideoBandProps {
   src: string;
@@ -29,26 +29,14 @@ export default function VideoBand({
   children,
 }: VideoBandProps) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    if (reduceMotion) video.pause();
-    else video.play().catch(() => {});
-  }, [reduceMotion]);
 
   return (
     <section
       className={`relative flex w-full flex-col items-center justify-center overflow-hidden bg-surface-panel px-page py-24 ${className}`}
     >
-      <video
-        ref={ref}
+      <AutoplayVideo
         src={src}
-        autoPlay
-        loop
-        muted
-        playsInline
+        paused={!!reduceMotion}
         aria-hidden
         className="absolute inset-0 h-full w-full object-cover"
       />

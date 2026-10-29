@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import AutoplayVideo from "../AutoplayVideo";
 
 interface StudyFigureProps {
   src: string;
@@ -39,12 +40,8 @@ export default function StudyFigure({
   let media: React.ReactNode = null;
   if (video) {
     media = (
-      <video
+      <AutoplayVideo
         src={src}
-        autoPlay
-        loop
-        muted
-        playsInline
         className="absolute inset-0 h-full w-full object-cover"
       />
     );
@@ -56,6 +53,8 @@ export default function StudyFigure({
           ref={imgRef}
           src={src}
           alt={alt}
+          loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className="max-h-full max-w-full object-contain"
         />
@@ -68,6 +67,8 @@ export default function StudyFigure({
         ref={imgRef}
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         onError={() => setFailed(true)}
         className="absolute inset-0 h-full w-full object-cover"
       />
