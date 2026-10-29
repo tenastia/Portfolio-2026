@@ -1,3 +1,5 @@
+import AutoplayVideo from "../AutoplayVideo";
+
 export interface FrameScreen {
   /** The frame's own aspect ratio, e.g. "1648 / 1050". */
   aspect: string;
@@ -44,12 +46,9 @@ export default function BrowserFrame({
         alt=""
         className="absolute inset-0 h-full w-full"
       />
-      <video
+      <AutoplayVideo
         src={video}
-        autoPlay
-        loop
-        muted
-        playsInline
+        eager
         className="absolute object-cover"
         style={{
           left: screen.left,

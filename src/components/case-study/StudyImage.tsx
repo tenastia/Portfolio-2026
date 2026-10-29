@@ -9,6 +9,12 @@ interface StudyImageProps {
   style?: React.CSSProperties;
   /** Rendered in place of the image while the asset is missing. */
   fallback?: React.ReactNode;
+  /**
+   * Lazy by default, since most study images sit well down the page. Pass
+   * "eager" for anything in view on arrival, or anything clipped inside a
+   * moving track, where it would otherwise pop in as it slides into view.
+   */
+  loading?: "lazy" | "eager";
 }
 
 /**
@@ -24,6 +30,7 @@ export default function StudyImage({
   className,
   style,
   fallback = null,
+  loading = "lazy",
 }: StudyImageProps) {
   const [failed, setFailed] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -41,6 +48,8 @@ export default function StudyImage({
       ref={imgRef}
       src={src}
       alt={alt}
+      loading={loading}
+      decoding="async"
       onError={() => setFailed(true)}
       className={className}
       style={style}

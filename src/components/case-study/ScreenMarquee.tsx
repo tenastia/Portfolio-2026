@@ -37,6 +37,7 @@ export default function ScreenMarquee({ screens }: { screens: Screen[] }) {
             <StudyImage
               src={src}
               alt={i < screens.length ? alt : ""}
+              loading="eager"
               className="h-full w-full object-cover"
             />
           </div>

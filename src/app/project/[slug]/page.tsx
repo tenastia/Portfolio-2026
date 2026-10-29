@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import AutoplayVideo from "@/components/AutoplayVideo";
 import ContentBlock from "@/components/case-study/ContentBlock";
 import StudyFigure from "@/components/case-study/StudyFigure";
 import AffinityWall from "@/components/case-study/AffinityWall";
@@ -46,6 +47,8 @@ function CenteredFigure({
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className={`w-full h-auto ${className || "max-w-[43.75rem]"}`}
       />
     </section>
@@ -100,9 +103,9 @@ function CenturyGroupStudy() {
     >
       {/* Hero */}
       <StudyHeroCard
-        src="/projects/century-group/cg-hero-screens.png"
+        src="/projects/century-group/cg-hero-screens.webp"
         alt="The Century Group site on desktop and mobile"
-        background="/projects/hero-bg.png"
+        background="/projects/hero-bg.webp"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -216,13 +219,9 @@ function CenturyGroupStudy() {
 
       {/* Button system image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <video
-          src="/projects/century-group/button-image-1.mov"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full rounded-[18px]"
+        <AutoplayVideo
+          src="/projects/century-group/button-image-1.mp4"
+          className="w-full aspect-[1594/640] rounded-[18px]"
         />
       </section>
 
@@ -240,13 +239,9 @@ function CenturyGroupStudy() {
 
       {/* Cards video */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <video
+        <AutoplayVideo
           src="/projects/century-group/cards-motion.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full rounded-[18px]"
+          className="w-full aspect-[1280/720] rounded-[18px]"
         />
       </section>
 
@@ -263,13 +258,9 @@ function CenturyGroupStudy() {
 
       {/* Claude skill image */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <video
-          src="/projects/century-group/claude-skill-img.mov"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full rounded-[18px]"
+        <AutoplayVideo
+          src="/projects/century-group/claude-skill-img.mp4"
+          className="w-full aspect-[1600/1048] rounded-[18px]"
         />
       </section>
 
@@ -296,21 +287,19 @@ function CenturyGroupStudy() {
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/projects/century-group/claude-routine-img.png"
+          src="/projects/century-group/claude-routine-img.webp"
           alt="Claude Code routine"
+          loading="lazy"
+          decoding="async"
           className="w-full rounded-[18px]"
         />
       </section>
 
       {/* Documentation output video */}
       <section className="max-w-[53.75rem] mx-auto w-full px-page pb-content-block-y">
-        <video
-          src="/projects/century-group/documentation-img.mov"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full rounded-[18px]"
+        <AutoplayVideo
+          src="/projects/century-group/documentation-img.mp4"
+          className="w-full aspect-[1576/964] rounded-[18px]"
         />
       </section>
 
@@ -339,7 +328,7 @@ function CenturyGroupStudy() {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={`${setIdx}-${n}`}
-                src={`/projects/century-group/marquee-${n}.png`}
+                src={`/projects/century-group/marquee-${n}.webp`}
                 alt=""
                 className="h-[160px] md:h-[224px] aspect-[398/224] object-cover rounded-[11px] shrink-0"
               />
@@ -404,7 +393,7 @@ function CenturyGroupStudy() {
             <div className="pt-[40px] pb-16 flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/projects/century-group/tokens-collection.png"
+                src="/projects/century-group/tokens-collection.webp"
                 alt="Token collection overview"
                 className="w-[56%]"
               />
@@ -495,9 +484,9 @@ function AviaryStudy() {
     <StudyLayout title="Aviary" year="2024" sections={AVIARY_SECTIONS} scrim>
       {/* Hero */}
       <StudyHeroCard
-        src="/projects/aviary/aviary-screens.png"
+        src="/projects/aviary/aviary-screens.webp"
         alt="The Aviary kiosk and companion screens"
-        background="/projects/aviary/aviary-hero-image.png"
+        background="/projects/aviary/aviary-hero-image.webp"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -569,8 +558,10 @@ function AviaryStudy() {
       <section className="w-full px-page pb-content-block-y">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/projects/aviary/aviary-image-1.gif"
+          src="/projects/aviary/aviary-image-1.webp"
           alt="Aviary kiosk interface"
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto rounded-[8px]"
         />
       </section>
@@ -592,7 +583,7 @@ function AviaryStudy() {
       </ContentBlock>
 
       <CenteredFigure
-        src="/projects/aviary/aviary-image-2.png"
+        src="/projects/aviary/aviary-image-2.webp"
         alt="Taped screen outline on wall"
         className="max-w-[53.75rem]"
       />
@@ -645,7 +636,7 @@ function AviaryStudy() {
       </ContentBlock>
 
       <CenteredFigure
-        src="/projects/aviary/aviary-image-4.png"
+        src="/projects/aviary/aviary-image-4.webp"
         alt="Final navigation design"
         className="max-w-[53.75rem]"
       />
@@ -685,7 +676,7 @@ function AviaryStudy() {
       />
 
       <CenteredFigure
-        src="/projects/aviary/aviary-image-6.png"
+        src="/projects/aviary/aviary-image-6.webp"
         alt="Community map"
         className="max-w-[53.75rem]"
       />
@@ -768,7 +759,7 @@ const PERFORMORY_SECTION_CARDS = [
 
 const PERFORMORY_FINAL_SCREENS = [
   {
-    src: "/projects/performory/final-design-01.png",
+    src: "/projects/performory/final-design-01.webp",
     alt: "Session summary after finishing a practice",
   },
   {
@@ -776,27 +767,27 @@ const PERFORMORY_FINAL_SCREENS = [
     alt: "Memorization prompt with the bar-context control",
   },
   {
-    src: "/projects/performory/final-design-03.png",
+    src: "/projects/performory/final-design-03.webp",
     alt: "Practice overview with the weekly progress graph",
   },
   {
-    src: "/projects/performory/final-design-04.png",
+    src: "/projects/performory/final-design-04.webp",
     alt: "Library, most recently practiced first",
   },
   {
-    src: "/projects/performory/final-design-05.png",
+    src: "/projects/performory/final-design-05.webp",
     alt: "Practice schedule with days, times and notifications",
   },
   {
-    src: "/projects/performory/final-design-06.png",
+    src: "/projects/performory/final-design-06.webp",
     alt: "New piece with its sections identified and a date to memorize by",
   },
   {
-    src: "/projects/performory/final-design-07.png",
+    src: "/projects/performory/final-design-07.webp",
     alt: "Upcoming events and stage-fright reading",
   },
   {
-    src: "/projects/performory/final-design-08.png",
+    src: "/projects/performory/final-design-08.webp",
     alt: "Home screen with the recently practiced piece and quote of the day",
   },
 ];
@@ -830,9 +821,9 @@ function PerformoryStudy() {
   return (
     <StudyLayout title="Performory" year="2022" sections={PERFORMORY_SECTIONS}>
       <StudyHeroCard
-        src="/projects/performory/performory-hero-screen.png"
+        src="/projects/performory/performory-hero-screen.webp"
         alt="Performory home screen on a phone"
-        background="/projects/hero-bg.png"
+        background="/projects/hero-bg.webp"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -957,14 +948,14 @@ function PerformoryStudy() {
               className="absolute left-[10.23%] top-[1.02%] w-[39.77%]"
             >
               <StudyImage
-                src="/projects/performory/performory-design-left-img.png"
+                src="/projects/performory/performory-design-left-img.webp"
                 alt="Practice overview with the weekly progress graph"
                 className="w-full"
               />
             </Reveal>
             <Reveal y={48} className="absolute left-[50%] top-[20.29%] w-[39.77%]">
               <StudyImage
-                src="/projects/performory/performory-design-right-img.png"
+                src="/projects/performory/performory-design-right-img.webp"
                 alt="Home screen with upcoming events and reading"
                 className="w-full"
               />
@@ -1081,7 +1072,7 @@ function PerformoryStudy() {
                 time and notifications, set inside one phone. */}
             <div className="grid w-full max-w-[43rem] grid-cols-2 items-start gap-4 sm:gap-6">
               <StudyImage
-                src="/projects/performory/practice-routine-initial-iteration.png"
+                src="/projects/performory/practice-routine-initial-iteration.webp"
                 alt="The first iteration, which asked for an event before anything else"
                 className="h-auto w-full"
               />
@@ -1132,9 +1123,9 @@ function LandmarkDistrictStudy() {
     >
       {/* Hero */}
       <StudyHeroCard
-        src="/projects/landmark-district/landmark-screens.png"
+        src="/projects/landmark-district/landmark-screens.webp"
         alt="The Landmark District site on desktop and mobile"
-        background="/projects/landmark-district/landmark-hero-bg.png"
+        background="/projects/landmark-district/landmark-hero-bg.webp"
         aspect="1408 / 574"
         mobileAspect="4 / 3"
         contain
@@ -1256,7 +1247,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/competitive-research.png"
+        src="/projects/landmark-district/competitive-research.webp"
         alt="Competitive research"
         aspect="823 / 411"
       />
@@ -1306,7 +1297,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/landmark-ia-revised.png"
+        src="/projects/landmark-district/landmark-ia-revised.webp"
         alt="Revised information architecture"
         aspect="823 / 460"
       />
@@ -1327,7 +1318,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/card-sorting-image.png"
+        src="/projects/landmark-district/card-sorting-image.webp"
         alt="Card sorting results"
         aspect="823 / 593"
         contain
@@ -1345,7 +1336,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/first-iteration-of-the-wireframes.png"
+        src="/projects/landmark-district/first-iteration-of-the-wireframes.webp"
         alt="First iteration of the wireframes"
         aspect="1440 / 511"
         fullBleed
@@ -1366,7 +1357,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/available-spaces-revision.png"
+        src="/projects/landmark-district/available-spaces-revision.webp"
         alt="Available spaces revision"
         aspect="823 / 463"
       />
@@ -1383,7 +1374,7 @@ function LandmarkDistrictStudy() {
       </ContentBlock>
 
       <StudyFigure
-        src="/projects/landmark-district/directory-revision.png"
+        src="/projects/landmark-district/directory-revision.webp"
         alt="Directory revision"
         aspect="823 / 463"
       />
@@ -1449,7 +1440,7 @@ function TeraDevelopmentStudy() {
         containHeight="88%"
       >
         <BrowserFrame
-          frame="/projects/tera-browser-frame.png"
+          frame="/projects/tera-browser-frame.webp"
           video="/projects/tera-thumb.mp4"
           screen={TERA_FRAME_SCREEN}
           alt="The Tera Development site playing in a browser window"
@@ -1559,7 +1550,7 @@ function EmeraStudy() {
         containHeight="88%"
       >
         <BrowserFrame
-          frame="/projects/emera-browser-frame.png"
+          frame="/projects/emera-browser-frame.webp"
           video="/projects/emera-hero.mp4"
           screen={EMERA_FRAME_SCREEN}
           alt="The Emera site playing in a browser window"

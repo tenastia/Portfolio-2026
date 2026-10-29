@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/data/projects";
+import AutoplayVideo from "./AutoplayVideo";
 
 interface ProjectCardProps {
   project: Project;
@@ -19,12 +20,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/* Image panel */}
       <div className="relative w-[calc(100%-1rem)] aspect-[668/440] rounded-[8px] overflow-hidden bg-[#f8f9fa]">
         {project.video ? (
-          <video
+          <AutoplayVideo
             src={project.video}
-            autoPlay
-            loop
-            muted
-            playsInline
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
         ) : project.cover ? (

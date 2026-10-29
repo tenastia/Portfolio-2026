@@ -25,6 +25,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {/* The Didone sets every page's opening headline, so fetch it with the
+            document rather than waiting for the stylesheet to ask for it.
+            React hoists this into <head>. */}
+        <link
+          rel="preload"
+          href="/fonts/PP%20Right%20Didone%20-%20Compact%20Dark.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
         <SchemeProvider>
           <JellyfishProvider>{children}</JellyfishProvider>
         </SchemeProvider>
