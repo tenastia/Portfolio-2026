@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavButton from "@/components/NavButton";
 import Headshot from "@/components/Headshot";
 import ProjectCard from "@/components/ProjectCard";
@@ -14,7 +14,8 @@ import { projects } from "@/data/projects";
 const NAV: { label: string; target: string }[] = [
   { label: "work", target: "projects" },
   { label: "about", target: "about" },
-  { label: "lab", target: "lab" },
+  // lab — hidden until the page has a #lab section for it to scroll to
+  // { label: "lab", target: "lab" },
   { label: "connect", target: "contact" },
 ];
 
@@ -31,13 +32,17 @@ const DIDONE =
 export default function Home() {
   const { scheme } = useScheme();
   const [activeSection, setActiveSection] = useState("hero");
+  const headerRef = useRef<HTMLElement>(null);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   // Highlight the nav button for whichever section is under the viewport middle.
+  // Read at most once a frame — scroll events can fire several times per frame.
   useEffect(() => {
     const ids = ["hero", "projects", "about", "contact"];
-    const onScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       const mid = window.innerHeight / 2;
       let current = "hero";
       for (const id of ids) {
@@ -48,10 +53,14 @@ export default function Home() {
       }
       setActiveSection(current);
     };
-    onScroll();
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
@@ -69,7 +78,8 @@ export default function Home() {
       return;
     }
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize || "16");
-    const header = 7 * rem; // fixed header height
+    // Measured rather than assumed: on phones the nav sits on a second row.
+    const header = headerRef.current?.offsetHeight ?? 7 * rem;
     const footer = 4.5 * rem; // fixed footer height
     const rect = el.getBoundingClientRect();
     const availableCenter = header + (window.innerHeight - header - footer) / 2;
@@ -78,10 +88,18 @@ export default function Home() {
   };
 
   return (
-    <main data-scheme={scheme} className="relative z-10 text-text">
-      {/* Fixed header */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
-        <div className="flex items-start justify-between gap-4">
+    // --header-h is the fixed header's height, which the hero and the section
+    // anchors clear: the avatar row alone from sm up (1.5 + 4 + 1.5rem), and on
+    // phones that row plus the nav row beneath it (+ 0.75rem gap + a 2.4875rem
+    // button with its 1px ring).
+    <main
+      data-scheme={scheme}
+      className="relative z-10 text-text [--header-h:calc(10.25rem+2px)] sm:[--header-h:7rem]"
+    >
+      {/* Fixed header — on phones the nav drops to its own row rather than
+          wrapping beside the name. */}
+      <header ref={headerRef} className="fixed top-0 inset-x-0 z-50 bg-bg p-page">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="flex items-center gap-5 shrink-0">
             {/* No hover fade here: the avatar answers a hover by turning over,
                 and dimming it only darkened the drawn face on its dark ground. */}
@@ -102,7 +120,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <nav className="flex gap-nav items-center flex-wrap justify-end">
+          <nav className="flex gap-nav items-center flex-wrap sm:justify-end">
             {NAV.map(({ label, target }) => (
               <NavButton
                 key={label}
@@ -131,14 +149,14 @@ export default function Home() {
       {/* Hero statement — ends just above the peeking first project row, with
           top padding for the header, so the copy is centered in the band
           between the header and the cards (not the full screen). */}
-      <section id="hero" className="min-h-[calc(100dvh-8rem)] pt-[7rem] flex items-center justify-center px-page">
+      <section id="hero" className="min-h-[calc(100dvh-8rem)] pt-[var(--header-h)] flex items-center justify-center px-page">
         <p className={`${DIDONE} max-w-[43.25rem]`}>
           i build digital products and interfaces where brand meets system clarity
         </p>
       </section>
 
       {/* Projects grid */}
-      <section id="projects" className="scroll-mt-[7rem] px-page pb-[9rem]">
+      <section id="projects" className="scroll-mt-[var(--header-h)] px-page pb-[9rem]">
         <div className="mx-auto max-w-[87rem] grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
@@ -149,7 +167,7 @@ export default function Home() {
       {/* About */}
       <section
         id="about"
-        className="scroll-mt-[7rem] min-h-dvh flex flex-col items-center justify-center gap-6 px-page py-[7rem]"
+        className="scroll-mt-[var(--header-h)] min-h-dvh flex flex-col items-center justify-center gap-6 px-page py-[7rem]"
       >
         <div className="w-full max-w-[36.375rem] flex flex-col gap-4">
           <p className="font-sans text-body-md leading-body-md text-text-highlight">
@@ -166,7 +184,7 @@ export default function Home() {
       {/* Availability / contact */}
       <section
         id="contact"
-        className="scroll-mt-[7rem] min-h-dvh flex flex-col items-center justify-center gap-12 px-page py-[7rem]"
+        className="scroll-mt-[var(--header-h)] min-h-dvh flex flex-col items-center justify-center gap-12 px-page py-[7rem]"
       >
         <div className="flex flex-col items-center gap-6">
           <div className="flex items-center gap-4 rounded-[6px] border border-text/[0.05] bg-text/[0.02] px-5 py-2">

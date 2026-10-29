@@ -102,6 +102,16 @@
   --color-btn-glow: #B3B4B4;
 }
 
+/* The study title is set for the 880px column. On a phone it outruns the
+   screen — "multidivisional" alone is wider than a 320px viewport — and a long
+   title runs to fourteen lines, so below md it steps down a size. */
+@media (width < 48rem) {
+  :root {
+    --text-study-title: 2.25rem;
+    --leading-study-title: 2.5rem;
+  }
+}
+
 html {
   font-size: clamp(12.5px, 11.2px + 0.333vw, 16px);
 }
@@ -199,13 +209,15 @@ body {
 
 .nav-btn-char {
   display: inline-block;
-  will-change: transform;
 }
 
+/* will-change only while floating: held permanently it gave every letter of
+   every button its own compositor layer, animating or not. */
 .nav-btn-wrapper:hover .nav-btn-char,
 .nav-btn-wrapper.nav-btn--active .nav-btn-char {
   animation: letter-float var(--char-dur, 3s) ease-in-out infinite;
   animation-delay: var(--char-delay, 0s);
+  will-change: transform;
 }
 
 /* Project card hover — rotating border glow + floating title text */
@@ -234,12 +246,12 @@ body {
 
 .card-float {
   display: inline-block;
-  will-change: transform;
 }
 
 .project-card:hover .card-float {
   animation: letter-float var(--float-dur, 3s) ease-in-out infinite;
   animation-delay: var(--float-delay, 0s);
+  will-change: transform;
 }
 
 @keyframes marquee {

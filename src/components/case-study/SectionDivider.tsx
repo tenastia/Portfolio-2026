@@ -18,7 +18,7 @@ export default function SectionDivider({
 
   return (
     <section id={id} className="mx-auto w-full max-w-study px-page">
-      <Reveal className="flex items-center gap-12">
+      <Reveal className="flex items-center gap-6 md:gap-12">
         {rule}
         <h2 className="font-serif text-study-title leading-study-title uppercase tracking-[0.04em] text-text-muted">
           {label}
